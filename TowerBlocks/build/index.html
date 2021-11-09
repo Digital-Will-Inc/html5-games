@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<head>
+  <meta name="viewport" content="width=device-width,user-scalable=no" />
+  <link rel="stylesheet" href="index.css" />
+  <script src="https://html5gameportal.com/embeds/wortal-1.1.0.js" async="true"></script>
+
+  <script src="i18n.js"></script>
+
+  <script>
+    window.addEventListener("load", () => {
+      window.initWortal(function () {
+        console.log("Wortal setup complete!");
+        setTimeout(() => {
+          adBreak({
+            type: "start",
+            name: "start-game",
+          });
+        }, 100);
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="container">
+    <div id="game"></div>
+    <div id="score">0</div>
+    <div id="instructions" class="i18nElem">instructions</div>
+    <div class="game-over">
+      <h2 class="i18nElem">gameover</h2>
+      <p class="i18nElem">youdidgreat</p>
+      <p class="i18nElem">startagain</p>
+    </div>
+    <div class="game-ready">
+      <div id="start-button" class="i18nElem">start</div>
+      <div></div>
+    </div>
+  </div>
+
+  <script src="LocaleHandler.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+  <script src="index.js"></script>
+</body>
