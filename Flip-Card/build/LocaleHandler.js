@@ -9,7 +9,7 @@ function GetTranslatedText(id) {
 
         if (element.id == id) {
             if (browserLanguage === "ja")
-                return element.jp;
+                return element.ja;
             else if (browserLanguage === "en-us")
                 return element.en;
             else

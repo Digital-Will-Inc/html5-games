@@ -1,6 +1,5 @@
 
-// const browserLanguage = (window.navigator.userLanguage || window.navigator.language).toLowerCase();
-const browserLanguage = "ja"
+const browserLanguage = (window.navigator.userLanguage || window.navigator.language).toLowerCase();
 
 console.log("Current browser lang", browserLanguage);
 
@@ -26,10 +25,6 @@ function TranslateAllPage() {
     console.log("Translating all page...");
 
     const i18nElems = document.getElementsByClassName("i18nElem");
-    if (i18nElems.length == 0) {
-        console.log("No i18nElem found");
-    }
-
     Translate(i18nElems);
 }
 

@@ -14,9 +14,10 @@ window.addEventListener("load", () => {
 
 
 function CallAd(type, name) {
-    window.triggerWortalAd("next", "Description of your ad", function () {
-        console.log("I get called before the ad!");
-    },
+    window.triggerWortalAd(type, name,
+        function () {
+            console.log("I get called before the ad!");
+        },
         function () {
             console.log("I get called after the ad!");
         },

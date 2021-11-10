@@ -14,8 +14,15 @@ window.addEventListener("load", () => {
 
 
 function CallAd(type, name) {
-    adBreak({
-        type: type,
-        name: name,
-    });
+    window.triggerWortalAd(type, name,
+        function () {
+            console.log("I get called before the ad!");
+        },
+        function () {
+            console.log("I get called after the ad!");
+        },
+        function () {
+            console.log("I get called if the ad doesn't show.");
+        }
+    );
 }

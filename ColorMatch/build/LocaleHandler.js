@@ -1,7 +1,6 @@
 
 const browserLanguage = (window.navigator.userLanguage || window.navigator.language).toLowerCase();
 
-
 console.log("Current browser lang", browserLanguage);
 
 function GetTranslatedText(id) {
