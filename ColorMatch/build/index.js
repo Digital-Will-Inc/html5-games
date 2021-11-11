@@ -56,7 +56,7 @@
         }
         if (!running) {
             gameover.innerHTML = msg
-            TranslateDynamicElem("game-over");
+            TranslateDynamicElem(".game-over");
         }
     }
 
@@ -136,6 +136,3 @@
         }
     })
 })(document)
-
-TranslateAllPage();
-

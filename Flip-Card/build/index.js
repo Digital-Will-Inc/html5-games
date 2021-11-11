@@ -24,7 +24,7 @@ $(function () {
             '<li><b class="i18nElem">matchedflips</b> <span>' + get('flip_matched') + '</span></li>' +
             '<li><b class="i18nElem">wrongflips</b> <span>' + get('flip_wrong') + '</span></li></ul></div>');
 
-        TranslateDynamicElem('stats');
+        TranslateDynamicElem('#stats .i18nElem');
 
     };
 
