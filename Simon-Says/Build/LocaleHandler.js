@@ -1,5 +1,4 @@
-// const browserLanguage = (window.navigator.userLanguage || window.navigator.language).toLowerCase();
-const browserLanguage = "ja";
+const browserLanguage = (window.navigator.userLanguage || window.navigator.language).toLowerCase();
 
 console.log("Current browser lang", browserLanguage);
 
