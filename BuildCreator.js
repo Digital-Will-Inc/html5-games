@@ -1,15 +1,8 @@
+const GAME_NAMES = require("./GameNames");
 const fs = require('fs');
 const archiver = require('archiver');
 
 !fs.existsSync(`./dist/`) && fs.mkdirSync(`./dist/`);
-
-const GAME_NAMES = [
-    "ColorMatch",
-    "emoji-minesweeper",
-    "Flip-Card",
-    "Simon-Says",
-    "TowerBlocks"
-]
 
 for (let i = 0; i < GAME_NAMES.length; i++) {
     const gameName = GAME_NAMES[i];
@@ -32,7 +25,7 @@ function zipDirectory(source, out, gameName) {
             .on('error', err => reject(err))
             .pipe(stream);
 
-        gistream.on('error', err => reject(err));
+        stream.on('error', err => reject(err));
         archive.finalize();
     });
 }
