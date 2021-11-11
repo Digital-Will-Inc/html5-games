@@ -3,7 +3,8 @@ const GAME_NAMES = [
     "emoji-minesweeper",
     "Flip-Card",
     "Simon-Says",
-    "TowerBlocks"
+    "TowerBlocks",
+	"Align-4-Game"
 ];
 
 
