@@ -65,7 +65,8 @@ $(function () {
 function setBlurb(key) {
     $('.info h2').text(BLURBS[key].header);
     $('.info .blurb').text(BLURBS[key].blurb);
-    TranslateDynamicElem("info")
+    TranslateDynamicElem(".info .blurb");
+    TranslateDynamicElem(".info h2");
 }
 
 function setOutlook(key) {
@@ -78,7 +79,7 @@ function setOutlook(key) {
         $outlook.hide();
     }
 
-    TranslateDynamicElem("info")
+    TranslateDynamicElem(".info .outlook")
 }
 
 function startGame() {

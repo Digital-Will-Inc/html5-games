@@ -46,11 +46,9 @@ function TranslateDynamicElem(elementClassName = "") {
         console.warn("element className is empty");
     }
 
-    const specificElem = document.getElementsByClassName(elementClassName)[0];
+    const specificElem = document.querySelectorAll(elementClassName);
 
-    const reqElems = specificElem.getElementsByClassName("i18nElem");
-    Translate(reqElems);
-
+    Translate(specificElem);
 }
 
 
@@ -77,6 +75,7 @@ function Importi18nScript() {
     script.type = "text/javascript";
     const head = document.getElementsByTagName("head");
     head[head.length - 1].appendChild(script).onload = () => {
+        console.log("i18n loaded");
         TranslateAllPage();
     };
 }
