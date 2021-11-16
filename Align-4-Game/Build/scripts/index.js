@@ -35,6 +35,8 @@ const OUTLOOKS = {
 var worker;
 var currentGameState;
 
+var hasEndedGame = false;
+
 // document ready
 $(function () {
     $('.start button').on('click', startGame);
@@ -90,6 +92,11 @@ function startGame() {
     worker.postMessage({
         messageType: 'reset',
     });
+
+    if (hasEndedGame) {
+        hasEndedGame = false;
+        CallAd(AdTypes.interstitailAd, "Restart game");
+    }
 }
 
 function startHumanTurn() {
@@ -198,6 +205,7 @@ function endGame(blurbKey, winningChips) {
             createLitCell(winningChips[i].col, winningChips[i].row);
         }
     }
+    hasEndedGame = true;
 }
 
 function createLitCell(col, row) {

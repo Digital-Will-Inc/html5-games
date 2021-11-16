@@ -5,7 +5,6 @@ const GAME_NAMES = [
     "Simon-Says",
     "TowerBlocks",
 	"Align-4-Game",
-	"Tetris",
 	"BlockFall"
 ];
 
