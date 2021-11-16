@@ -1,5 +1,5 @@
 var WORTAL_API_SCRIPT = document.createElement("script");
-WORTAL_API_SCRIPT.src = "https://html5gameportal.com/embeds/wortal-1.1.0.js";
+WORTAL_API_SCRIPT.src = "https://html5gameportal.com/embeds/wortal-1.1.1.js";
 WORTAL_API_SCRIPT.type = 'text/javascript';
 WORTAL_API_SCRIPT.async = true;
 const head = document.getElementsByTagName("head");
@@ -13,23 +13,24 @@ const AdTypes = {
 window.addEventListener("load", () => {
     window.initWortal(function () {
         console.log("Wortal setup complete!");
-        setTimeout(() => {
-            CallAd(AdTypes.interstitailAd, "Interstitial Ad");
-        }, 100);
+        CallAd(AdTypes.interstitailAd, "Interstitial Ad");
     });
 });
 
 
 function CallAd(type, name) {
-    window.triggerWortalAd(type, name,
-        function () {
-            console.log("I get called before the ad!");
+    window.triggerWortalAd(type, name, {
+        beforeAd: function () {
+            console.log("Call beforeAd");
         },
-        function () {
-            console.log("I get called after the ad!");
+        afterAd: function () {
+            console.log("Call afterAd");
         },
-        function () {
-            console.log("I get called if the ad doesn't show.");
+        adBreakDone: function () {
+            console.log("Call adBreakDone");
+        },
+        noShow: function () {
+
         }
-    );
+    });
 }
