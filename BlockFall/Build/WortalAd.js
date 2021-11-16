@@ -15,7 +15,7 @@ window.addEventListener("load", () => {
         console.log("Wortal setup complete!");
         setTimeout(() => {
             CallAd(AdTypes.interstitailAd, "Interstitial Ad");
-        }, 100)
+        }, 100);
     });
 });
 

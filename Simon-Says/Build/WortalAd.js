@@ -13,7 +13,9 @@ const AdTypes = {
 window.addEventListener("load", () => {
     window.initWortal(function () {
         console.log("Wortal setup complete!");
-        CallAd(AdTypes.interstitailAd, "Interstitial Ad");
+        setTimeout(() => {
+            CallAd(AdTypes.interstitailAd, "Interstitial Ad");
+        }, 100);
     });
 });
 
