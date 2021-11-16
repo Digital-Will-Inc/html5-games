@@ -13,27 +13,13 @@ const AdTypes = {
 window.addEventListener("load", () => {
     window.initWortal(function () {
         console.log("Wortal setup complete!");
-        setTimeout(() => {
-            CallAd(AdTypes.interstitailAd, "Interstitial Ad");
-        }, 100);
+        CallAd(AdTypes.interstitailAd, "Interstitial Ad");
     });
 });
 
 
 function CallAd(type, name) {
     window.triggerWortalAd(type, name, {
-        // function () {
-        //     console.log("I get called before the ad!");
-        // },
-        // function () {
-        //     console.log("I get called after the ad!");
-        // },
-        // function () {
-        //     console.log("I get called if the ad doesn't show.");
-        // }, function () {
-
-        // }
-
         beforeAd: function () {
             console.log("Call beforeAd");
         },
