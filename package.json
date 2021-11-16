@@ -4,7 +4,9 @@
   "description": "- Just create a new folder with the name of project\r - Add all you src code that will be used by the game in [ProjectName]/build\r - Add the utils scripts from `Utils` in [ProjectName]/build\r   - LocaleHandler.js\r   - Wortal.js",
   "main": "BuildCreator.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node BuildCreator.js",
+    "update-game-modules": "node UpdateModules.js"
   },
   "repository": {
     "type": "git",

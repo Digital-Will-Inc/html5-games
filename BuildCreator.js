@@ -26,6 +26,9 @@ function zipDirectory(source, out, gameName) {
             .pipe(stream);
 
         stream.on('error', err => reject(err));
+        stream.on("close", () => {
+            console.log(`${gameName} zip created`);
+        });
         archive.finalize();
     });
 }
