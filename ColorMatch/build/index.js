@@ -17,7 +17,7 @@
     let cell = '-x'
     let skill = 5
     let tally = 0
-    let cap = 5
+    let cap = 25
     let color
 
     //  game play methods
@@ -132,6 +132,7 @@
             play(event.target.className)
         }
         else if (css.includes('new-game')) {
+            CallAd(AdTypes.interstitailAd, "New Game");
             newGame()
         }
     })
