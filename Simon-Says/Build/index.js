@@ -52,6 +52,7 @@ $(document).ready(function () {
         var gameStatus = {};
 
         gameStatus.reset = function () {
+
             this.init();
             this.strict = false;
         }
@@ -131,6 +132,7 @@ $(document).ready(function () {
         }
 
         function notifyError(pushObj) {
+            console.log('notifyError');
             gameStatus.lock = true;
             $('.push').removeClass('clickable').addClass('unclickable');
             playErrTone();
@@ -141,10 +143,14 @@ $(document).ready(function () {
                 if (pushObj)
                     pushObj.removeClass('light');
                 gameStatus.toHndlSt = setTimeout(function () {
-                    if (gameStatus.strict)
+                    if (gameStatus.strict) {
+                        CallAd(AdTypes.next, "Restart game in strict mode");
                         gameStart()
-                    else
+                    }
+                    else {
+                        CallAd(AdTypes.next, "Restart game");
                         playSequence();
+                    }
                 }, 1000);
             }, 1000);
             flashMessage('!!', 2);
@@ -284,7 +290,6 @@ $(document).ready(function () {
         });
 
         gameStatus.reset();
-        CallAd(AdTypes.next, "Restart game");
     }
 });
 
