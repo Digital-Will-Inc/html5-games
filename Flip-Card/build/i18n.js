@@ -1,4 +1,4 @@
-const i18n = [
+i18n = [
     {
         "id": "playnow",
         "en": "Play Now",
@@ -108,5 +108,10 @@ const i18n = [
         "id": "clickp",
         "en": "Click the P to get started",
         "ja": "Pをクリックして始める"
+    },
+    {
+        "id": "didntflip",
+        "en": "Looks like you haven't FLIPped yet.",
+        "ja": "まだフリップしていないようです。"
     }
 ];
