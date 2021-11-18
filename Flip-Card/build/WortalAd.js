@@ -17,14 +17,16 @@ const AdTypes = {
 window.addEventListener("load", () => {
     window.initWortal(function () {
         console.log("Wortal setup complete!");
+        wortalIsLoaded = true;
         setTimeout(() => {
             CallAd(AdTypes.start, "Interstitial Ad");
         }, 100);
     });
 });
 
-
+let wortalIsLoaded = false;
 function CallAd(type, name) {
+    if (wortalIsLoaded == false) return;
     window.triggerWortalAd(type, name, {
         beforeAd: function () {
             console.log("Call beforeAd");
