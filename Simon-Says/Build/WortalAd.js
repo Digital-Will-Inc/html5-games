@@ -24,21 +24,26 @@ window.addEventListener("load", () => {
     });
 });
 
+
 let wortalIsLoaded = false;
-function CallAd(type, name) {
+function CallAd(type, name, beforeAd, afterAd, adBreakDone, noShow) {
     if (wortalIsLoaded == false) return;
     window.triggerWortalAd(type, name, {
         beforeAd: function () {
             console.log("Call beforeAd");
+            if (beforeAd) beforeAd();
         },
         afterAd: function () {
             console.log("Call afterAd");
+            if (afterAd) afterAd();
         },
         adBreakDone: function () {
             console.log("Call adBreakDone");
+            if (adBreakDone) adBreakDone();
         },
         noShow: function () {
-
+            console.log("Call noShow");
+            if (noShow) noShow();
         }
     });
 }
