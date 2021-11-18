@@ -172,10 +172,10 @@ Game.prototype.restart = function (usetwemoji) {
   this.timer = false
   this.usetwemoji = usetwemoji
   this.init()
-  CallAd(AdTypes.next, "restart");
 }
 
 Game.prototype.resetMetadata = function () {
+  CallAd(AdTypes.next, "restart");
   document.getElementById('timer').textContent = '0.00'
   document.querySelector('.wrapper').classList.remove('won', 'lost')
   document.querySelector('.result-emoji').textContent = ''
