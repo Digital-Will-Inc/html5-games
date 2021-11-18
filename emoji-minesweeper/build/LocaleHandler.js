@@ -2,28 +2,35 @@ const browserLanguage = (window.navigator.userLanguage || window.navigator.langu
 
 console.log("Current browser lang", browserLanguage);
 
+i18nIsLoaded = false;
+
+
 Importi18nScript();
 
 
-function GetTranslatedText(id) {
-    if (!i18n) {
+function TranslateText(id, htmlElem) {
+    if (i18nIsLoaded === false) {
         console.log("i18n is null, retrying...");
         setTimeout(() => {
-            return GetTranslatedText(id);
-        }, 1000, id)
+            return TranslateText(id, htmlElem);
+        }, 1000)
     } else {
 
         for (let i = 0; i < i18n.length; i++) {
             const element = i18n[i];
 
             if (element.id == id) {
-                if (browserLanguage === "ja")
-                    return element.ja;
-                else if (browserLanguage === "en-us")
-                    return element.en;
-                else
+                if (browserLanguage === "ja") {
+                    htmlElem.innerText = element.ja;
+                }
+                else if (browserLanguage === "en-us") {
+                    htmlElem.innerText = element.en;
+                }
+                else {
                     console.warn("Language not supported: " + browserLanguage);
-                return element.en;
+                    htmlElem.innerText = element.en;
+                }
+
             }
         }
     }
@@ -57,13 +64,7 @@ function Translate(elements) {
 
     for (i = 0; i < elements.length; i++) {
         let string = elements[i].innerText.toLowerCase();
-        let newString = GetTranslatedText(string);
-
-        if (newString == undefined || newString == null) {
-            console.warn("Translation not found for: " + string);
-        }
-
-        elements[i].innerText = newString;
+        TranslateText(string, elements[i]);
     }
 }
 
@@ -74,8 +75,10 @@ function Importi18nScript() {
     script.src = "./i18n.js";
     script.type = "text/javascript";
     const head = document.getElementsByTagName("head");
+    window
     head[head.length - 1].appendChild(script).onload = () => {
         console.log("i18n loaded");
+        i18nIsLoaded = true;
         TranslateAllPage();
     };
 }
