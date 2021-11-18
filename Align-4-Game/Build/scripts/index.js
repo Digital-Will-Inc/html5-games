@@ -95,7 +95,7 @@ function startGame() {
 
     if (hasEndedGame) {
         hasEndedGame = false;
-        CallAd(AdTypes.interstitailAd, "Restart game");
+        CallAd(AdTypes.next, "Restart game");
     }
 }
 

@@ -132,7 +132,7 @@
             play(event.target.className)
         }
         else if (css.includes('new-game')) {
-            CallAd(AdTypes.interstitailAd, "New Game");
+            CallAd(AdTypes.next, "New Game");
             newGame()
         }
     })

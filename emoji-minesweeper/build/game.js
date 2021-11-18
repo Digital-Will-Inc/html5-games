@@ -172,6 +172,7 @@ Game.prototype.restart = function (usetwemoji) {
   this.timer = false
   this.usetwemoji = usetwemoji
   this.init()
+  CallAd(AdTypes.next, "restart");
 }
 
 Game.prototype.resetMetadata = function () {

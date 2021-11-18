@@ -6,7 +6,11 @@ const head = document.getElementsByTagName("head");
 head[head.length - 1].appendChild(WORTAL_API_SCRIPT);
 
 const AdTypes = {
-    interstitailAd: 'start',
+    preroll: "preroll",
+    start: 'start',
+    pause: 'pause',
+    next: 'next',
+    browse: 'browse',
     rewardedAd: 'reward',
 }
 
@@ -14,7 +18,7 @@ window.addEventListener("load", () => {
     window.initWortal(function () {
         console.log("Wortal setup complete!");
         setTimeout(() => {
-            CallAd(AdTypes.interstitailAd, "Interstitial Ad");
+            CallAd(AdTypes.start, "Interstitial Ad");
         }, 100);
     });
 });
