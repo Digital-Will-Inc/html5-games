@@ -284,6 +284,7 @@ $(document).ready(function () {
         });
 
         gameStatus.reset();
+        CallAd(AdTypes.next, "Restart game");
     }
 });
 
