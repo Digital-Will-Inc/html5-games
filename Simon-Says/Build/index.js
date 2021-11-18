@@ -144,12 +144,22 @@ $(document).ready(function () {
                     pushObj.removeClass('light');
                 gameStatus.toHndlSt = setTimeout(function () {
                     if (gameStatus.strict) {
-                        CallAd(AdTypes.next, "Restart game in strict mode");
-                        gameStart()
+                        CallAd(AdTypes.next,
+                            "Restart game in strict mode",
+                            function () { },
+                            function () { },
+                            function () {
+                                gameStart()
+                            });
                     }
                     else {
-                        CallAd(AdTypes.next, "Restart game");
-                        playSequence();
+                        CallAd(AdTypes.next,
+                            "Restart game",
+                            function () { },
+                            function () { },
+                            function () {
+                                playSequence();
+                            });
                     }
                 }, 1000);
             }, 1000);
