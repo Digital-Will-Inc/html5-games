@@ -277,6 +277,8 @@ var Game = /** @class */ (function () {
         setTimeout(function () {
             _this.startGame();
         }, cameraMoveSpeed * 1000);
+
+        CallAd(AdTypes.next, "Restart game");
     };
     Game.prototype.placeBlock = function () {
         var _this = this;
