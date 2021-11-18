@@ -221,7 +221,8 @@ function ClearLine(index) {
 
 function AddScore(amount) {
     playerScore += amount;
-    scoreText.innerText = GetTranslatedText("score") + " :" + playerScore;
+    TranslateText("score", scoreText);
+    scoreText.innerText += " :" + playerScore;
 
 }
 

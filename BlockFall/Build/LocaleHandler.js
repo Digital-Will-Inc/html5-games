@@ -68,6 +68,7 @@ function Translate(elements) {
     }
 }
 
+
 function Importi18nScript() {
     console.log("Importing i18n script...");
 
