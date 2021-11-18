@@ -7,7 +7,7 @@ const i18n = [
     {
         "id": "moves",
         "en": "MOVES",
-        "ja": "動き"
+        "ja": "手数"
     },
     {
         "id": "time",

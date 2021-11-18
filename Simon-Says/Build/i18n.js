@@ -12,7 +12,7 @@ const i18n = [
     {
         "id": "strict",
         "en": "STRICT",
-        "ja": "厳格"
+        "ja": "厳しい"
     },
     {
         "id": "on",
@@ -24,4 +24,4 @@ const i18n = [
         "en": "OFF",
         "ja": "オフ"
     }
-]
+];

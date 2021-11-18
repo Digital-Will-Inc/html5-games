@@ -12,12 +12,11 @@ const i18n = [
     {
         "id": "youwin",
         "en": "You Win!",
-        "ja": "勝ちました"
+        "ja": "あなたの勝ちです！"
     },
     {
         "id": "tryagain",
         "en": "Oops! Try Again...",
-        "ja": "おっとっと！再試行する..."
+        "ja": "残念！再チャレンジする。"
     }
 ];
-

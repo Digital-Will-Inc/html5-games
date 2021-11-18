@@ -37,7 +37,7 @@ const i18n = [
     {
         "id": "computerturnblurb",
         "en": "The computer is trying to find the best way to make you lose.",
-        "ja": "コンピューターはあなたを負ける最適な手を見つけています。"
+        "ja": "コンピューターはあなたに勝ための最適な手を考えています。"
     },
     {
         "id": "youwin",
@@ -47,7 +47,7 @@ const i18n = [
     {
         "id": "youwinblurb",
         "en": "You are a winner. Remember this moment.",
-        "ja": "あなたの勝ちです。このときを永遠に持つことを覚えてください。"
+        "ja": "あなたの勝ちです。この勝利の瞬間を忘れないでください。"
     },
     {
         "id": "computerwin",
@@ -57,7 +57,7 @@ const i18n = [
     {
         "id": "computerwinblurb",
         "en": "Try again when you're done wiping your tears of shame.",
-        "ja": "涙を消してからもう一度やり直してください。"
+        "ja": "涙を拭いて再チャレンジ"
     },
     {
         "id": "tie",
@@ -67,16 +67,16 @@ const i18n = [
     {
         "id": "tieblurb",
         "en": "Everyone's a winner! Or loser. Depends on how you look at it.",
-        "ja": "みんなの勝ちです。あなたがどちらにしても同じです。"
+        "ja": "みんなの勝ちです。それとも負け？捉え方は人それぞれ、あなたはどちらに捉えますか？"
     },
     {
         "id": "winoutlook",
         "en": "Uh oh, computer is feeling saucy",
-        "ja": "ええと、コンピューターは生意気です"
+        "ja": "おっと、コンピューターが調子に乗っています。"
     },
     {
         "id": "loseoutlook",
         "en": "Computer is unsure. Now's your chance!",
-        "ja": "コンピュータは不明です。今がチャンスです！"
+        "ja": "コンピュータが戸惑っています。今がチャンス！"
     }
 ];

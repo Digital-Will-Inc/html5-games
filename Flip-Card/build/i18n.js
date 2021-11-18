@@ -2,111 +2,111 @@ const i18n = [
     {
         "id": "playnow",
         "en": "Play Now",
-        "jp": "プレイする"
+        "ja": "プレイする"
     },
     {
         "id": "instructions",
         "en": "Instructions",
-        "jp": "操作方法"
+        "ja": "操作方法"
     },
     {
         "id": "escinstruction",
         "en": "Press [BACK] or [ESC] to abandon game.",
-        "jp": "ゲームを中止するには[BACK]または[ESC]を押してください。"
+        "ja": "ゲームを終了するには[BACK]または[ESC]を押してください。"
     },
     {
         "id": "tutorial1",
         "en": "Flip is a timed card memory game. Click the green cards to see what symbol they uncover and try to find the matching symbol underneath the other cards.",
-        "jp": "Flipはタイムリミットのカードメモリーゲームです。翻すカードをクリックすると、そのカードの裏面にある記号が見えてくるようになります。"
+        "ja": "Flipはタイムリミットのカードメモリーゲームです。裏向きのカードをクリックすると、そのカードの記号が確認できます。"
     },
     {
         "id": "tutorial2",
         "en": "Uncover two matching symbols at once to eliminate them from the game.",
-        "jp": "二つの記号を同時に翻すと、それらをゲームから消去できます。"
+        "ja": "同じ記号のカードをめくって、ゲームから排除。"
     },
     {
         "id": "tutorial3",
         "en": "Eliminate all cards as fast as you can to win the game. Have fun FLIPing!",
-        "jp": "ゲームに勝つためにできるだけ早くすべてのカードを排除します。"
+        "ja": "ゲームに勝つためにできるだけ早くすべてのカードを排除する。"
     },
     {
         "id": "casual",
         "en": "Casual",
-        "jp": "カジュアル"
+        "ja": "初級"
     },
     {
         "id": "medium",
         "en": "Medium",
-        "jp": "中"
+        "ja": "中級"
     },
     {
         "id": "hard",
         "en": "Hard",
-        "jp": "ハード"
+        "ja": "上級"
     },
     {
         "id": "bestcasual",
         "en": "Best Casual:",
-        "jp": "ベストカジュアル"
+        "ja": "初級ベスト"
     },
     {
         "id": "bestmedium",
         "en": "Best Medium:",
-        "jp": "ベスト中:"
+        "ja": "中級ベスト"
     },
     {
         "id": "besthard",
         "en": "Best Hard:",
-        "jp": "ベストハード:"
+        "ja": "上級ベスト"
     },
     {
         "id": "totalflips",
         "en": "Total Flips:",
-        "jp": "総フリップ数"
+        "ja": "Flip（めくった）数"
     },
     {
         "id": "matchedflips",
         "en": "Matched Flips:",
-        "jp": "マッチングフリップ数"
+        "ja": "正解"
     },
     {
         "id": "wrongflips",
         "en": "Wrong Flips:",
-        "jp": "間違ったフリップ数"
+        "ja": "不正解"
     },
     {
         "id": "youdidgreat",
         "en": "You did great, you're the best.",
-        "jp": "あなたはすばらしいです。"
+        "ja": "素晴らしい！"
     },
     {
         "id": "startagain",
         "en": "Click or spacebar to start again",
-        "jp": "クリックまたはスペースキーでもう一度始める"
+        "ja": "クリックまたはスペースキーでもう一度始める"
     },
     {
         "id": "figures",
         "en": "Figures: ",
-        "jp": "数字"
+        "ja": "数字"
     },
     {
         "id": "won",
         "en": "WON",
-        "jp": "勝ち"
+        "ja": "勝ち"
     },
     {
         "id": "lost",
         "en": "LOST",
-        "jp": "負け"
+        "ja": "負け"
     },
     {
         "id": "abandoned",
         "en": "ABANDONED",
-        "jp": "中断"
+        "ja": "終了"
     },
     {
         "id": "clickp",
         "en": "Click the P to get started",
-        "jp": "Pをクリックして始める"
+        "ja": "Pをクリックして始める"
     }
-]
+];
