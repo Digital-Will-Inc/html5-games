@@ -227,7 +227,17 @@ function draw(time) {
         if (fishes[i] === player) {
           setTimeout(function () {
             GAME.state = 'menu'
-            CallAd(AdTypes.next, 'gameOver');
+            bgSound.volume = 0;
+            CallAd(AdTypes.next, 'gameOver', null, null,
+              () => {
+                if (!muted) {
+                  bgSound.volume = 1;
+                }
+              }, () => {
+                if (!muted) {
+                  bgSound.volume = 1;
+                }
+              });
           }, 4000)
         }
         fishes.splice(i, 1)
