@@ -7,6 +7,7 @@ const GAME_NAMES = [
     "Align-4-Game",
     "BlockFall",
     "Pond",
+    "CirclePath"
 ];
 
 

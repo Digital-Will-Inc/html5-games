@@ -50,7 +50,9 @@ function drawMenuButton(hitting) {
   height *= scale
   var x = button.x + button.width / 2 - width / 2
   var y = button.y + button.height / 2 - height / 2
-  ctx.drawImage(ASSETS.enter, x, y, width, height)
+  ctx.font = "30px Arial";
+  ctx.fillText("Hello World", x, y);
+  // ctx.drawImage(ASSETS.enter, x, y, width, height)
 }
 
 function sizeMenu() {

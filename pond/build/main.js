@@ -336,6 +336,7 @@ function loadAssets(cb) {
     { name: 'soundOff', src: 'assets/sound-off.png' },
     { name: 'enter', src: 'assets/enter.png' }
   ]
+  console.log("Check here", ASSETS)
 
   function process() {
     var next = imgs.pop()
