@@ -4,8 +4,9 @@ const GAME_NAMES = [
     "Flip-Card",
     "Simon-Says",
     "TowerBlocks",
-	"Align-4-Game",
-	"BlockFall"
+    "Align-4-Game",
+    "BlockFall",
+    "Pond",
 ];
 
 
