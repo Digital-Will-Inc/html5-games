@@ -43,16 +43,15 @@ function drawMenuButton(hitting) {
   ctx.fillStyle = hitting ? '#222' : '#1a1a1a'
   ctx.fill()
   ctx.stroke()
-  var width = ASSETS.enter.width
-  var height = ASSETS.enter.height
+  var width = 75;
+  var height = 75;
   var scale = scaleSize(width, height, button.width - 5, button.height - 5)
   width *= scale
   height *= scale
   var x = button.x + button.width / 2 - width / 2
   var y = button.y + button.height / 2 - height / 2
-  ctx.font = "30px Arial";
-  ctx.fillText("Hello World", x, y);
-  // ctx.drawImage(ASSETS.enter, x, y, width, height)
+
+  ctx.drawImage(ASSETS.enter, x, y, width, height)
 }
 
 function sizeMenu() {
