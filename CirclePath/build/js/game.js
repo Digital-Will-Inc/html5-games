@@ -149,8 +149,30 @@ playGame.prototype = {
                alpha: 0
           }, 1000, Phaser.Easing.Cubic.Out, true);
           gameOverTween.onComplete.add(function () {
-               CallAd(AdTypes.next, "game over");
-               game.state.start("PlayGame");
+
+               let gameIsPlayed = false;
+               const playIfNotLoaded = () => {
+                    if (gameIsPlayed) return;
+                    gameIsPlayed = true;
+                    const canvasElem = document.querySelector('canvas');
+                    canvasElem.focus();
+                    console.log("game is loaded");
+                    setTimeout(() => game.state.start("PlayGame"), 100);
+                    // game.state.start("PlayGame");
+               }
+
+               CallAd(
+                    AdTypes.next,
+                    "restart game",
+                    null,
+                    null,
+                    function () {
+                         playIfNotLoaded();
+                    },
+                    function () {
+                         playIfNotLoaded();
+                    },
+               );
           }, this)
 
      }
