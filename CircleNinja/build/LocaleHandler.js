@@ -6,7 +6,7 @@ console.log("Current browser lang", browserLanguage);
 i18nIsLoaded = false;
 
 
-Importi18nScript();
+// Importi18nScript();
 
 
 function TranslateText(id, htmlElem) {
@@ -80,6 +80,6 @@ function Importi18nScript() {
     head[head.length - 1].appendChild(script).onload = () => {
         console.log("i18n loaded");
         i18nIsLoaded = true;
-        TranslateAllPage();
+        // TranslateAllPage();
     };
 }
