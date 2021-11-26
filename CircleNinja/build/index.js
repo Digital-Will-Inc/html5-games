@@ -40,7 +40,14 @@ function create() {
 
     slashes = game.add.graphics(0, 0);
 
-    const tipText = i18n[3][browserLanguage]
+    const tipText = function () {
+        if (browserLanguage == "ja") {
+            return "ヒント: グリーンのものを取る！"
+        } else {
+            return "Tip: get the green ones!";
+        }
+    }();
+
 
     scoreLabel = game.add.text(10, 10, tipText);
     scoreLabel.fill = 'white';
@@ -177,8 +184,8 @@ function resetScore() {
     good_objects.forEachExists(killFruit);
     bad_objects.forEachExists(killFruit);
 
-    const gameOverText = i18n[0][browserLanguage]
-    const highScoreText = i18n[1][browserLanguage];
+    const gameOverText = browserLanguage !== null && browserLanguage === 'ja' ? "ゲームオーバー" : "Game Over";
+    const highScoreText = browserLanguage !== null && browserLanguage === 'ja' ? "ハイスコア" : "High Score";
     score = 0;
     scoreLabel.text = gameOverText + '\n' + highScoreText + ": " + highscore;
     // Retrieve
@@ -196,7 +203,6 @@ function killFruit(fruit) {
     points = [];
     score++;
 
-    console.log(browserLanguage)
-    const scoreText = i18n[2][browserLanguage];
+    const scoreText = browserLanguage !== null && browserLanguage === 'ja' ? "スコア" : "Score";
     scoreLabel.text = scoreText + ': ' + score;
 }
