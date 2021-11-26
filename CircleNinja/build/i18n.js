@@ -1,18 +1,18 @@
 const i18n = [
     {
-        en: "Game Over",
+        "en-us": "Game Over",
         ja: "ゲームオーバー"
     },
     {
-        en: "High Score",
+        "en-us": "High Score",
         ja: "ハイスコア",
     },
     {
-        en: "Score",
+        "en-us": "Score",
         ja: "スコア",
     },
     {
-        en: "Tip: get the green ones!",
+        "en-us": "Tip: get the green ones!",
         ja: "ヒント: グリーンのものを取る！",
     }
 ];

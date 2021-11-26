@@ -8,7 +8,7 @@ const GAME_NAMES = [
     "BlockFall",
     "Pond",
     "CirclePath",
-    "p2ball"
+    "p2ball",
 ];
 
 

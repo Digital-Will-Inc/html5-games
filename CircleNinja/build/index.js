@@ -151,10 +151,23 @@ function checkIntersects(fruit, callback) {
 let stopGame = false;
 function LoseGame() {
     stopGame = true;
-    resetScore();
-    setTimeout(() => {
-        stopGame = false;
-    }, 1000)
+
+    const Restart = function () {
+        resetScore();
+        setTimeout(() => {
+            stopGame = false;
+        }, 1000)
+    }
+
+    CallAd(AdTypes.next,
+        "restart game",
+        null,
+        null,
+        function () {
+            Restart()
+        }, function () {
+            Restart();
+        });
 }
 
 function resetScore() {
@@ -183,6 +196,7 @@ function killFruit(fruit) {
     points = [];
     score++;
 
+    console.log(browserLanguage)
     const scoreText = i18n[2][browserLanguage];
     scoreLabel.text = scoreText + ': ' + score;
 }
