@@ -8,7 +8,15 @@ MyGame.MainMenu.prototype = {
 
 		GameUI.Game_element();
 
-		this.GameTitle = this.add.text(this.world.centerX, 250, '别碰钉子', { font: "80px Microsoft YaHei", fill: '#808080', align: 'center' });
+		const instruction = function () {
+			if (browserLanguage === "ja") {
+				return "别碰钉子";
+			} else {
+				return "Don't touch the nail";
+			}
+		}();
+
+		this.GameTitle = this.add.text(this.world.centerX, 250, instruction, { font: "80px Microsoft YaHei", fill: '#808080', align: 'center' });
 		this.GameTitle.anchor.set(0.5);
 
 
@@ -16,11 +24,19 @@ MyGame.MainMenu.prototype = {
 		this.circle = game.add.sprite(game.world.centerX, game.world.centerY, game.circleGraphics.generateTexture());
 		this.circle.anchor.set(0.5);
 
-		this.depictText = this.add.text(this.world.centerX, 710, '点击屏幕跳跃', { font: "30px Microsoft YaHei", fill: '#fc3463', align: 'center' });
+		const tutorialText = function () {
+			if (browserLanguage === "ja") {
+				return "点击屏幕跳跃";
+			} else {
+				return "Tap the screen to jump";
+			}
+		}();
+
+		this.depictText = this.add.text(this.world.centerX, 710, tutorialText, { font: "30px Microsoft YaHei", fill: '#fc3463', align: 'center' });
 		this.depictText.anchor.set(0.5);
 
-		this.version = this.add.text(this.world.width - 50, 1050, '版本：0.0.1', { font: "30px Microsoft YaHei", fill: '#808080', align: 'center' });
-		this.version.anchor.set(1, 0);
+		// this.version = this.add.text(this.world.width - 50, 1050, '版本：0.0.1', { font: "30px Microsoft YaHei", fill: '#808080', align: 'center' });
+		// this.version.anchor.set(1, 0);
 
 
 		//添加上下矩形
