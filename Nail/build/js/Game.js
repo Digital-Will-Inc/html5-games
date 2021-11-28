@@ -87,9 +87,27 @@ MyGame.Game.prototype = {
 
 		this.add.tween(this.bird).to({ alpha: 0 }, 1000, "Linear", true).onComplete.add(function () {
 			this.bird.kill();
-			game.direction = this.bird.scale.x = 1;
-			this.score = 0;
-			this.state.start('Preloader');
+
+			let restartedGame = false;
+			const restartGame = () => {
+				if (restartedGame) return;
+				restartedGame = true;
+				game.direction = this.bird.scale.x = 1;
+				this.score = 0;
+				this.state.start('Preloader');
+			}
+
+			CallAd(
+				AdTypes.next,
+				"Restart",
+				null,
+				null,
+				function () {
+					restartGame();
+				},
+				function () {
+					restartGame();
+				});
 		}, this);
 	},
 	birdJump: function () {
