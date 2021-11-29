@@ -1,84 +1,87 @@
-const browserLanguage = (window.navigator.userLanguage || window.navigator.language).toLowerCase();
+translation = {
+    "Start Game" : {
+        "en-us" : "Start Game",
+        "ja" : "スタート",
+    },
+    "Enclose the blue orbs before they explode. Gain bonus points by enclosing multiple orbs at once." : {
+        "en-us" : "Enclose the blue orbs before they explode. Gain bonus points by enclosing multiple orbs at once.",
+        "ja" : "スタート",
+    },
+    "Your Score:" : {
+        "en-us" : "Your Score:",
+        "ja" : "スコア",
+    },
+    "Instructions" : {
+        "en-us" : "Instructions",
+        "ja" : "スタート",
+    },
+    "ENERGY:" : {
+        "en-us" : "ENERGY:",
+        "ja" : "スタート",
+    },
+    "MULTIPLIER:" : {
+        "en-us" : "MULTIPLIER:",
+        "ja" : "スタート",
+    },
+    "TIME:" : {
+        "en-us" : "TIME:",
+        "ja" : "スタート",
+    },
+    "SCORE:" : {
+        "en-us" : "SCORE:",
+        "ja" : "スタート",
+    },
+};
 
-console.log("Current browser lang", browserLanguage);
+function LowerJSON(json) {
+    let newJson = {};
+    Object.keys(json).forEach(function(key) {
+        let newKey = key;
+        if (typeof key === 'string')
+            newKey = key.toLowerCase();
+        if (typeof json[key] === 'string')
+            newJson[newKey] = json[key];
+        else
+            newJson[newKey] = LowerJSON(json[key]);
+    });
+    return newJson;
+}
 
-i18nIsLoaded = false;
+browserLanguage = (window.navigator.userLanguage || window.navigator.language).toLowerCase();
 
+elements = document.getElementsByClassName('string');
 
-Importi18nScript();
+translation = LowerJSON(translation);
 
-
-function TranslateText(id, htmlElem) {
-    if (i18nIsLoaded === false) {
-        console.log("i18n is null, retrying...");
-        setTimeout(() => {
-            return TranslateText(id, htmlElem);
-        }, 1000)
-    } else {
-
-        for (let i = 0; i < i18n.length; i++) {
-            const element = i18n[i];
-
-            if (element.id == id) {
-                if (browserLanguage === "ja") {
-                    htmlElem.innerText = element.ja;
-                }
-                else if (browserLanguage === "en-us") {
-                    htmlElem.innerText = element.en;
-                }
-                else {
-                    console.warn("Language not supported: " + browserLanguage);
-                    htmlElem.innerText = element.en;
-                }
-
+function TranslateText() {
+    for (i = 0;i < elements.length;i++){
+        let string  = elements[i].innerText.toLowerCase();
+        let newString = "";
+        if (translation[string]){
+            if (translation[string][browserLanguage])
+                newString = translation[string][browserLanguage];
+            else
+                newString = string;
+        }
+        else{
+            sections = string.split(":");
+            for (j = 0;j < sections.length;j++){
+                sections[j] = sections[j].trim();
+                if (translation[sections[j]])
+                    newString += translation[sections[j]][browserLanguage];
+                else
+                    newString += sections[j];
+    
+                if (j != sections.length - 1)
+                    newString += ": ";
             }
         }
+        elements[i].innerText = newString;  
     }
 }
 
-
-
-function TranslateAllPage() {
-    console.log("Translating all page...");
-
-    const i18nElems = document.getElementsByClassName("i18nElem");
-    Translate(i18nElems);
+function TranslationOf(text){
+    return translation[text.toLowerCase()][browserLanguage];
 }
 
-
-function TranslateDynamicElem(elementClassName = "") {
-    console.log("Translating specific element...", elementClassName);
-
-    if (elementClassName.length == 0) {
-        console.warn("element className is empty");
-    }
-
-    const specificElem = document.querySelectorAll(elementClassName);
-
-    Translate(specificElem);
-}
-
-
-function Translate(elements) {
-    console.log("Translating text...");
-
-    for (i = 0; i < elements.length; i++) {
-        let string = elements[i].innerText.toLowerCase();
-        TranslateText(string, elements[i]);
-    }
-}
-
-function Importi18nScript() {
-    console.log("Importing i18n script...");
-
-    const script = document.createElement("script");
-    script.src = "./i18n.js";
-    script.type = "text/javascript";
-    const head = document.getElementsByTagName("head");
-    window
-    head[head.length - 1].appendChild(script).onload = () => {
-        console.log("i18n loaded");
-        i18nIsLoaded = true;
-        TranslateAllPage();
-    };
-}
+TranslateText();

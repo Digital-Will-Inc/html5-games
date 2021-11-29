@@ -1051,13 +1051,15 @@ var Coil = (function(){
 	
 	function renderHeader() {
 		
+
+		console.log(translation);
 		var padding = 10,
 			energyBarHeight = 4,
 			energyBarWidth = 100,
-			ENERGY_LABEL = 'ENERGY:',
-			MULTIPLIER_LABEL = 'MULTIPLIER:',
-			TIME_LABEL = 'TIME:',
-			SCORE_LABEL = 'SCORE:';
+			ENERGY_LABEL = TranslationOf('ENERGY:'),
+			MULTIPLIER_LABEL = TranslationOf('MULTIPLIER:'),
+			TIME_LABEL = TranslationOf('TIME:'),
+			SCORE_LABEL = TranslationOf('SCORE:');
 		
 		player.animatedEnergy += ( player.energy - player.animatedEnergy ) * 0.2;
 		
