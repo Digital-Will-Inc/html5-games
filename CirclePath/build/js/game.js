@@ -25,11 +25,16 @@ playGame.prototype = {
      },
      create: function () {
           this.savedData = localStorage.getItem("circlepath") == null ? { score: 0 } : JSON.parse(localStorage.getItem("circlepath"));
+
+          var isJapanese = browserLanguage !== null && browserLanguage === "ja"
+
+          var fontFam = isJapanese ? "M PLUS 1p" : "Arial";
+
           var style = {
-               font: "bold 64px Arial",
+               font: `bold 64px ${fontFam}`,
                fill: "#ffffff"
           };
-          var bestScoreText = browserLanguage !== null && browserLanguage === "ja" ? "最高分: " : "Best Score: ";
+          var bestScoreText = isJapanese ? "最高のスコア: " : "Best Score: ";
           // bestScoreText = "s"
           var text = game.add.text(0, game.height - 64, bestScoreText + this.savedData.score.toString(), style);
           this.destroy = false;
@@ -148,16 +153,19 @@ playGame.prototype = {
           var gameOverTween = game.add.tween(this.balls[1 - this.rotatingBall]).to({
                alpha: 0
           }, 1000, Phaser.Easing.Cubic.Out, true);
+
           gameOverTween.onComplete.add(function () {
 
                let gameIsPlayed = false;
-               const playIfNotLoaded = () => {
+               const restartGame = () => {
                     if (gameIsPlayed) return;
                     gameIsPlayed = true;
-                    const canvasElem = document.querySelector('canvas');
-                    canvasElem.focus();
                     console.log("game is loaded");
-                    setTimeout(() => game.state.start("PlayGame"), 100);
+                    setTimeout(() => {
+                         const canvasElem = document.querySelector('canvas');
+                         canvasElem.focus();
+                         game.state.start("PlayGame")
+                    }, 100);
                     // game.state.start("PlayGame");
                }
 
@@ -167,10 +175,10 @@ playGame.prototype = {
                     null,
                     null,
                     function () {
-                         playIfNotLoaded();
+                         restartGame();
                     },
                     function () {
-                         playIfNotLoaded();
+                         restartGame();
                     },
                );
           }, this)
