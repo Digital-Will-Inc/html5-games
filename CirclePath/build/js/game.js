@@ -6,14 +6,16 @@ var angleRange = [25, 155];
 var visibleTargets = 7;
 var bgColors = [0x62bd18, 0xffbb00, 0xff5300, 0xd21034, 0xff475c, 0x8f16b2];
 
-window.onload = function () {
+
+
+window.addEventListener("load", function () {
      game = new Phaser.Game(640, 960, Phaser.CANVAS, "");
      game.state.add("PlayGame", playGame);
      game.state.start("PlayGame");
-}
+});
 
 var playGame = function (game) { };
-
+console.log("game.js loaded");
 playGame.prototype = {
      preload: function () {
           game.load.image("ball", "assets/ball.png");
@@ -34,7 +36,10 @@ playGame.prototype = {
                font: `bold 64px ${fontFam}`,
                fill: "#ffffff"
           };
-          var bestScoreText = isJapanese ? "最高のスコア: " : "Best Score: ";
+
+          console.log("FONT USED ", fontFam);
+
+          var bestScoreText = isJapanese ? "最高得点: " : "Best Score: ";
           // bestScoreText = "s"
           var text = game.add.text(0, game.height - 64, bestScoreText + this.savedData.score.toString(), style);
           this.destroy = false;
@@ -155,19 +160,17 @@ playGame.prototype = {
           }, 1000, Phaser.Easing.Cubic.Out, true);
 
           gameOverTween.onComplete.add(function () {
-
                let gameIsPlayed = false;
                const restartGame = () => {
                     if (gameIsPlayed) return;
                     gameIsPlayed = true;
                     console.log("game is loaded");
-                    setTimeout(() => {
-                         const canvasElem = document.querySelector('canvas');
-                         canvasElem.focus();
-                         game.state.start("PlayGame")
-                    }, 100);
-                    // game.state.start("PlayGame");
+
+                    game.focusGain();
                }
+               setTimeout(() => {
+                    game.state.start("PlayGame");
+               }, 100);
 
                CallAd(
                     AdTypes.next,
@@ -182,6 +185,5 @@ playGame.prototype = {
                     },
                );
           }, this)
-
      }
 }

@@ -19,7 +19,17 @@ window.addEventListener("load", () => {
         console.log("Wortal setup complete!");
         wortalIsLoaded = true;
         setTimeout(() => {
-            CallAd(AdTypes.start, "Interstitial Ad");
+            CallAd(
+                AdTypes.start,
+                "Game start",
+                null,
+                null,
+                function () {
+                    game.focusGain();
+                },
+                function () {
+                    game.focusGain();
+                });
         }, 100);
     });
 });
