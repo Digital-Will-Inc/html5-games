@@ -95,7 +95,7 @@ playGame.prototype = {
      changeBall: function () {
           this.destroy = false;
           var distanceFromTarget = this.balls[this.rotatingBall].position.distance(this.targetArray[1].position);
-          if (distanceFromTarget < 20) {
+          if (distanceFromTarget < 23.5) {
                this.rotatingDirection = game.rnd.between(0, 1);
                var detroyTween = game.add.tween(this.targetArray[0]).to({
                     alpha: 0
