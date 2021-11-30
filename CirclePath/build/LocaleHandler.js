@@ -5,7 +5,7 @@ console.log("Current browser lang", browserLanguage);
 i18nIsLoaded = false;
 
 
-Importi18nScript();
+// Importi18nScript();
 
 
 function TranslateText(id, htmlElem) {
