@@ -1,37 +1,41 @@
 translation = {
-    "Start Game" : {
-        "en-us" : "Start Game",
-        "ja" : "スタート",
-    },
-    "Enclose the blue orbs before they explode. Gain bonus points by enclosing multiple orbs at once." : {
-        "en-us" : "Enclose the blue orbs before they explode. Gain bonus points by enclosing multiple orbs at once.",
-        "ja" : "スタート",
-    },
-    "Your Score:" : {
-        "en-us" : "Your Score:",
-        "ja" : "スコア",
-    },
-    "Instructions" : {
-        "en-us" : "Instructions",
-        "ja" : "スタート",
-    },
-    "ENERGY:" : {
-        "en-us" : "ENERGY:",
-        "ja" : "スタート",
-    },
-    "MULTIPLIER:" : {
-        "en-us" : "MULTIPLIER:",
-        "ja" : "スタート",
-    },
-    "TIME:" : {
-        "en-us" : "TIME:",
-        "ja" : "スタート",
-    },
-    "SCORE:" : {
-        "en-us" : "SCORE:",
-        "ja" : "スタート",
-    },
-};
+	"Enclose the blue orbs before they explode. Gain bonus points by enclosing multiple orbs at once." : {
+		"ja" : "青いオーブを円で囲んで爆発を防ごう。一度に複数の青いオーブを囲い込むことでボーナスポイントが加算させます。",
+		"en-us" : "Enclose the blue orbs before they explode. Gain bonus points by enclosing multiple orbs at once.",
+	 },
+	"SCORE:" : {
+		"ja" : "スコア:",
+		"en-us" : "SCORE:",
+	 },
+	"Coil is an addictive HTML5 game where you have to defeat your enemies by enclosing them in your trail." : {
+		"ja" : "「Coil」はプレイしたら最後、病みつきになってしまうほど楽しいHTML5ゲームです。あたなの行く手に光る青いオーブを囲って敵を倒そう！",
+		"en-us" : "Coil is an addictive HTML5 game where you have to defeat your enemies by enclosing them in your trail.",
+	 },
+	"TIME:" : {
+		"ja" : "時間:",
+		"en-us" : "TIME:",
+	 },
+	"ENERGY:" : {
+		"ja" : "エネルギー:",
+		"en-us" : "ENERGY:",
+	 },
+	"MULTIPLIER:" : {
+		"ja" : "乗数:",
+		"en-us" : "MULTIPLIER:",
+	 },
+	"Your Score:" : {
+		"ja" : "あなたのスコア:",
+		"en-us" : "Your Score:",
+	 },
+	"Instructions" : {
+		"ja" : "遊び方",
+		"en-us" : "Instructions",
+	 },
+	"Start Game" : {
+		"ja" : "ゲームを開始",
+		"en-us" : "Start Game",
+	 },
+}
 
 function LowerJSON(json) {
     let newJson = {};
