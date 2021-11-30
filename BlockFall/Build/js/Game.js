@@ -222,13 +222,18 @@ function ClearLine(index) {
 function AddScore(amount) {
     playerScore += amount;
     TranslateText("score", scoreText);
-    scoreText.innerText += " :" + playerScore;
+    scoreText.innerText += " : " + playerScore;
 
 }
 
 function LoseGame() {
-    alert("Score: " + playerScore);
-    location.reload();
+    TranslateText("score", scoreText);
+    scoreText.innerText += " : " + playerScore;
+    scoreText.style.color = "Red";
+
+    setTimeout(() => {
+        location.reload();
+    }, 3000);
 }
 
 function Rotate() {
