@@ -1,4 +1,4 @@
-const browserLanguage = (window.navigator.userLanguage || window.navigator.language).toLowerCase();
+browserLanguage = (window.navigator.userLanguage || window.navigator.language).toLowerCase();
 
 console.log("Current browser lang", browserLanguage);
 
@@ -75,7 +75,6 @@ function Importi18nScript() {
     script.src = "./i18n.js";
     script.type = "text/javascript";
     const head = document.getElementsByTagName("head");
-    window
     head[head.length - 1].appendChild(script).onload = () => {
         console.log("i18n loaded");
         i18nIsLoaded = true;

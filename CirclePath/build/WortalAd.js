@@ -19,24 +19,7 @@ window.addEventListener("load", () => {
         console.log("Wortal setup complete!");
         wortalIsLoaded = true;
         setTimeout(() => {
-
-            let gameIsPlayed = false;
-            const playIfNotLoaded = () => {
-                if (gameIsPlayed) return;
-                gameIsPlayed = true;
-                game.state.start("PlayGame");
-            }
-
-            CallAd(AdTypes.start,
-                "Interstitial Ad",
-                null,
-                null,
-                function () {
-                    playIfNotLoaded()
-                },
-                function () {
-                    playIfNotLoaded();
-                });
+            CallAd(AdTypes.start, "Interstitial Ad");
         }, 100);
     });
 });
