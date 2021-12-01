@@ -174,4 +174,4 @@ function TranslationOf(text){
 	return text;
 }
 
-setInterval(TranslateText(),1000);
+TranslateText();
