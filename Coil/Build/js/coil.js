@@ -1050,9 +1050,6 @@ var Coil = (function(){
 	}
 	
 	function renderHeader() {
-		
-
-		console.log(translation);
 		var padding = 10,
 			energyBarHeight = 4,
 			energyBarWidth = 100,
