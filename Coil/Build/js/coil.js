@@ -10,8 +10,8 @@ var Coil = (function(){
 	var FRAMERATE = 60;
 		
 	// Default dimensions of the world
-	var DEFAULT_WIDTH = 900,
-		DEFAULT_HEIGHT = 510;
+	var DEFAULT_WIDTH = window.innerWidth,
+		DEFAULT_HEIGHT = window.innerWidth * 0.55;
 	
 	// Flags if the game should output debug information
 	var DEBUG = URLUtil.queryValue('debug') == '1';
