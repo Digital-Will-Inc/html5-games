@@ -1494,7 +1494,9 @@
     var pixelsPerMetre = 18;
     var distanceTravelledInMetres = 0;
     var monsterDistanceThreshold = 2000;
-    var livesLeft = 5;
+    var gameEnded = false;
+    var startingLives = 3;
+    var livesLeft = startingLives;
     var highScore = 0;
     var loseLifeOnObstacleHit = true;
     var dropRates = { smallTree: 4, tallTree: 2, jump: 1, thickSnow: 1, rock: 1 };
@@ -1539,8 +1541,12 @@
       var game;
 
       function resetGame() {
+        CallAd(AdTypes.next, "resetGame");
+
+        gameEnded = false;
+
         distanceTravelledInMetres = 0;
-        livesLeft = 5;
+        livesLeft = startingLives;
         highScore = localStorage.getItem('highScore');
         game.reset();
         game.addStaticObject(startSign);
@@ -1548,11 +1554,15 @@
 
       function detectEnd() {
         if (!game.isPaused()) {
+
           highScore = localStorage.setItem('highScore', distanceTravelledInMetres);
           infoBox.setLines([
             'Game over!',
             'Hit space to restart'
           ]);
+
+          gameEnded = true;
+
           game.pause();
           game.cycle();
         }
@@ -1707,6 +1717,12 @@
       Mousetrap.bind('m', spawnMonster);
       Mousetrap.bind('b', spawnBoarder);
       Mousetrap.bind('space', resetGame);
+
+      window.addEventListener('touchstart', function (e) {
+        if (gameEnded) {
+          resetGame();
+        }
+      });
 
       var hammertime = Hammer(mainCanvas).on('press', function (e) {
         e.preventDefault();
