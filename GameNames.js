@@ -10,7 +10,8 @@ const GAME_NAMES = [
     "CirclePath",
     "p2ball",
     "CircleNinja",
-    "Nail"
+    "Nail",
+	"Snake",
 ];
 
 

@@ -520,14 +520,19 @@ let highscore = localStorage.getItem("highscore") !== null ? parseInt(localStora
 let previousScore = localStorage.getItem("previousScore") !== null ? parseInt(localStorage.getItem("previousScore")) : 0;
 
 let startButton = document.querySelector(".start");
+startButton.innerHTML = SelectTranslteText("Start", "スタート");
 startButton.addEventListener("click", e => {
     snake.startLoop();
     canvasContainer.classList.add("is-active");
 })
 
+const scoreText = SelectTranslteText("Score", "スコア");
+const multiplierText = SelectTranslteText("Multiplier", "乗数");
+const highScoreText = SelectTranslteText("High Score", "高得点");
+
 let score = document.querySelector(".score");
 snake.onScoreUpdate = (data) => {
-    score.innerHTML = `Score: ${data.score.toFixed(0)} multiplier: ${data.multiplier.toFixed(2)} Highscore: ${highscore} PreviousScore: ${previousScore}`;
+    score.innerHTML = `${scoreText}: ${data.score.toFixed(0)} ${multiplierText}: ${data.multiplier.toFixed(2)} ${highScoreText}: ${highscore}`;
 }
 
 snake.onDie = (data) => {

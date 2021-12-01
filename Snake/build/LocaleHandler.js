@@ -5,7 +5,15 @@ console.log("Current browser lang", browserLanguage);
 i18nIsLoaded = false;
 
 
-Importi18nScript();
+// Importi18nScript();
+
+function SelectTranslteText(en, ja) {
+    if (browserLanguage === "ja") {
+        return ja;
+    } else {
+        return en;
+    }
+}
 
 
 function TranslateText(id, htmlElem) {
