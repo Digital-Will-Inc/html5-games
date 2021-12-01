@@ -1,46 +1,28 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-	<meta charset="UTF-8" />
-	<title>Snake - Game Dolphin</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake</title>
 
-	<script src="LocaleHandler.js"></script>
-	<script src="WortalAd.js"></script>
+    <script src="LocaleHandler.js"></script>
+    <script src="WortalAd.js"></script>
 
-
-	<script src="phaser.min.js"></script>
-	<script src="Boot.js"></script>
-	<script src="Preloader.js"></script>
-	<script src="MainMenu.js"></script>
-	<script src="Game.js"></script>
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
+    <div class="score"></div>
+    <div class="canvas-container">
 
-	<div id="gameContainer"></div>
+        <canvas>
+        </canvas>
 
-	<script type="text/javascript">
-
-		window.onload = function () {
-
-			//	Create your Phaser game and inject it into the gameContainer div.
-			var game = new Phaser.Game(360, 600, Phaser.AUTO, 'gameContainer');
-
-			//	Add the States your game has.
-			game.state.add('Boot', BasicGame.Boot);
-			game.state.add('Preloader', BasicGame.Preloader);
-			game.state.add('MainMenu', BasicGame.MainMenu);
-			game.state.add('Game', BasicGame.Game);
-			game.state.add('EndScreen', BasicGame.EndScreen);
-
-			//	Now start the Boot state.
-			game.state.start('Boot');
-
-		};
-
-	</script>
-
+        <button class="start">Start</button>
+    </div>
+    <script src="index.js"></script>
 </body>
 
 </html>
