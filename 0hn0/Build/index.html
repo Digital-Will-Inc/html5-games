@@ -1,19 +1,3 @@
-<!--
-
-    0h n0! 
-
-    You're peeking at the source code of 0h n0. You can fork it from here:
-
-    https://github.com/Q42/0hn0/
-
-    Feel free to drop me a line at martin@q42.nl or @mrtnkl.
-
-    - Martin
-
-    (c) 2015 Q42
-    http://q42.com | @q42
-
--->
 <!doctype html>
 <html>
   <head>
@@ -65,114 +49,35 @@
 <table data-grid="titlegrid" cellpadding="0" cellspacing="0"><tbody><tr><td class="odd"><div class="tile tile-2"><div class="inner"></div></div></td><td class="even"><div class="tile tile-1"><div class="inner"></div></td></tr></tbody></table>
 
                 </div>
-                <p>
-                    It's 0h h1's companion!<br>By Q42
+                <p class="string">
+                    It's 0h h1's companion!
                 </p>
+                <br>
+                <p>By Q42</p>
             </div>
         </div>
 
         <div id="menu" class="screen">
             <div class="vertical">
             <h2>Oh no</h2>
-                <p data-action="tutorial">
-                How to play
-                </p>
-                <p data-action="play">
+                <p data-action="play" class="string">
                 Play
                 </p>
-                <p data-action="about">
-                    About
-                </p>
-            </div>
-        </div>
-
-        <div id="about" class="screen text" data-action="rules">
-            <div class="vertical">
-            <h3>About</h3>
-            <div class="side-padded">
-                <p>
-                0h n0 is a little logic game<br>
-                that complements 0h h1.<br>
-                <br>
-                It was created by<br>
-                Martin Kool.<br>
-                <br>
-                The concept is inspired by<br>
-                the Japanese Kuromasu.<br>
-                <br>
-                &copy; 2015 by Q42<br>
-                q42.com &middot; 0hn0.com
-                </p>
-                </div>
             </div>
         </div>
 
         <div id="rules" class="screen text" data-action="apps">
             <div class="vertical">
             <h3>Rules</h3>
-                <div class="side-padded">
+                <div class="side-padded string">
                 <p>
-                    Blue dots can see others <br>in their own row and column.
+                    Blue dots can see others in their own row and column.
                 </p>
-                <p>
+                <p class="string">
                     Their numbers tell how many.
                 </p>
-                <p>
+                <p class="string">
                     Red dots block their view.
-                </p>
-                </div>
-            </div>
-        </div>
-
-        <div id="apps" class="screen text" data-action="back">
-            <div class="vertical">
-            <h3>Apps</h3>
-                <div class="side-padded">
-                <p>
-                    The 0h n0 app is also free:
-                </p>
-                <p>
-                    <a target="_blank" href="https://itunes.apple.com/us/app/0h-n0/id957191082?mt=8">iOS</a>
-                </p>
-                <p>
-                    <a target="_blank" href="https://play.google.com/store/apps/details?id=com.q42.ohno">Android</a>
-                </p>
-                <p>
-                    <a target="_blank" href="http://www.windowsphone.com/s?appid=dbd043e9-6b7c-4e7c-8f36-a424f7f14017">Windows Phone</a>
-                </p>
-                <p>
-                    <br>
-                    The source is on github:
-                </p>
-                <p>
-                    <a target="_blank" href="https://github.com/Q42/0hn0">github.com/Q42/0hn0</a>
-                </p>
-                </div>
-            </div>
-        </div>
-
-        <div id="ohhi" class="screen text" data-action="back">
-            <div class="vertical">
-            <h3>Oh hi</h3>
-                <div class="side-padded">
-                <p>
-                    Our game 0h h1 is also available as a free app:
-                </p>
-                <p>
-                    <a target="_blank" href="https://itunes.apple.com/us/app/0h-h1/id936504196?mt=8">iOS</a>
-                </p>
-                <p>
-                    <a target="_blank" href="https://play.google.com/store/apps/details?id=com.q42.ohhi">Android</a>
-                </p>
-                <p>
-                    <a target="_blank" href="http://www.windowsphone.com/en-us/store/app/0h-h1/0846c771-cc12-484e-8cc3-ac2287534f63">Windows Phone</a>
-                </p>
-                <p>
-                    <br>
-                    And playable on the web:
-                </p>
-                <p>
-                    <a target="_blank" href="https://0hh1.com">0hh1.com</a>
                 </p>
                 </div>
             </div>
@@ -180,7 +85,7 @@
 
         <div id="loading" class="screen">
             <div class="vertical">
-                <h2>Loading</h2>
+                <h2 class="string">Loading</h2>
                 <p></p>
                 <div id="loadinggrid" class="board">
 <table data-grid="loadinggrid" cellpadding="0" cellspacing="0"><tbody><tr><td class="odd"><div class="tile tile-2 loading"><div class="inner"></div></div></td></tr></tbody></table>
@@ -190,7 +95,7 @@
 
         <div id="game" class="screen">
             <p id="hintMsg" class="topMsg"></p>
-            <p id="chooseSize" class="topMsg">Select a size to play...</p>
+            <p id="chooseSize" class="topMsg string">Select a size to play...</p>
             <h2 id="boardsize"></h2>
             <div id="board" class="vertical board"></div>
 
@@ -217,12 +122,6 @@
             </div>
             <div id="bar">
                 <div class="iconcon" data-action="back"><div id="back" class="icon"></div></div>
-                <div class="iconcon" data-action="undo"><div id="undo" class="icon"></div></div>
-<!--                 <div class="iconcon" data-action="apps"><div id="apps" class="icon"></div></div>
- -->                <a class="iconcon" id="facebook" target="_blank" href="http://www.facebook.com/sharer/sharer.php" data-action="facebook" data-link="social"><span id="facebookicon" class="icon"></span></a>
-                <a class="iconcon" id="tweeturl" target="_blank" href="about:blank" data-link="social" data-action="tweet"><span id="tweet" class="icon"></span></a>
-                <div class="iconcon" data-action="help"><div id="help" class="icon"></div></div>
-                <div class="iconcon" data-action="in-game-about"><div id="rules" class="icon"></div></div>
                 <div class="iconcon" data-action="continue"><div id="continue" class="icon"></div></div>
             </div>
         </div>
@@ -240,6 +139,7 @@
             }
         };  
     </script>  
+    <script type="text/javascript" src="js/LocaleHandler.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
@@ -253,5 +153,6 @@
     <script type="text/javascript" src="js/levels.js"></script>
     <script type="text/javascript" src="js/backgroundservice.js"></script>
     <script type="text/javascript" src="js/storage.js"></script>
+    <script>TranslateText();</script>
   </body>
 </html>

@@ -8,19 +8,19 @@
  */
 var HintType = {
   None: 'None',
-  NumberCanBeEntered:       'NumberCanBeEntered',
-  OneDirectionLeft:         'Only one direction remains for this number to look in <span id="nextdot"></span>',
-  ValueReached:             'This number can see all its dots <span id="nextdot" class="red"></span>',
-  WouldExceed:              'Looking further in one direction would exceed this number <span id="nextdot" class="red"></span>',
-  OneDirectionRequired:     'One specific dot is included <br>in all solutions imaginable <span id="nextdot"></span>',
-  MustBeWall:               'This one should be easy... <span id="nextdot" class="red"></span>',
+  NumberCanBeEntered:       TranslationOf('NumberCanBeEntered'),
+  OneDirectionLeft:         TranslationOf('Only one direction remains for this number to look in') + ' <span id="nextdot"></span>',
+  ValueReached:             TranslationOf('This number can see all its dots') + ' <span id="nextdot" class="red"></span>',
+  WouldExceed:              TranslationOf('Looking further in one direction would exceed this number') + ' <span id="nextdot" class="red"></span>',
+  OneDirectionRequired:     TranslationOf('One specific dot is included in all solutions imaginable') + ' <span id="nextdot"></span>',
+  MustBeWall:               TranslationOf('This one should be easy...') + ' <span id="nextdot" class="red"></span>',
 
-  ErrorClosedTooEarly:      'This number can\'t see enough <span id="nextdot"></span>', 
-  ErrorClosedTooLate:       'This number sees a bit too much <span id="nextdot" class="red"></span>', 
-  Error:                    'This one doesn\'t seem right <span id="nextdot" class="red"></span>',
-  Errors:                   'These don\'t seem right <span id="nextdot" class="red"></span>',
-  LockedIn:                 'A blue dot should always see at least one other <span id="nextdot"></span>',
-  GameContinued:            'You can now continue<br>your previous game <span id="nextdot"></span>'
+  ErrorClosedTooEarly:      TranslationOf('This number cant see enough') + ' <span id="nextdot"></span>', 
+  ErrorClosedTooLate:       TranslationOf('This number sees a bit too much') + ' <span id="nextdot" class="red"></span>', 
+  Error:                    TranslationOf('This one doesnt seem right') + ' <span id="nextdot" class="red"></span>',
+  Errors:                   TranslationOf('These dont seem right') + ' <span id="nextdot" class="red"></span>',
+  LockedIn:                 TranslationOf('A blue dot should always see at least one other') + ' <span id="nextdot"></span>',
+  GameContinued:            TranslationOf('You can now continue your previous game') + ' <span id="nextdot"></span>'
 };
 
 function Hint(grid) {

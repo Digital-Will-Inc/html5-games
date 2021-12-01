@@ -36,8 +36,7 @@ var Game = new (function() {
       continueLastGame = false,
       systemTilesLockShown = false,
       time = 0,
-      timerTOH = 0,
-      shareMsg = '#0hn0 It\'s 0h h1\'s companion! Go get addicted to this lovely puzzle game http://0hn0.com (or get the app)!';
+      timerTOH = 0;
 
   function init() {
     var testDebugSize = document.location.hash.replace(/#/g,'') * 1;
@@ -81,35 +80,6 @@ var Game = new (function() {
 
     //Utils.setColorScheme('#c0cd31');
     Utils.setColorScheme('#ff384b', '#1cc0e0');
-    if (window.SocialSharing)
-      addNativeSocialHooks();
-  }
-
-  // catches taps on tweet/fb buttons and passes them to native share lib
-  function addNativeSocialHooks() {
-    if (!window.plugins || !window.plugins.socialsharing)
-      SocialSharing.install();
-
-    tweet = true;
-    facebook = true;
-    
-    $('#tweeturl').on('click', function(evt){
-      evt.stopPropagation();
-      evt.preventDefault();
-      setTimeout(function() {
-        window.plugins.socialsharing.shareViaTwitter(shareMsg);
-      },0);
-      return false;
-    })
-
-    $('#facebook').on('click', function(evt){
-      evt.stopPropagation();
-      evt.preventDefault();
-      setTimeout(function() {
-        window.plugins.socialsharing.shareViaFacebook(shareMsg);
-      },0);
-      return false;
-    })
   }
 
   function start() {
@@ -265,7 +235,7 @@ var Game = new (function() {
     onHomeScreen = false;
     inText = false;
     showGame();
-    $('#boardsize').html('<span>Select a size</span>');
+    $('#boardsize').html('<span>' + TranslationOf('Select a size') + '</span>');
     $('#menugrid').removeClass('hidden');
     $('#board').addClass('hidden');
     $('#bar [data-action]').not('[data-action="back"]').hide();
@@ -435,7 +405,6 @@ var Game = new (function() {
                 if (showAppsIcon)
                   $('[data-action="apps"]').show();
                 if (tweet && !currentPuzzle.isTutorial) {
-                  updateTweetUrl(currentPuzzle.size);
                   $('#tweeturl').show();
                 }
                 if (facebook && !currentPuzzle.isTutorial) {
@@ -872,16 +841,6 @@ var Game = new (function() {
     clearTimeout(endGameTOH2);
     clearTimeout(endGameTOH3);
     clearTimeout(endSubtleHintTOH);
-  }
-
-  function updateTweetUrl(size) {
-    getScore(function(value){
-      var msg = '#0hn0 It\'s 0h h1\'s companion! I just completed a ' + size + ' x ' + size + ' puzzle and my score is ' + value + '. http://0hn0.com (or get the App) ',
-      //var msg = '#0hn0 I just completed a ' + size + ' x ' + size + ' puzzle and my score is ' + value + '. http://0hn0.com (or get the App!) ',
-          url = 'https://twitter.com/share?text=' + encodeURIComponent(msg);
-      shareMsg = msg;
-      $('#tweeturl').attr('href', url);      
-    })
   }
 
   function continueGame() {
