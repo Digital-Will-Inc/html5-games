@@ -1,125 +1,130 @@
 translation = {
 	"Select a size" : {
-		"ja" : "--",
+		"ja" : "サイズを選択",
 		"en-us" : "Select a size",
 	 },
 	"NumberCanBeEntered" : {
-		"ja" : "--",
+		"ja" : "NumberCanBeEntered",
 		"en-us" : "NumberCanBeEntered",
 	 },
 	"Can you fill out the remaining dots?" : {
-		"ja" : "--",
+		"ja" : "残りの点を埋めてみよう。",
 		"en-us" : "Can you fill out the remaining dots?",
 	 },
 	"This one should be easy..." : {
-		"ja" : "--",
+		"ja" : "これは簡単なはずです...",
 		"en-us" : "This one should be easy...",
 	 },
 	"Select a size to play..." : {
-		"ja" : "--",
+		"ja" : "サイズを選択してプレイ",
 		"en-us" : "Select a size to play...",
 	 },
 	"To make it see three dots it needs two more..." : {
-		"ja" : "--",
+		"ja" : "点を3つにするには後2つ必要です。。。",
 		"en-us" : "To make it see three dots it needs two more...",
 	 },
 	"Loading" : {
-		"ja" : "--",
+		"ja" : "ロード中",
 		"en-us" : "Loading",
 	 },
 	"Their numbers tell how many" : {
-		"ja" : "--",
+		"ja" : "青い点に記載の数字は他に点がいくつあるかを示します。",
 		"en-us" : "Their numbers tell how many",
 	 },
 	"But red dots block their view!" : {
-		"ja" : "--",
+		"ja" : "赤い点は視界を遮ります。",
 		"en-us" : "But red dots block their view!",
 	 },
 	"Play" : {
-		"ja" : "--",
+		"ja" : "プレイ",
 		"en-us" : "Play",
 	 },
 	"How to play" : {
-		"ja" : "--",
+		"ja" : "遊び方",
 		"en-us" : "How to play",
 	 },
 	"It's 0h h1's companion!" : {
-		"ja" : "--",
+		"ja" : "「0h h1」と同系統のゲームです！",
 		"en-us" : "It's 0h h1's companion!",
 	 },
 	"So this 2 can only see dots on the right" : {
-		"ja" : "--",
+		"ja" : "この「2」は右方向しか見えません",
 		"en-us" : "So this 2 can only see dots on the right",
 	 },
 	"About" : {
-		"ja" : "--",
+		"ja" : "ゲームについて",
 		"en-us" : "About",
 	 },
 	"Two dots. These. Tap to make them blue" : {
-		"ja" : "--",
+		"ja" : "点が2つ。。。タップして青色に",
 		"en-us" : "Two dots. These. Tap to make them blue",
 	 },
 	"This one doesnt seem right" : {
-		"ja" : "--",
+		"ja" : "これは正しくないようです",
 		"en-us" : "This one doesnt seem right",
 	 },
 	"Looking further in one direction would exceed this number" : {
-		"ja" : "--",
+		"ja" : "一方向に集中すると答えが見えてくるかも",
 		"en-us" : "Looking further in one direction would exceed this number",
 	 },
 	"Blue dots can see others in their own row and column" : {
-		"ja" : "--",
+		"ja" : "青い点は、自分の行と列にある他の点を見ることができます。",
 		"en-us" : "Blue dots can see others in their own row and column",
 	 },
 	"This number cant see enough" : {
-		"ja" : "--",
+		"ja" : "この数字が見えている点の数が足りません",
 		"en-us" : "This number cant see enough",
 	 },
 	"One specific dot is included in all solutions imaginable" : {
-		"ja" : "--",
+		"ja" : "考えられるすべての問題解決に1つ特定のドットが含まれています",
 		"en-us" : "One specific dot is included in all solutions imaginable",
 	 },
 	"This number can see all its dots" : {
-		"ja" : "--",
+		"ja" : "この数字はすべての点を見ることができます",
 		"en-us" : "This number can see all its dots",
 	 },
 	"This number sees a bit too much" : {
-		"ja" : "--",
+		"ja" : "この数字は見えている点の数が多すぎます",
 		"en-us" : "This number sees a bit too much",
 	 },
 	"A blue dot should always see at least one other" : {
-		"ja" : "--",
+		"ja" : "青い点は少なくとも他の点が2つ見える必要があります",
 		"en-us" : "A blue dot should always see at least one other",
 	 },
 	"Now close its path. Tap twice for a red dot" : {
-		"ja" : "--",
+		"ja" : "視界を遮ります。２回タップして赤点に変えます",
 		"en-us" : "Now close its path. Tap twice for a red dot",
 	 },
+	"0h n0 is a little logic game where you have to fill out an entire grid of dots in order to satisfy the game's rules" : {
+		"ja" : "「0h n0」は、ゲームのルールを満たすようマスに点を配置する論理ゲームです。",
+		"en-us" : "0h n0 is a little logic game where you have to fill out an entire grid of dots in order to satisfy the game's rules",
+	 },
 	"This 1 should see only one. It already does - below!" : {
-		"ja" : "--",
+		"ja" : "この「1」は1つしか見えません。注意：すてに下に見えています",
 		"en-us" : "This 1 should see only one. It already does - below!",
 	 },
 	"So its other path can be closed. Go ahead..." : {
-		"ja" : "--",
+		"ja" : "他のパスが遮っても良さそうです。どうぞ。。。",
 		"en-us" : "So its other path can be closed. Go ahead...",
 	 },
 	"Only one direction remains for this number to look in" : {
-		"ja" : "--",
+		"ja" : "この数字は後一方向見るだけで大丈夫",
 		"en-us" : "Only one direction remains for this number to look in",
 	 },
 	"You can now continue your previous game" : {
-		"ja" : "--",
+		"ja" : "前のゲームを続行することができます",
 		"en-us" : "You can now continue your previous game",
 	 },
 	"These dont seem right" : {
-		"ja" : "--",
+		"ja" : "正しくないようです",
 		"en-us" : "These dont seem right",
 	 },
 	"This 3 cant see left or right. But it does see a dot above" : {
-		"ja" : "--",
+		"ja" : "この「3」は左右が見えません。しかし上の点は視認できます",
 		"en-us" : "This 3 cant see left or right. But it does see a dot above",
 	 },
 }
+
 
 function LowerJSON(json) {
     let newJson = {};
