@@ -30,7 +30,7 @@ playGame.prototype = {
 
           var isJapanese = browserLanguage !== null && browserLanguage === "ja"
 
-          var fontFam = isJapanese ? "M PLUS 1p" : "Arial";
+          var fontFam = isJapanese ? "MyFont" : "Arial";
 
           var style = {
                font: `bold 64px ${fontFam}`,
