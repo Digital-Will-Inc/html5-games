@@ -132,6 +132,8 @@ class Snake {
         let direction = [];
 
         this.canvas.addEventListener("touchstart", e => {
+            e.preventDefault();
+
             let touch = e.touches[0];
             touchDirections = [];
             prev = [touch.clientX, touch.clientY];
@@ -139,7 +141,7 @@ class Snake {
 
 
         this.canvas.addEventListener("touchmove", e => {
-            e.preverntDefault();
+            e.preventDefault();
             let touch = e.touches[0];
             let current = [touch.clientX, touch.clientY];
             direction = [current[0] - prev[0], current[1] - prev[1]];
@@ -523,6 +525,8 @@ let previousScore = localStorage.getItem("previousScore") !== null ? parseInt(lo
 let startButton = document.querySelector(".start");
 startButton.innerHTML = SelectTranslteText("Start", "スタート");
 startButton.addEventListener("click", e => {
+    e.preventDefault();
+
     snake.startLoop();
     canvasContainer.classList.add("is-active");
 })
