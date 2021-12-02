@@ -9,10 +9,11 @@ body {
   background-color: black;
 
   overflow: hidden;
+  margin: 0 auto;
 }
 .canvas-container {
   width: calc(100vmin - 4rem);
-  height: calc(100vmin - 4rem);
+  height: calc(100vmin - 7rem);
   display: flex;
   align-items: center;
   justify-content: center;
