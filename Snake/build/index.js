@@ -85,7 +85,7 @@ class Snake {
         this.setupKeys();
         this.setupTouch();
 
-        console.log(this);
+        // console.log(this);
     }
 
     // setup
@@ -117,7 +117,7 @@ class Snake {
                 let direction = directions[key];
                 if (this.directionNotOpposite(direction) && this.directionNotCurrent(direction) && this.directionQueue.length < 2) {
                     this.directionQueue.push(direction);
-                    console.log(...this.directionQueue);
+                    // console.log(...this.directionQueue);
                 }
             }
         })
@@ -139,6 +139,7 @@ class Snake {
 
 
         this.canvas.addEventListener("touchmove", e => {
+            e.preverntDefault();
             let touch = e.touches[0];
             let current = [touch.clientX, touch.clientY];
             direction = [current[0] - prev[0], current[1] - prev[1]];
@@ -166,10 +167,10 @@ class Snake {
             else if ((d[1] < 0 && Math.abs(d[1]) > Math.abs(d[0]))) this.directionQueue = [[0, -1]];
             else if ((d[1] > 0 && Math.abs(d[1]) > Math.abs(d[0]))) this.directionQueue = [[0, 1]];
 
-            console.log(this.directionQueue[0]);
+            // console.log(this.directionQueue[0]);
 
             prev = current;
-        })
+        }, { passive: false });
     }
 
     directionNotOpposite(direction) {
@@ -184,7 +185,7 @@ class Snake {
         let snake = Array.apply(null, Array(this.startLength)).map((e) => {
             return this.startPosition;
         });
-        console.log(...snake);
+        // console.log(...snake);
         return snake;
     }
 
@@ -203,11 +204,11 @@ class Snake {
 
                 collides = this.positionIn(x, y, this.snake) || this.positionIn(x, y, this.powerUps) || this.positionIn(x, y, list);
                 if (collides) {
-                    console.log(collides);
+                    // console.log(collides);
                 }
             }
         } else {
-            console.log("filled in");
+            // console.log("filled in");
         }
         return [x, y];
     }
