@@ -123,7 +123,7 @@ var Game = new (function() {
     var containerSize = box.width;
 
     $('h1').css('font-size', Math.round(containerSize * .24) + 'px')
-    $('h2').css('font-size', Math.round(containerSize * .18) + 'px')
+    $('h2').css('font-size', Math.round(containerSize * .15) + 'px')
     $('h3').css('font-size', Math.round(containerSize * .15) + 'px')
     $('p').css('font-size', Math.round(containerSize * .07) + 'px')
     $('#menu h2').css('font-size', Math.round(containerSize * .24) + 'px')
@@ -235,7 +235,7 @@ var Game = new (function() {
     onHomeScreen = false;
     inText = false;
     showGame();
-    $('#boardsize').html('<span>' + TranslationOf('Select a size') + '</span>');
+    $('#boardsize').html('<span">' + TranslationOf('Select a size') + '</span>');
     $('#menugrid').removeClass('hidden');
     $('#board').addClass('hidden');
     $('#bar [data-action]').not('[data-action="back"]').hide();
