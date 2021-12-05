@@ -95,6 +95,7 @@ MyGame.Game.prototype = {
 				game.direction = this.bird.scale.x = 1;
 				this.score = 0;
 				this.state.start('Preloader');
+				game.focusGain();
 			}
 
 			CallAd(
