@@ -231,12 +231,13 @@ var GameState = function (game) {
         btn1.events.onInputDown.add(function () {
             CallAd(AdTypes.next, "game over");
             game.state.start("main");
+            game.focusGain();
         }, this);
     };
 };
 
-window.onload = function () {
-    var game = new Phaser.Game(500, 860, Phaser.CANVAS, '');
-    game.state.add("main", GameState, true);
-};
+// window.onload = function () {
+var game = new Phaser.Game(500, 860, Phaser.CANVAS, '');
+game.state.add("main", GameState, true);
+// };
 
