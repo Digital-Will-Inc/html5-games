@@ -16,7 +16,7 @@ body {
   margin: 0 auto;
 }
 .canvas-container {
-  width: calc(100vmin - 4rem);
+  width: calc(100vmin - 7rem);
   height: calc(100vmin - 7rem);
   display: flex;
   align-items: center;

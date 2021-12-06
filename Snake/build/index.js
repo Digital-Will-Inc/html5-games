@@ -225,10 +225,15 @@ class Snake {
     updateCanvasSize() {
         let box = this.canvas.getBoundingClientRect();
         let ratio = window.devicePixelRatio;
-        this.canvasWidth = box.width * ratio;
-        this.canvasHeight = box.height * ratio;
-        this.canvas.width = box.width * ratio;
-        this.canvas.height = box.height * ratio;
+
+        const width = box.width * ratio;
+        const height = box.height * ratio;
+
+
+        this.canvasWidth = width;
+        this.canvasHeight = height;
+        this.canvas.width = width;
+        this.canvas.height = height;
     }
 
     getInitialPowerUps() {
