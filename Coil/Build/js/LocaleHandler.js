@@ -85,7 +85,9 @@ function TranslateText() {
 }
 
 function TranslationOf(text){
-    return translation[text.toLowerCase()][browserLanguage];
+	if (translation && translation[text.toLowerCase()] && translation[text.toLowerCase()][browserLanguage])
+    	return translation[text.toLowerCase()][browserLanguage];
+	return text;
 }
 
 TranslateText();
