@@ -229,9 +229,25 @@ var GameState = function (game) {
         btn1.anchor.set(0.5);
         btn1.inputEnabled = true;
         btn1.events.onInputDown.add(function () {
-            CallAd(AdTypes.next, "game over");
-            game.state.start("main");
-            game.focusGain();
+
+            let gameRestart = false;
+            const RestartGame = () => {
+                if (gameRestart) return;
+                gameRestart = true;
+                game.state.start("main");
+                game.focusGain();
+            }
+
+            CallAd(
+                AdTypes.next,
+                "Game Restart",
+                null,
+                null,
+                function () {
+                    RestartGame();
+                }, function () {
+                    RestartGame();
+                });
         }, this);
     };
 };
