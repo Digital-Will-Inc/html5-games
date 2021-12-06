@@ -112,6 +112,7 @@ body {
   cursor: pointer;
   text-decoration: underline;
   color: #00bcd4;
+  /* font-size: 4rem; */
 }
 
 #game-over {
@@ -120,7 +121,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 3em;
+  font-size: 2rem;
 }
 
 /*# sourceMappingURL=index.css.map */
