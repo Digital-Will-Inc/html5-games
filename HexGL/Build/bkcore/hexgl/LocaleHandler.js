@@ -62,6 +62,10 @@ translation = {
     "hexgltutorial": {
         "en": "Tap & hold to accelerate\nSwipe to move left and right",
         "ja": "タップ長押しで加速\n左右にスワイプして操作"
+    },
+    "CLICK/TOUCH TO CONTINUE.": {
+        "en": "CLICK/TOUCH TO CONTINUE.",
+        "ja": "クリック、またはタッチして次へ"
     }
 };
 
