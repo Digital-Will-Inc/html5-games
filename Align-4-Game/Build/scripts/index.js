@@ -131,7 +131,20 @@ function startHumanTurn() {
                 messageType: 'human-move',
                 col: col
             });
-        });
+        })
+        .on('touchstart', function () {
+            var col = $(this).index();
+            moveCursorChip(col);
+        })
+        .on('touchmove', function () {
+            var col = $(this).index();
+            moveCursorChip(col);
+        })
+        .on('touchend', function () {
+            var col = $(this).index();
+            moveCursorChip(col);
+        })
+
 }
 
 function endHumanTurn(coords, isWin, winningChips, isBoardFull) {

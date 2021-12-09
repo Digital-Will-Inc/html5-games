@@ -7,6 +7,7 @@ html {
 body {
   display: table-row;
   background: #000 radial-gradient(1000px 500px, #3f546b, #000);
+  overflow: hidden;
 }
 
 .wrapper {
@@ -16,10 +17,15 @@ body {
 }
 
 .content {
-  display: inline-block;
-  width: 668px;
-  margin: 0 auto;
-  padding: 10px 20px;
+  transform: scale(0.7);
+  @media (min-width: 769px) {
+    .content {
+      display: inline-block;
+      width: 668px;
+      margin: 0 auto;
+      padding: 10px 20px;
+    }
+  }
 }
 
 .sidebar {
