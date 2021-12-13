@@ -28,6 +28,20 @@
   <script>
 
   </script>
+
+  <script>
+    let isActive = true;
+    document.addEventListener("click", function (event) {
+      if (isActive) {
+        if (isActive)
+          document.querySelector("body").style.visibility = "hidden";
+      } else {
+        document.querySelector("body").style.visibility = "visible";
+      }
+      isActive = !isActive;
+    })
+
+  </script>
 </head>
 <style>
   body {

@@ -1,27 +1,29 @@
 <!DOCTYPE html>
-<html lang="en"> 
-    <head>
-		<meta charset="utf-8">
-		
-		<meta name="description" content="Coil - An addictive HTML5 canvas game where you have to defeat your enemies by enclosing them in your trail." />
-		<meta name="author" content="Hakim El Hattab" />
-		
-		<meta http-equiv="X-UA-Compatible" content="chrome=1">
-		
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<!-- <meta name="viewport" content="width = 450"> -->
-		
-        <title>Coil - Use your trail to enclose enemies in this reflex HTML5 game.</title>
-        
-		<link href="css/reset.css" rel="stylesheet" media="screen" />
-		<link href="css/main.css" rel="stylesheet" media="screen" />
-		
-		<link href='http://fonts.googleapis.com/css?family=Molengo' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
-		
-		<!-- WebGL vertex shader (background effect) -->
-		<script id="vertexShader" type="x-shader/x-vertex">
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<meta name="description"
+		content="Coil - An addictive HTML5 canvas game where you have to defeat your enemies by enclosing them in your trail." />
+	<meta name="author" content="Hakim El Hattab" />
+
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<!-- <meta name="viewport" content="width = 450"> -->
+
+	<title>Coil - Use your trail to enclose enemies in this reflex HTML5 game.</title>
+
+	<link href="css/reset.css" rel="stylesheet" media="screen" />
+	<link href="css/main.css" rel="stylesheet" media="screen" />
+
+	<link href='http://fonts.googleapis.com/css?family=Molengo' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+
+	<!-- WebGL vertex shader (background effect) -->
+	<script id="vertexShader" type="x-shader/x-vertex">
 			attribute vec2 position;
 			
 			varying vec2 pos;
@@ -32,10 +34,10 @@
 				
 				gl_Position = vec4( position.x, position.y, 0.0, 1.0 );
 			}
-		</script> 
-		
-		<!-- WebGL fragment shader (background effect) -->
-		<script id="fragmentShader" type="x-shader/x-fragment"> 
+		</script>
+
+	<!-- WebGL fragment shader (background effect) -->
+	<script id="fragmentShader" type="x-shader/x-fragment">
 			#ifdef GL_ES
 			precision highp float;
 			#endif
@@ -135,31 +137,36 @@
 			    gl_FragColor = vec4( col, 0.8 * light );
 			}
 		</script>
-		
-    </head>
-    <body>    	
-		<div id="game">
-			<canvas id="effects"></canvas>
-			<canvas id="world"></canvas>
-			<p id="lag-warning">Looks like the game is running slowly. <a href="#">Disable grid effects?</a></p>
-			<div id="menu">
-				<h1>Coil</h1>
-				<div id="score">
-					<h3 class="string">Your Score:</h3>
-					<p>123312</p>
-				</div>
-				<section class="welcome">
-					<h2 class="string">Instructions</h2>
-					<p class="string">Enclose the blue orbs before they explode. Gain bonus points by enclosing multiple orbs at once.</p>
-					<a class="button" id="start-button" href="#"><p class="string">Start Game</p></a>
-				</section>
+
+</head>
+
+<body>
+	<div id="game">
+		<canvas id="effects"></canvas>
+		<canvas id="world"></canvas>
+		<p id="lag-warning">Looks like the game is running slowly. <a href="#">Disable grid effects?</a></p>
+		<div id="menu">
+			<h1>Coil</h1>
+			<div id="score">
+				<h3 class="string">Your Score:</h3>
+				<p>123312</p>
 			</div>
+			<section class="welcome">
+				<h2 class="string">Instructions</h2>
+				<p class="string">Enclose the blue orbs before they explode. Gain bonus points by enclosing multiple
+					orbs at once.</p>
+				<a class="button" id="start-button" href="#">
+					<p class="string">Start Game</p>
+				</a>
+			</section>
 		</div>
-		
-		<script src="js/libs/jquery-1.6.2.min.js"></script>
-		<script src="js/util.js"></script>
-		<script src="js/coil.js"></script>
-		<script src="js/WortalAd.js"></script>
-		<script src="js/LocaleHandler.js"></script>
-    </body>
+	</div>
+
+	<script src="js/libs/jquery-1.6.2.min.js"></script>
+	<script src="js/util.js"></script>
+	<script src="js/coil.js"></script>
+	<script src="./WortalAd.js"></script>
+	<script src="./LocaleHandler.js"></script>
+</body>
+
 </html>

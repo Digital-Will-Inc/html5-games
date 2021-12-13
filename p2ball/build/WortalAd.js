@@ -1,3 +1,5 @@
+//WARNING: THIS SCRIPT IS ADJUSTED FOR THIS GAME
+
 var WORTAL_API_SCRIPT = document.createElement("script");
 WORTAL_API_SCRIPT.src = "https://html5gameportal.com/embeds/wortal-1.1.1.js";
 WORTAL_API_SCRIPT.type = 'text/javascript';
