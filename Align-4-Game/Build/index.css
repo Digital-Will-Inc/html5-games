@@ -18,13 +18,18 @@ body {
 
 .content {
   transform: scale(0.7);
-  @media (min-width: 769px) {
-    .content {
-      display: inline-block;
-      width: 668px;
-      margin: 0 auto;
-      padding: 10px 20px;
-    }
+}
+@media (min-width: 769px) {
+  .content {
+    display: inline-block;
+    width: 668px;
+    margin: 0 auto;
+    padding: 10px 20px;
+  }
+}
+@media (max-width: 370px) {
+  .content {
+    margin: 0 -50px;
   }
 }
 
