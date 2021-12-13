@@ -10,10 +10,11 @@ bgSound.src = 'assets/bg.mp3'
 bgSound.loop = true
 bgSound.volume = 0.6
 bgSound.addEventListener('canplaythrough', function () {
-  bgSound.play()
-})
+  PlayBGM();
+});
+
 document.addEventListener("click", () => {
-  bgSound.play();
+  PlayBGM();
 }, { once: true });
 
 if (localStorage.muted === 'true') toggleMute()
@@ -30,9 +31,13 @@ function toggleMute() {
     bgSound.volume = 0.6
     muted = false
     localStorage.muted = 'false'
-    bgSound.play()
     drawSoundControl()
   }
+}
+
+function PlayBGM() {
+  if (wortalIsLoaded == false) return;
+  bgSound.play()
 }
 
 function playPop() {
