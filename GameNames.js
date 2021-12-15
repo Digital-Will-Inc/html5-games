@@ -6,6 +6,7 @@ const GAME_NAMES = [
     // "TowerBlocks",
     // "Align-4-Game",
     // "BlockFall",
+    "0hn0",
     "Pond",
     "HexGL",
     // "CirclePath",
