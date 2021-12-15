@@ -10,7 +10,12 @@ CopyUtilsFileToGames();
 function CopyUtilsFileToGames() {
     const utilsSource = "Utils";
 
-    fs.readdirSync(utilsSource).forEach(itemName => {
+    let files = fs.readdirSync(utilsSource);
+
+    //NOTE: Temp disable localeHandle because not all projects needs this script
+    files = files.filter(fileName => fileName !== "LocaleHandler.js");
+
+    files.forEach(itemName => {
 
         const sourcePath = path.join(utilsSource, itemName);
 

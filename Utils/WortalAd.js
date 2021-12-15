@@ -14,21 +14,32 @@ const AdTypes = {
     rewardedAd: 'reward',
 }
 
+//Used for when the game is loaded and ready to show after pre-roll
+const onInitWortal = new Event('WortalAdLoaded');
+var hasPlayedPreroll = false;
+
+document.onreadystatechange = () => {
+    ToggleBody(false);
+}
+
+
 window.addEventListener("load", () => {
     window.initWortal(function () {
         console.log("Wortal setup complete!");
         wortalIsLoaded = true;
         setTimeout(() => {
+            ToggleBody(true);
             CallPreroll("Load Game",
                 function () {
                     // Render the game now.
+                    window.dispatchEvent(onInitWortal);
                 });
         }, 100);
     });
 });
 
 
-let wortalIsLoaded = false;
+var wortalIsLoaded = false;
 function CallAd(type, name, beforeAd, afterAd, adBreakDone, noShow) {
     if (wortalIsLoaded == false) return;
     window.triggerWortalAd(type, name, {
@@ -51,12 +62,32 @@ function CallAd(type, name, beforeAd, afterAd, adBreakDone, noShow) {
     });
 }
 
-function CallPreroll(name, adBreakDone) {
+function CallPreroll(name, adBreakDone, noShow) {
     if (wortalIsLoaded == false) return;
     window.triggerWortalAd(AdTypes.preroll, name, {
         adBreakDone: function () {
             console.log("Call adBreakDone");
             if (adBreakDone) adBreakDone();
+            hasPlayerPreroll = true;
+        },
+        noShow: function () {
+            console.log("Call noShow");
+            if (noShow) {
+                noShow();
+            } else {
+                adBreakDone();
+            }
+            hasPlayerPreroll = true;
         }
     });
+}
+
+//Used to hide body temprarily when wortal is loading so the game doesn't show.
+//When pre-roll starts I enable the body again
+function ToggleBody(state) {
+    if (state == true) {
+        document.querySelector("body").style.display = "";
+    } else {
+        document.querySelector("body").style.display = "none";
+    }
 }

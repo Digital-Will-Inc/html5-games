@@ -5,8 +5,6 @@ const archiver = require('archiver');
 !fs.existsSync(`./dist/`) && fs.mkdirSync(`./dist/`);
 
 
-//NOTE: HexGL isn't included in the automated process of updating/building, so we need to manually include it here.
-GAME_NAMES.push("HexGL");
 
 for (let i = 0; i < GAME_NAMES.length; i++) {
     const gameName = GAME_NAMES[i];
