@@ -1,7 +1,7 @@
 var WORTAL_API_SCRIPT = document.createElement("script");
 WORTAL_API_SCRIPT.src = "https://html5gameportal.com/embeds/wortal-1.1.2.js";
 WORTAL_API_SCRIPT.type = 'text/javascript';
-WORTAL_API_SCRIPT.async = true;
+// WORTAL_API_SCRIPT.async = true;
 const head = document.getElementsByTagName("head");
 head[head.length - 1].appendChild(WORTAL_API_SCRIPT);
 
@@ -18,23 +18,19 @@ const AdTypes = {
 const onInitWortal = new Event('WortalAdLoaded');
 var hasPlayedPreroll = false;
 
-document.onreadystatechange = () => {
-    ToggleBody(false);
-}
-
 
 window.addEventListener("load", () => {
     window.initWortal(function () {
         console.log("Wortal setup complete!");
         wortalIsLoaded = true;
-        setTimeout(() => {
-            ToggleBody(true);
-            CallPreroll("Load Game",
-                function () {
-                    // Render the game now.
-                    window.dispatchEvent(onInitWortal);
-                });
-        }, 100);
+
+        // setTimeout(() => {
+        CallPreroll("Load Game",
+            function () {
+                // Render the game now.
+                RemoveBlackCover();
+                window.dispatchEvent(onInitWortal);
+            });
     });
 });
 
@@ -82,12 +78,7 @@ function CallPreroll(name, adBreakDone, noShow) {
     });
 }
 
-//Used to hide body temprarily when wortal is loading so the game doesn't show.
-//When pre-roll starts I enable the body again
-function ToggleBody(state) {
-    if (state == true) {
-        document.querySelector("body").style.display = "";
-    } else {
-        document.querySelector("body").style.display = "none";
-    }
+
+function RemoveBlackCover() {
+    document.getElementById("black-cover").hidden = true;
 }

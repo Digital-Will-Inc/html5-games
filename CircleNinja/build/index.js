@@ -1,8 +1,12 @@
 var w = window.innerWidth,
     h = window.innerHeight;
 
-var game = new Phaser.Game(w, h, Phaser.AUTO, 'game',
-    { preload: preload, create: create, update: update, render: render });
+var game;
+window.addEventListener("WortalAdLoaded", () => {
+    game = new Phaser.Game(w, h, Phaser.AUTO, 'game',
+        { preload: preload, create: create, update: update, render: render });
+})
+
 
 function preload() {
     var bmd = game.add.bitmapData(100, 100);

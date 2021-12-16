@@ -74,11 +74,13 @@ function Importi18nScript() {
     const script = document.createElement("script");
     script.src = "./i18n.js";
     script.type = "text/javascript";
+    script.async = true;
     const head = document.getElementsByTagName("head");
-    window
+
     head[head.length - 1].appendChild(script).onload = () => {
         console.log("i18n loaded");
         i18nIsLoaded = true;
         TranslateAllPage();
     };
+
 }
