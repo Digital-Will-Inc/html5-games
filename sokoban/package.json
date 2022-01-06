@@ -1,0 +1,30 @@
+{
+  "name": "sokoban",
+  "version": "1.0.0",
+  "description": "Implementation of puzzle-classic Sokoban",
+  "main": "Sokoban.js",
+  "scripts": {
+    "start": "concurrently 'webpack --mode=development --watch' 'live-server --watch='dist''  -n 'WEBPACK,LIVE-SERVER' --prefix name -c 'blue.bold,red.bold' --use_strict",
+    "build": "mkdir build; webpack --mode=production && cp ../Utils/* ./dist && cp -a index.html build/ && cp -a dist/ build/dist && cp -a style.css build/ && cp -a banner.png build/ && npm run zip",
+    "zip": "zip -vr sokoban.zip index.html dist/main.js style.css banner.png",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spielhoelle/sokoban.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spielhoelle/sokoban/issues"
+  },
+  "homepage": "https://github.com/spielhoelle/sokoban#readme",
+  "dependencies": {
+    "webpack": "^5.65.0"
+  },
+  "devDependencies": {
+    "concurrently": "^6.4.0",
+    "webpack-cli": "^4.9.1"
+  }
+}

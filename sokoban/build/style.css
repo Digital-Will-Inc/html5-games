@@ -1,0 +1,141 @@
+:root {
+  --primary: #4ae1e1;
+  --primary-dark: #3ebcbc;
+  --secondary: #fa56fc;
+}
+
+html {
+  --webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #222;
+  height: 100vh;
+  line-height: 1.2;
+  color: var(--primary);
+  text-shadow: 1px 1px 0 var(--secondary);
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+h1 {
+  margin: 0 0 0.5rem;
+  font-size: 6rem;
+  text-shadow: 5px 5px 0 var(--secondary);
+}
+
+p {
+  margin: 0 0 0.5rem;
+  font-size: 1.3rem;
+}
+
+button {
+  margin: 0.5rem 0;
+  background: var(--primary);
+  border: 0;
+  box-shadow: 3px 3px var(--secondary);
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+button:hover {
+  background: var(--primary-dark);
+}
+
+button:active {
+  transform: scale(0.9);
+}
+
+header {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+}
+
+#levelselector {
+  width: 50px;
+  height: 34px;
+  margin-bottom: 4px;
+  background: #222;
+  border-color: var(--primary);
+  color: var(--primary);
+  text-shadow: 1px 1px 0 var(--secondary);
+}
+
+#levelselector:focus, #levelselector:focus-visible {
+  border: 0 none;
+}
+
+#highscore {
+  position: fixed;
+  width: 400px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #222;
+  padding: 20px;
+  border: 1px solid var(--secondary);
+  overflow: hidden;
+}
+
+#highscore h2 {
+  margin: 0;
+}
+
+#highscore #score {
+  overflow-y: scroll;
+  padding-top: 20px;
+  height: calc(100% - 40px);
+}
+
+#highscore td, #highscore th {
+  padding: 0 10px;
+}
+
+.d-none {
+  display: none;
+}
+
+.closebutton {
+  position: absolute;
+  margin: 0.5rem;
+  top: 0;
+  right: 0;
+}
+
+.banner {
+  animation: 1s forwards circle;
+  max-width: 100%;
+  background-image: url(./banner.png);
+  max-height: 100%;
+  height: 50px;
+  width: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+@keyframes circle {
+  0% {
+    clip-path: polygon(0 0, 0% 0%, 0% 100%, 0% 100%);
+  }
+
+  100% {
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+  }
+}
