@@ -9,13 +9,13 @@ html {
 }
 
 body {
+  touch-action: manipulation;
   margin: 0;
   font-family: sans-serif;
   background: #222;
   height: 100vh;
   line-height: 1.2;
   color: var(--primary);
-  text-shadow: 1px 1px 0 var(--secondary);
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -25,16 +25,19 @@ body {
 
 .container {
   display: flex;
-  flex-flow: column;
   align-items: center;
   justify-content: center;
+}
 
+@media (orientation: portrait) {
+  .container {
+    flex-direction: column;
+  }
 }
 
 h1 {
   margin: 0 0 0.5rem;
   font-size: 6rem;
-  text-shadow: 5px 5px 0 var(--secondary);
 }
 
 p {
@@ -73,7 +76,6 @@ header {
   background: #222;
   border-color: var(--primary);
   color: var(--primary);
-  text-shadow: 1px 1px 0 var(--secondary);
 }
 
 #levelselector:focus, #levelselector:focus-visible {
@@ -129,6 +131,80 @@ header {
   background-repeat: no-repeat;
   background-position: center center;
 }
+
+.board {
+  display: flex;
+}
+
+@media (orientation: portrait) {
+  .board {
+    flex-direction: column;
+  }
+}
+
+.controls {
+  justify-content: center;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+
+}
+
+.lowercontrols {
+  display: flex;
+  justify-content: center;
+  display: flex;
+}
+
+button {
+  padding: 0.5rem 0.5rem;
+}
+
+.header {
+  display: none;
+}
+
+.header.menutoggled {
+  display: block;
+  position: fixed;
+  background: #333;
+  padding: 20px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.lowerbutton {
+  position: absolute;
+  right: 10px;
+  top: auto;
+  bottom: 0;
+}
+
+@media (min-width: 900px) {
+
+  .header {
+    display: block;
+  }
+
+  .closebutton {
+    display: none;
+  }
+
+  .menubutton {
+    display: none;
+  }
+
+  button {
+    padding: 0.5rem 1rem;
+  }
+
+  .controls {
+    display: none;
+  }
+}
+
+@media (orientation: landscape) {}
 
 @keyframes circle {
   0% {

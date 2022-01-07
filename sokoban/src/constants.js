@@ -1724,7 +1724,7 @@ export const getLevelDimensions = (level) => {
     return acc
   }, { row: level.length, col: 0 })
 }
-export const multiplier = 22
+export const multiplier = 21
 export const size = {
   height: multiplier * biggestLevel.row,
   width: multiplier * biggestLevel.col,

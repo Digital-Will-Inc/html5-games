@@ -6,19 +6,10 @@ const levelSelector = document.querySelector('#levelselector')
 const cachedLevel = localStorage.getItem("dw-sokoban-currentlevel")
 const theLevel = cachedLevel ? Number(cachedLevel) : 0
 let sokoban
-// window.triggerWortalAd("preroll", "Game initialized ad", function () {
-//   console.log("Before ad!");
-// }, function () {
-//   console.log("After ad");
-// }, function () {
-//   console.log("adBreakDone");
-// });
-// setTimeout(() => {
-  sokoban = new Sokoban({ level: theLevel })
-  sokoban.render()
-// }, 1000);
-// re-render
-document.addEventListener('keydown', (event) => {
+
+sokoban = new Sokoban({ level: theLevel })
+sokoban.render()
+const move = (event) => {
   const playerCoords = sokoban.findPlayerCoords()
 
   switch (event.key) {
@@ -42,7 +33,17 @@ document.addEventListener('keydown', (event) => {
   }
 
   sokoban.render()
+}
+Array.from(document.querySelectorAll('.menubutton')).map(button => button.addEventListener('click', (event) => {
+  document.querySelector('.header').classList.toggle('menutoggled')
+}))
+Array.from(document.querySelectorAll(".directionbutton")).map(button => {
+  button.addEventListener('click', (event) => {
+    event.key = event.target.dataset.key
+    move(event)
+  })
 })
+document.addEventListener('keydown', (event) => move(event))
 
 document.querySelector('button#restartbutton').addEventListener('click', (event) => {
   levelSelector.value = theLevel
@@ -56,5 +57,6 @@ Array.from(document.querySelectorAll('button.highscorebutton')).map(button => {
 levelSelector.addEventListener('change', (event) => {
   localStorage.setItem("dw-sokoban-currentlevel", event.target.value)
   sokoban.render({ level: Number(event.target.value) })
+  document.querySelector('.header').classList.remove('menutoggled')
   event.target.blur()
 })

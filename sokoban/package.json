@@ -5,8 +5,8 @@
   "main": "Sokoban.js",
   "scripts": {
     "start": "concurrently 'webpack --mode=development --watch' 'live-server --watch='dist''  -n 'WEBPACK,LIVE-SERVER' --prefix name -c 'blue.bold,red.bold' --use_strict",
-    "build": "mkdir build; webpack --mode=production && cp ../Utils/* ./dist && cp -a index.html build/ && cp -a dist/ build/dist && cp -a style.css build/ && cp -a banner.png build/ && npm run zip",
-    "zip": "zip -vr sokoban.zip index.html dist/main.js style.css banner.png",
+    "build": "mkdir build; webpack --mode=production && cp ../../html5-games/Utils/* ./dist && cp -a index.html build/ && cp -a dist/ build/dist && cp -a style.css build/ && cp -a banner.png build/ && npm run zip",
+    "zip": "zip -vr sokoban.zip index.html dist/main.js style.css banner.png && rsync -av --delete --progress ./ ../../html5-games/sokoban --exclude '.git' --exclude 'node_modules'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

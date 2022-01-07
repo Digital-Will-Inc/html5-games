@@ -66,7 +66,7 @@ class Sokoban {
       const circleSize = cell === 'player' ? multiplier / 3 : multiplier / 5
 
       this.context.beginPath()
-      this.context.rect(x * multiplier + 2.5, y * multiplier + 2.5, multiplier, multiplier)
+      this.context.rect(x * multiplier + 2.85, y * multiplier + 2.85, multiplier, multiplier)
       this.context.fillStyle = colors.empty.fill
       this.context.fill()
 
