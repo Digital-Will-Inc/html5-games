@@ -86,27 +86,27 @@ bkcore.hexgl.tracks.Cityscape = {
 				},
 				sounds: {
 					bg: {
-						src: 'audio/bg.ogg',
+						src: 'audio/bg.mp3',
 						loop: true,
 						usePanner: false
 					},
 					crash: {
-						src: 'audio/crash.ogg',
+						src: 'audio/crash.mp3',
 						loop: false,
 						usePanner: true
 					},
 					destroyed: {
-						src: 'audio/destroyed.ogg',
+						src: 'audio/destroyed.mp3',
 						loop: false,
 						usePanner: false
 					},
 					boost: {
-						src: 'audio/boost.ogg',
+						src: 'audio/boost.mp3',
 						loop: false,
 						usePanner: true
 					},
 					wind: {
-						src: 'audio/wind.ogg',
+						src: 'audio/wind.mp3',
 						loop: true,
 						usePanner: true
 					}
@@ -170,23 +170,23 @@ bkcore.hexgl.tracks.Cityscape = {
 				},
 				sounds: {
 					bg: {
-						src: 'audio/bg.ogg',
+						src: 'audio/bg.mp3',
 						loop: true
 					},
 					crash: {
-						src: 'audio/crash.ogg',
+						src: 'audio/crash.mp3',
 						loop: false
 					},
 					destroyed: {
-						src: 'audio/destroyed.ogg',
+						src: 'audio/destroyed.mp3',
 						loop: false
 					},
 					boost: {
-						src: 'audio/boost.ogg',
+						src: 'audio/boost.mp3',
 						loop: false
 					},
 					wind: {
-						src: 'audio/wind.ogg',
+						src: 'audio/wind.mp3',
 						loop: true
 					}
 				}
