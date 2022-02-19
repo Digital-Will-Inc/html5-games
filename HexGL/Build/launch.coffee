@@ -37,8 +37,7 @@ u = bkcore.Utils.getURLParameter
 defaultControls = if bkcore.Utils.isTouchDevice() then 1 else 0
 
 s = [
-  ['controlType', ['KEYBOARD', 'TOUCH', 'LEAP MOTION CONTROLLER',
-    'GAMEPAD'], defaultControls, defaultControls, 'Controls: ']
+  ['controlType', ['KEYBOARD', 'TOUCH', 'GAMEPAD'], defaultControls, defaultControls, 'Controls: ']
   ['quality', ['LOW', 'MID', 'HIGH', 'VERY HIGH'], 3, 3, 'Quality: ']
   ['hud', ['OFF', 'ON'], 1, 1, 'HUD: ']
   ['godmode', ['OFF', 'ON'], 0, 1, 'Godmode: ']

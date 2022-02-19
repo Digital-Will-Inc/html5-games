@@ -155,7 +155,7 @@ bkcore.hexgl.ShipControls = function(ctx)
 					self.key.forward = true;
 			});
 	}
-	else if(ctx.controlType == 3 && bkcore.controllers.GamepadController.isCompatible())
+	else if(ctx.controlType == 2 && bkcore.controllers.GamepadController.isCompatible())
 	{
 		this.gamepadController = new bkcore.controllers.GamepadController(
       function(controller){
@@ -169,85 +169,7 @@ bkcore.hexgl.ShipControls = function(ctx)
           self.key.right = controller.lstickx > 0.1;
       });
 	}
-	else if(ctx.controlType == 2)
-	{
-		if(Leap == null)
-			throw new Error("Unable to reach LeapJS!");
-
-		var leapInfo = this.leapInfo = document.getElementById('leapinfo');
-		isServerConnected = false;
-		var lb = this.leapBridge = {
-			isConnected: true,
-			hasHands: false,
-			palmNormal: [0, 0, 0]
-		};
-
-		function updateInfo()
-		{
-			if(!isServerConnected)
-			{
-				leapInfo.innerHTML = 'Waiting for the Leap Motion Controller server...'
-				leapInfo.style.display = 'block';
-			}
-			else if(lb.isConnected && lb.hasHands)
-			{
-				leapInfo.style.display = 'none';
-			}
-			else if(!lb.isConnected)
-			{
-				leapInfo.innerHTML = 'Please connect your Leap Motion Controller.'
-				leapInfo.style.display = 'block';
-			}
-			else if(!lb.hasHands)
-			{
-				leapInfo.innerHTML = 'Put your hand over the Leap Motion Controller to play.'
-				leapInfo.style.display = 'block';
-			}
-		}
-		updateInfo();
-
-		var lc = this.leapController =  new Leap.Controller({enableGestures: false});
-		lc.on('connect', function()
-		{
-			isServerConnected = true;
-			updateInfo();
-		});
-		lc.on('deviceConnected', function()
-		{
-			lb.isConnected = true;
-			updateInfo();
-		});
-		lc.on('deviceDisconnected', function()
-		{
-			lb.isConnected = false;
-			updateInfo();
-		});
-		lc.on('frame', function(frame)
-		{
-			if(!lb.isConnected) return;
-		  hand = frame.hands[0];
-			if(typeof hand === 'undefined')
-			{
-				if(lb.hasHands)
-				{
-					lb.hasHands = false;
-					updateInfo();
-				}
-				lb.palmNormal = [0, 0, 0];
-			}
-			else
-			{
-				if(!lb.hasHands)
-				{
-					lb.hasHands = true;
-					updateInfo();
-				}
-				lb.palmNormal = hand.palmNormal;
-			}
-		});
-		lc.connect();
-	}
-
+    
 	function onKeyDown(event)
 	{
 		switch(event.keyCode)
@@ -328,12 +250,6 @@ bkcore.hexgl.ShipControls.prototype.reset = function(position, rotation)
 bkcore.hexgl.ShipControls.prototype.terminate = function()
 {
 	this.destroy();
-
-	if(this.leapController != null)
-	{
-		this.leapController.disconnect();
-		this.leapInfo.style.display = 'none';
-	}
 }
 
 bkcore.hexgl.ShipControls.prototype.destroy = function()
@@ -379,12 +295,6 @@ bkcore.hexgl.ShipControls.prototype.update = function(dt)
 	var angularAmount = 0.0;
 	var yawLeap = 0.0;
 
-	if(this.leapBridge != null && this.leapBridge.hasHands)
-	{
-		rollAmount -= this.leapBridge.palmNormal[0] * 3.5 * this.rollAngle;
-		yawLeap = -this.leapBridge.palmNormal[2] * 0.6;
-	}
-
 	if(this.active)
 	{
 
@@ -402,11 +312,6 @@ bkcore.hexgl.ShipControls.prototype.update = function(dt)
 		{
 			angularAmount -= this.gamepadController.lstickx * this.angularSpeed * dt;
 			rollAmount += this.gamepadController.lstickx * this.rollAngle;
-		}
-		else if(this.leapBridge != null && this.leapBridge.hasHands)
-		{
-			angularAmount += this.leapBridge.palmNormal[0] * 2 * this.angularSpeed * dt;
-			this.speed += Math.max(0.0, (0.5 + this.leapBridge.palmNormal[2])) * 3 * this.thrust * dt;
 		}
 		else
 		{
