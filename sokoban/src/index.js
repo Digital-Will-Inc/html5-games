@@ -1,12 +1,23 @@
 import { directions, keys, levels } from './constants.js'
 import Sokoban from './Sokoban.js'
 const levelSelector = document.querySelector('#levelselector')
+var WORTAL_API_INIT_SCRIPT = document.createElement("script");
+WORTAL_API_INIT_SCRIPT.src = "dist/WortalAd.js";
+WORTAL_API_INIT_SCRIPT.type = 'text/javascript';
+const head = document.getElementsByTagName("head");
+
+const noAdDomains = ["locaxxlhost", 't.tmy.io']
+const isProd = noAdDomains.filter(url => window.location.href.includes(url)).length === 0
+if (isProd) {
+  head[head.length - 1].appendChild(WORTAL_API_INIT_SCRIPT);
+} else {
+  document.getElementById("black-cover").hidden = true;
+}
 
 // init
 const cachedLevel = localStorage.getItem("dw-sokoban-currentlevel")
 const theLevel = cachedLevel ? Number(cachedLevel) : 0
 let sokoban
-
 sokoban = new Sokoban({ level: theLevel })
 sokoban.render()
 const move = (event) => {
@@ -46,13 +57,25 @@ Array.from(document.querySelectorAll(".directionbutton")).map(button => {
 document.addEventListener('keydown', (event) => move(event))
 
 document.querySelector('button#restartbutton').addEventListener('click', (event) => {
+  CallAd(AdTypes.next, "Restart");
   levelSelector.value = theLevel
+  event.target.closest(".menutoggled") && event.target.closest(".menutoggled").classList.remove('menutoggled')
   sokoban.render({ restart: true })
 })
-Array.from(document.querySelectorAll('button.highscorebutton')).map(button => {
+Array.from(document.querySelectorAll('.popup .closebutton')).map(button => {
   button.addEventListener('click', (event) => {
-    document.querySelector('#highscore').classList.toggle('d-none')
+    button.closest('.popup').classList.toggle('d-none')
   })
+})
+document.querySelector('button.highscorebutton').addEventListener('click', (event) => {
+  document.querySelector('#highscore').classList.remove('d-none')
+})
+document.querySelector('button.nextbutton').addEventListener('click', (event) => {
+  document.querySelector('#winpopup').classList.add('d-none')
+  if (isProd) {
+    CallAd(AdTypes.next, "Win level");
+  }
+  sokoban.render({ level: sokoban.boardIndex })
 })
 levelSelector.addEventListener('change', (event) => {
   localStorage.setItem("dw-sokoban-currentlevel", event.target.value)

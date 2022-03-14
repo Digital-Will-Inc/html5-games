@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-  <title>倉庫番</title>
+  <title>Sokoban</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-  <script src="dist/WortalAd.js"> </script>
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 </head>
 
@@ -15,38 +15,69 @@
       style="background: #000000; background-color: #000000; width: 100%; height: 100%; top: 0; left: 0; position: fixed; padding: 0; margin: 0; z-index: 100;">
     </div>
     <canvas></canvas>
-    <button class="menubutton lowerbutton">Menu</button>
+    <button class="menubutton lowerbutton i18nElem">menu</button>
     <div class="board">
       <div class="header d-none">
         <div class="banner" alt='banner'></div>
         <div>
           <!-- <h1>倉庫番</h1> -->
-          <span id="steps">Steps: 0</span>
-          <span>Level: </span>&nbsp;
-          <select id="levelselector">
-          </select>
-          <button id='restartbutton'>Restart</button>
-          <button class='highscorebutton'>Highscores</button>
+          <div class="nobreak">
+            <span class="i18nElem">steps</span>:&nbsp;
+            <span id="steps">0 -</span>&nbsp;
+            <span class="i18nElem">level</span>:&nbsp;
+            <select id="levelselector"> </select>
+          </div>
+          <button class='i18nElem' id='restartbutton'>startagain</button>
+          <button class='highscorebutton i18nElem'>highscores</button>
           &nbsp;
-          <button class="menubutton closebutton">Close</button>
-        </div>
-        <div class="d-none" id="highscore">
-          <h2>Highscore</h2>
-          <div id="score"> </div>
-          <button class='highscorebutton closebutton'>Close</button>
+          <button class="menubutton closebutton">X</button>
         </div>
       </div>
-      <div class="controls" </div>
-        <button class="directionbutton" data-key="ArrowUp">up</button>
+      <div class="controls">
+        <button class="directionbutton m-0" data-key="ArrowUp">
+          <img class="triangle d-md-none" src="triangle.svg" /><span class="d-none d-md-block">W</span>
+        </button>
         <div class="lowercontrols">
-          <button class="directionbutton" data-key="ArrowLeft">left</button>
-          <button class="directionbutton" data-key="ArrowDown">down</button>
-          <button class="directionbutton" data-key="ArrowRight">right</button>
+          <button class="directionbutton mr-4" data-key="ArrowLeft">
+            <img class="triangle rotate-270 d-md-none" src="triangle.svg" /><span class="d-none d-md-block">A</span>
+          </button>
+          <button class="directionbutton ml-4" data-key="ArrowRight">
+            <img class="triangle rotate-90 d-md-none" src="triangle.svg" /><span class="d-none d-md-block">D</span>
+          </button>
+        </div>
+        <div>
+          <button class="directionbutton m-0" data-key="ArrowDown">
+            <img class="triangle rotate-180 d-md-none" src="triangle.svg" /><span class="d-none d-md-block">S</span>
+          </button>
         </div>
       </div>
+      <div class="d-none popup" id="highscore">
+        <div class="popup-container">
+          <h2 class="i18nElem">highscores</h2>
+          <div id="score">
+            <table>
+              <thead>
+                <th class="i18nElem">level</th>
+                <th class="i18nElem">score</th>
+              </thead>
+              <tbody>
+          
+              </tbody>
+            </table>
+          </div>
+          <button class='highscorebutton closebutton'>X</button>
+        </div>
       </div>
+      <div class="popup d-none" id="winpopup">
+        <div class="popup-container">
+          <h2 class="mb-1"><span class="i18nElem">complete</span> <span id="score"></span> <span class="i18nElem">steps</span>
+          </h2>
+          <button class='nextbutton i18nElem'>next</button>
+        </div>
+      </div>
+    </div>
 </body>
-
+<script src="dist/LocaleHandler.js"></script>
 <script src="dist/main.js"></script>
 
 </html>

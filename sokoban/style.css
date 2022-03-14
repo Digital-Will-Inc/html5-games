@@ -1,7 +1,7 @@
 :root {
-  --primary: #4ae1e1;
-  --primary-dark: #3ebcbc;
-  --secondary: #fa56fc;
+  --primary: #eeeeee;
+  --primary-dark: #cccccc;
+  --secondary: #111111;
 }
 
 html {
@@ -37,7 +37,7 @@ body {
 
 h1 {
   margin: 0 0 0.5rem;
-  font-size: 6rem;
+  font-size: 3rem;
 }
 
 p {
@@ -55,12 +55,10 @@ button {
   font-size: 1rem;
 }
 
-button:hover {
-  background: var(--primary-dark);
-}
-
 button:active {
-  transform: scale(0.9);
+  background: var(--primary-dark);
+  box-shadow: none;
+  transform: translate(3px, 3px) scale(0.95);
 }
 
 header {
@@ -74,7 +72,8 @@ header {
   height: 34px;
   margin-bottom: 4px;
   background: #222;
-  border-color: var(--primary);
+  border: 0;
+  font-size: 16px;
   color: var(--primary);
 }
 
@@ -82,17 +81,31 @@ header {
   border: 0 none;
 }
 
-#highscore {
+.popup {
   position: fixed;
-  width: 400px;
-  height: 300px;
+  max-width: 400px;
+  width: 100%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: #222;
-  padding: 20px;
   border: 1px solid var(--secondary);
   overflow: hidden;
+  box-shadow: 0 0 60px #00000047;
+}
+
+.popup h2 {
+  margin: 0;
+}
+
+.popup-container {
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 #highscore h2 {
@@ -103,14 +116,28 @@ header {
   overflow-y: scroll;
   padding-top: 20px;
   height: calc(100% - 40px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 #highscore td, #highscore th {
   padding: 0 10px;
+  text-align: left;
 }
 
 .d-none {
   display: none;
+}
+
+@media (min-width: 900px) {
+  .d-md-none {
+    display: none;
+  }
+
+  .d-md-block {
+    display: block;
+  }
 }
 
 .closebutton {
@@ -134,12 +161,7 @@ header {
 
 .board {
   display: flex;
-}
-
-@media (orientation: portrait) {
-  .board {
-    flex-direction: column;
-  }
+  flex-direction: column;
 }
 
 .controls {
@@ -147,7 +169,7 @@ header {
   display: flex;
   flex-flow: column;
   align-items: center;
-
+  margin: 1rem;
 }
 
 .lowercontrols {
@@ -156,11 +178,54 @@ header {
   display: flex;
 }
 
+.mr-4 {
+  margin-right: 2rem;
+}
+
+.ml-4 {
+  margin-left: 2rem;
+}
+
+.mt-1 {
+  margin-top: 0.5rem;
+}
+
+.mb-1 {
+  margin-bottom: 0.5rem !important;
+}
+
+
+.triangle {
+  width: 30px;
+}
+
+.rotate-90 {
+  transform: rotate(90deg);
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+.rotate-270 {
+  transform: rotate(270deg);
+}
+
 button {
   padding: 0.5rem 0.5rem;
 }
 
+.m-0 {
+  margin: 0;
+}
+
+.controls button span,
+.controls button img {
+  pointer-events: none;
+}
+
 .header {
+  text-align: center;
   display: none;
 }
 
@@ -168,7 +233,7 @@ button {
   display: block;
   position: fixed;
   background: #333;
-  padding: 20px;
+  padding: 40px;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -184,12 +249,10 @@ button {
 @media (min-width: 900px) {
 
   .header {
+    padding: 0.5rem;
     display: block;
   }
 
-  .closebutton {
-    display: none;
-  }
 
   .menubutton {
     display: none;
@@ -199,9 +262,6 @@ button {
     padding: 0.5rem 1rem;
   }
 
-  .controls {
-    display: none;
-  }
 }
 
 @media (orientation: landscape) {}
@@ -214,4 +274,8 @@ button {
   100% {
     clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
   }
+}
+
+.nobreak {
+  white-space: nowrap;
 }
