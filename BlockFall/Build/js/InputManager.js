@@ -1,103 +1,125 @@
-swipeThreshold = 50;
-holdThreshold = 500;
+let swipeThreshold = 20;
+let holdThreshold = 500;
+let gameStarted = false;
+let mouseDownTime = 0;
+let mouseTapTime = 0;
+let mousePressed = false;
+let moved = false;
+let loaded = false;
+let tapStartXPos = 0;
+let tapStartYPos = 0;
+let deltaX = 0;
+let deltaY = 0;
 
-gameStarted = false;
-mouseDownTime = 0;
-mousePressed = false;
-moved = false;
-loaded = false;
+// There's probably a better way to deal with this, but we need to cancel the mouse events that fire
+// after the touch events so that we don't get duplicate calls.
+window.addEventListener('touchstart', e => {
+    e.preventDefault();
+    MouseDown(e, true);
+}, {capture: false, passive: false});
+window.addEventListener('touchmove', e => {
+    e.preventDefault();
+    MouseMove(e, true);
+}, {capture: false, passive: false});
+window.addEventListener('touchend', e => {
+    e.preventDefault();
+    MouseUp();
+}, {capture: false, passive: false});
+window.addEventListener('touchcancel', e => {
+    e.preventDefault();
+    MouseUp();
+}, {capture: false, passive: false});
 
-window.addEventListener('keydown',KeyDown,true);
-window.addEventListener('mousedown',function() {MouseDown(false)},true);
-window.addEventListener('mousemove',function() {MouseMove(false)},true);
-window.addEventListener('mouseup',MouseUp,true);
+window.addEventListener('mousedown', e => MouseDown(e, false), true);
+window.addEventListener('mousemove', e => MouseMove(e, false), true);
+window.addEventListener('keydown', KeyDown, true);
+window.addEventListener('mouseup', MouseUp, true);
 
-function KeyDown(key){
-    if (!gameStarted && key.key == 'Enter'){
-        event.preventDefault();
+function KeyDown(key) {
+    if (!gameStarted && key.key === 'Enter') {
+        key.preventDefault();
         gameStarted = true;
         StartGameLoop();
     }
     if (!gameStarted)
         return;
-    if (key.key == 'ArrowRight'){
-        event.preventDefault();
+    if (key.key === 'ArrowRight') {
+        key.preventDefault();
         Move(1);
     }
-    if (key.key == 'ArrowLeft'){
-        event.preventDefault();
+    if (key.key === 'ArrowLeft') {
+        key.preventDefault();
         Move(-1);
     }
-    if (key.key == 'ArrowUp'){
-        event.preventDefault();
+    if (key.key === 'ArrowUp') {
+        key.preventDefault();
         Rotate()
-    };
-    if (key.key == 'ArrowDown'){
-        event.preventDefault();
+    }
+    if (key.key === 'ArrowDown') {
+        key.preventDefault();
         DropBlock();
         DrawToScreen();
     }
 }
 
-function MouseDown(isTouch) {
+function MouseDown(e, isTouch) {
     if (!gameStarted)
         return;
-    if (isTouch){
-        try{event.preventDefault();} catch {};
-        tapStartXPos = event.changedTouches[0].pageX - canvas.getBoundingClientRect().left;
-        tapStartYPos = event.changedTouches[0].pageY - canvas.getBoundingClientRect().top;
+    if (isTouch) {
+        e.preventDefault();
+        tapStartXPos = e.changedTouches[0].pageX - canvas.getBoundingClientRect().left;
+        tapStartYPos = e.changedTouches[0].pageY - canvas.getBoundingClientRect().top;
     } else {
-        tapStartXPos = event.clientX - canvas.getBoundingClientRect().left;
-        tapStartYPos = event.clientY - canvas.getBoundingClientRect().top;
+        tapStartXPos = e.clientX - canvas.getBoundingClientRect().left;
+        tapStartYPos = e.clientY - canvas.getBoundingClientRect().top;
     }
     mouseDownTime = performance.now();
     mousePressed = true;
 }
 
-function MouseMove(isTouch) {
+function MouseMove(e, isTouch) {
     if (!mousePressed || !gameStarted)
         return;
-    event.preventDefault();
-    if (isTouch){
-        try{event.preventDefault();} catch {};
-        deltaX = event.changedTouches[0].pageX - canvas.getBoundingClientRect().left - tapStartXPos;
-        deltaY = event.changedTouches[0].pageY - canvas.getBoundingClientRect().top - tapStartYPos;
+    e.preventDefault();
+    if (isTouch) {
+        deltaX = e.changedTouches[0].pageX - canvas.getBoundingClientRect().left - tapStartXPos;
+        deltaY = e.changedTouches[0].pageY - canvas.getBoundingClientRect().top - tapStartYPos;
     } else {
-        deltaX = event.clientX - canvas.getBoundingClientRect().left - tapStartXPos;
-        deltaY = event.clientY - canvas.getBoundingClientRect().top - tapStartYPos;
+        deltaX = e.clientX - canvas.getBoundingClientRect().left - tapStartXPos;
+        deltaY = e.clientY - canvas.getBoundingClientRect().top - tapStartYPos;
     }
     mouseTapTime = performance.now() - mouseDownTime;
-    if (Math.abs(deltaX) > swipeThreshold){
+    if (Math.abs(deltaX) > swipeThreshold) {
         moved = true;
         if (deltaX > 0)
             Move(1);
         else
             Move(-1);
-        
-        if (isTouch){
-            tapStartXPos = event.changedTouches[0].pageX - canvas.getBoundingClientRect().left;
-            tapStartYPos = event.changedTouches[0].pageY - canvas.getBoundingClientRect().top;
+
+        if (isTouch) {
+            tapStartXPos = e.changedTouches[0].pageX - canvas.getBoundingClientRect().left;
+            tapStartYPos = e.changedTouches[0].pageY - canvas.getBoundingClientRect().top;
         } else {
-            tapStartXPos = event.clientX - canvas.getBoundingClientRect().left;
-            tapStartYPos = event.clientY - canvas.getBoundingClientRect().top;
+            tapStartXPos = e.clientX - canvas.getBoundingClientRect().left;
+            tapStartYPos = e.clientY - canvas.getBoundingClientRect().top;
         }
-    } else if(deltaY > swipeThreshold){
+    } else if (deltaY > swipeThreshold) {
         moved = true;
         DropBlock();
         DrawToScreen();
-        
-        if (isTouch){
-            tapStartXPos = event.changedTouches[0].pageX - canvas.getBoundingClientRect().left;
-            tapStartYPos = event.changedTouches[0].pageY - canvas.getBoundingClientRect().top;
+
+        if (isTouch) {
+            tapStartXPos = e.changedTouches[0].pageX - canvas.getBoundingClientRect().left;
+            tapStartYPos = e.changedTouches[0].pageY - canvas.getBoundingClientRect().top;
         } else {
-            tapStartXPos = event.clientX - canvas.getBoundingClientRect().left;
-            tapStartYPos = event.clientY - canvas.getBoundingClientRect().top;
+            tapStartXPos = e.clientX - canvas.getBoundingClientRect().left;
+            tapStartYPos = e.clientY - canvas.getBoundingClientRect().top;
         }
     }
 }
 
-function MouseUp(isTouch) {
-    if (!gameStarted && loaded){
+function MouseUp() {
+    if (!gameStarted && loaded) {
         gameStarted = true;
         StartGameLoop();
         return;

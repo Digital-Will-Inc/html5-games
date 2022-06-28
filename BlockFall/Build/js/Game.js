@@ -75,11 +75,6 @@ function Initialize() {
     screenWidth = canvas.width;
     screenHeight = canvas.height;
 
-    canvas.addEventListener("touchstart", MouseDown, false);
-    canvas.addEventListener("touchmove", MouseMove, false);
-    canvas.addEventListener("touchend", MouseUp, false);
-    canvas.addEventListener("touchcancel", MouseUp, false);
-
     if (canvas.getContext) {
         ctx = canvas.getContext('2d');
         ctx.globalCompositeOperation = 'destination-over';
