@@ -10,7 +10,7 @@ MyGame.MainMenu.prototype = {
 
 		const instruction = function () {
 			if (browserLanguage === "ja") {
-				return "别碰钉子";
+				return "釘を触らないで";
 			} else {
 				return "Don't touch the nail";
 			}
@@ -26,7 +26,7 @@ MyGame.MainMenu.prototype = {
 
 		const tutorialText = function () {
 			if (browserLanguage === "ja") {
-				return "点击屏幕跳跃";
+				return "スクリーンをタップしてジャンプ";
 			} else {
 				return "Tap the screen to jump";
 			}
