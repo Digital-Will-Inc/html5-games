@@ -1,5 +1,21 @@
+# Build files
 *.zip
-*/dist
 node_modules
-.idea/*
+[Dd]ist/
+[Bb]uild/
+
+# Visual Studio
 .vs/*
+.vscode/
+.vsconfig
+
+# JetBrains
+.idea/*
+*.iml
+
+# Cocos Creator
+[Ll]ibrary/
+[Tt]emp/
+[Ll]ocal/
+[Pp]rofiles/
+[Nn]ative/
