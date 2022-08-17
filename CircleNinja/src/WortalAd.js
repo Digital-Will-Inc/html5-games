@@ -18,6 +18,9 @@ const AdTypes = {
 const onInitWortal = new Event('WortalAdLoaded');
 let hasPlayedPreroll = false;
 
+// Used to ensure we don't make duplicate calls when we receive both AdBreakDone and NoShow.
+let hasAdShown = false;
+
 window.addEventListener("load", () => {
     window.initWortal(function () {
         console.log("[Wortal] Initialization complete.");
@@ -25,7 +28,6 @@ window.addEventListener("load", () => {
 
         CallPreroll("Load Game",
             function () {
-                // Render the game now.
                 RemoveBlackCover();
                 window.dispatchEvent(onInitWortal);
             }, function () {
@@ -39,6 +41,7 @@ let wortalIsLoaded = false;
 
 function CallAd(type, name, beforeAd, afterAd, adBreakDone, noShow) {
     if (wortalIsLoaded === false) return;
+    hasAdShown = false;
     window.triggerWortalAd(type, name, {
         beforeAd: function () {
             console.log("[Wortal] BeforeAd");
@@ -49,12 +52,16 @@ function CallAd(type, name, beforeAd, afterAd, adBreakDone, noShow) {
             if (afterAd) afterAd();
         },
         adBreakDone: function () {
+            if (hasAdShown) return;
             console.log("[Wortal] AdBreakDone");
             if (adBreakDone) adBreakDone();
+            hasAdShown = true;
         },
         noShow: function () {
+            if (hasAdShown) return;
             console.log("[Wortal] NoShow");
             if (noShow) noShow();
+            hasAdShown = true;
         }
     });
 }
@@ -63,11 +70,13 @@ function CallPreroll(name, adBreakDone, noShow) {
     if (wortalIsLoaded === false) return;
     window.triggerWortalAd(AdTypes.preroll, name, {
         adBreakDone: function () {
+            if (hasPlayedPreroll) return;
             console.log("[Wortal] AdBreakDone");
             if (adBreakDone) adBreakDone();
             hasPlayedPreroll = true;
         },
         noShow: function () {
+            if (hasPlayedPreroll) return;
             console.log("[Wortal] NoShow");
             if (noShow) {
                 noShow();
