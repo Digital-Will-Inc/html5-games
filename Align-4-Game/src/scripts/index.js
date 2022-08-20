@@ -95,7 +95,14 @@ function startGame() {
 
     if (hasEndedGame) {
         hasEndedGame = false;
-        CallAd(AdTypes.next, "Restart game");
+        showInterstitial(Placement.NEXT, 'RestartGame', {
+            beforeAd: function () {
+            },
+            afterAd: function () {
+            },
+            noShow: function () {
+            }
+        });
     }
 }
 

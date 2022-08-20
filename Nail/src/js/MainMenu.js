@@ -50,8 +50,8 @@ MyGame.MainMenu.prototype = {
 
 
 
-		game.input.onDown.addOnce(function () {
-			game.state.start('Game')
+		game.input.onTap.addOnce(function () {
+			this.state.start('Game')
 		}, this);
 
 

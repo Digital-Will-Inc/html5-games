@@ -279,10 +279,15 @@ class Snake {
     async die() {
         this.onDie(this);
         this.death = true;
-        CallAd(AdTypes.next, "gameover");
+        showInterstitial(Placement.NEXT, 'RestartGame', {
+            beforeAd: function () {
+            },
+            afterAd: function () {
+            },
+            noShow: function () {
+            }
+        });
     }
-
-
 
     // helpers
     positionIn(x, y, positions) {

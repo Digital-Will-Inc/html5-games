@@ -132,7 +132,14 @@
             play(event.target.className)
         }
         else if (css.includes('new-game')) {
-            CallAd(AdTypes.next, "New Game");
+            showInterstitial(Placement.NEXT, 'RestartGame', {
+                beforeAd: function () {
+                },
+                afterAd: function () {
+                },
+                noShow: function () {
+                }
+            });
             newGame()
         }
     })

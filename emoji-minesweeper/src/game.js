@@ -175,7 +175,14 @@ Game.prototype.restart = function (usetwemoji) {
 }
 
 Game.prototype.resetMetadata = function () {
-  CallAd(AdTypes.next, "restart");
+  showInterstitial(Placement.NEXT, 'RestartGame', {
+    beforeAd: function () {
+    },
+    afterAd: function () {
+    },
+    noShow: function () {
+    }
+  });
   document.getElementById('timer').textContent = '0.00'
   document.querySelector('.wrapper').classList.remove('won', 'lost')
   document.querySelector('.result-emoji').textContent = ''

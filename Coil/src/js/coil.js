@@ -384,7 +384,14 @@ var Coil = (function(){
 	}
 	
 	function stop() {
-		CallAd(AdTypes.next, "Interstitial Ad");
+		showInterstitial(Placement.NEXT, 'RestartGame', {
+			beforeAd: function () {
+			},
+			afterAd: function () {
+			},
+			noShow: function () {
+			}
+		});
 		scorePanel.style.display = 'block';
 		scorePanel.querySelector( 'p' ).innerHTML = Math.floor( score );
 		

@@ -238,16 +238,16 @@ var GameState = function (game) {
                 game.focusGain();
             }
 
-            CallAd(
-                AdTypes.next,
-                "Game Restart",
-                null,
-                null,
-                function () {
+            showInterstitial(Placement.NEXT, 'RestartGame', {
+                beforeAd: function () {
+                },
+                afterAd: function () {
                     RestartGame();
-                }, function () {
+                },
+                noShow: function () {
                     RestartGame();
-                });
+                }
+            });
         }, this);
     };
 };

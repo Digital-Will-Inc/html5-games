@@ -5,13 +5,14 @@ var rotationSpeed = 4;
 var angleRange = [25, 155];
 var visibleTargets = 7;
 var bgColors = [0x62bd18, 0xffbb00, 0xff5300, 0xd21034, 0xff475c, 0x8f16b2];
-
-
+let isResetting = false;
 
 window.addEventListener("WortalAdLoaded", function () {
-     game = new Phaser.Game(640, 960, Phaser.CANVAS, "");
-     game.state.add("PlayGame", playGame);
-     game.state.start("PlayGame");
+     setTimeout(() => {
+          game = new Phaser.Game(640, 960, Phaser.CANVAS, "");
+          game.state.add("PlayGame", playGame);
+          game.state.start("PlayGame");
+     }, 2500);
 });
 
 var playGame = function (game) { };
@@ -84,6 +85,7 @@ playGame.prototype = {
                this.addTarget();
           }
 
+          isResetting = false;
      },
      update: function () {
           var distanceFromTarget = this.balls[this.rotatingBall].position.distance(this.targetArray[1].position);
@@ -152,7 +154,7 @@ playGame.prototype = {
           localStorage.setItem("circlepath", JSON.stringify({
                score: Math.max(this.savedData.score, this.steps - visibleTargets)
           }));
-          game.input.onDown.remove(this.changeBall, this);
+          game.input.onTap.remove(this.changeBall, this);
           this.saveRotationSpeed = 0;
           this.arm.destroy();
           var gameOverTween = game.add.tween(this.balls[1 - this.rotatingBall]).to({
@@ -172,18 +174,22 @@ playGame.prototype = {
                     game.state.start("PlayGame");
                }, 100);
 
-               CallAd(
-                    AdTypes.next,
-                    "restart game",
-                    null,
-                    null,
-                    function () {
-                         restartGame();
+               showInterstitial(Placement.NEXT, 'RestartGame', {
+                    beforeAd: function () {
                     },
-                    function () {
-                         restartGame();
+                    afterAd: function () {
+                         if (!isResetting) {
+                              restartGame();
+                              isResetting = true;
+                         }
                     },
-               );
+                    noShow: function () {
+                         if (!isResetting) {
+                              restartGame();
+                              isResetting = true;
+                         }
+                    }
+               });
           }, this)
      }
 }

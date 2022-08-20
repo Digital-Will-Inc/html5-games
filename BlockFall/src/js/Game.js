@@ -12,6 +12,7 @@ var gameSpeed = 1000;
 var spawnPoint = [0, 3];
 var scoreText;
 var playerScore = 0;
+let isResetting = false;
 
 var straightBlock =
     [[0, 1, 0, 0],
@@ -93,8 +94,11 @@ function StartGameLoop() {
             grid[i][j] = 0;
     }
 
+    gameSpeed = 1000;
+
     //Start Render Cycle
     Render();
+    isResetting = false;
 }
 
 function Update() {
@@ -218,17 +222,37 @@ function AddScore(amount) {
     playerScore += amount;
     TranslateText("score", scoreText);
     scoreText.innerText += " : " + playerScore;
+}
 
+function ResetScore() {
+    playerScore = 0;
+    scoreText.style.color = "Black";
+    TranslateText("score", scoreText);
+    scoreText.innerText += " : " + playerScore;
 }
 
 function LoseGame() {
+    if (isResetting) {
+        return;
+    }
+
+    isResetting = true;
     TranslateText("score", scoreText);
     scoreText.innerText += " : " + playerScore;
     scoreText.style.color = "Red";
 
-    setTimeout(() => {
-        location.reload();
-    }, 3000);
+    showInterstitial(Placement.NEXT, 'RestartGame', {
+        beforeAd: function () {
+        },
+        afterAd: function () {
+            ResetScore();
+            StartGameLoop();
+        },
+        noShow: function () {
+            ResetScore();
+            StartGameLoop();
+        }
+    });
 }
 
 function Rotate() {

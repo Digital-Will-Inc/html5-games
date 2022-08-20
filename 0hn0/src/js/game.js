@@ -438,7 +438,14 @@ var Game = new (function() {
       grid.each(function() { this.system = true; });
     }
     showSizes();
-    CallAd(AdTypes.next, "Interstitial Ad");
+    showInterstitial(Placement.NEXT, 'NextLevel', {
+      beforeAd: function () {
+      },
+      afterAd: function () {
+      },
+      noShow: function () {
+      }
+    });
   }
 
   function addEventListeners() {
