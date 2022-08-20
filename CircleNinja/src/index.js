@@ -170,15 +170,16 @@ function LoseGame() {
         }, 1000)
     }
 
-    CallAd(AdTypes.next,
-        "restart game",
-        null,
-        null,
-        function () {
-            Restart()
-        }, function () {
+    showInterstitial(Placement.NEXT, 'RestartGame', {
+        beforeAd: function () {
+        },
+        afterAd: function () {
             Restart();
-        });
+        },
+        noShow: function () {
+            Restart();
+        }
+    });
 }
 
 function resetScore() {
