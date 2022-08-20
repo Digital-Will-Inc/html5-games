@@ -147,7 +147,14 @@ $(function () {
                                     if (get('flip_' + difficulty) == '-:-' || get('flip_' + difficulty) > time) {
                                         set('flip_' + difficulty, time); // increase best score
                                     }
-                                    CallAd(AdTypes.next, "Win game");
+                                    showInterstitial(Placement.NEXT, 'RestartGame', {
+                                        beforeAd: function () {
+                                        },
+                                        afterAd: function () {
+                                        },
+                                        noShow: function () {
+                                        }
+                                    });
                                     startScreen('nice');
                                 }
                             }
@@ -167,7 +174,14 @@ $(function () {
                     'animation': 'timer ' + timer + 'ms linear'
                 })
                 .one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function (e) {
-                    CallAd(AdTypes.next, "Lose game");
+                    showInterstitial(Placement.NEXT, 'RestartGame', {
+                        beforeAd: function () {
+                        },
+                        afterAd: function () {
+                        },
+                        noShow: function () {
+                        }
+                    });
                     startScreen('fail'); // fail game
                 });
 
@@ -194,7 +208,14 @@ $(function () {
                         $('#g').attr('data-paused', '0');
                         $('.pause').remove();
                     }
-                    CallAd(AdTypes.next, "Exit game");
+                    showInterstitial(Placement.NEXT, 'RestartGame', {
+                        beforeAd: function () {
+                        },
+                        afterAd: function () {
+                        },
+                        noShow: function () {
+                        }
+                    });
                     $(window).off();
                 }
 
