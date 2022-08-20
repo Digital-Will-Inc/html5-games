@@ -218,7 +218,13 @@ function AddScore(amount) {
     playerScore += amount;
     TranslateText("score", scoreText);
     scoreText.innerText += " : " + playerScore;
+}
 
+function ResetScore() {
+    playerScore = 0;
+    scoreText.style.color = "Black";
+    TranslateText("score", scoreText);
+    scoreText.innerText += " : " + playerScore;
 }
 
 function LoseGame() {
@@ -226,9 +232,18 @@ function LoseGame() {
     scoreText.innerText += " : " + playerScore;
     scoreText.style.color = "Red";
 
-    setTimeout(() => {
-        location.reload();
-    }, 3000);
+    showInterstitial(Placement.NEXT, 'RestartGame', {
+        beforeAd: function () {
+        },
+        afterAd: function () {
+            ResetScore();
+            StartGameLoop();
+        },
+        noShow: function () {
+            ResetScore();
+            StartGameLoop();
+        }
+    });
 }
 
 function Rotate() {
