@@ -1,20 +1,15 @@
 <!DOCTYPE html>
-
-
 <head>
     <meta charset="utf-8">
     <script src="https://kit.fontawesome.com/bdc19b3da4.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="index.css">
 
-
-    <script src="WortalAd.js"></script>
+    <script src="wortal-sdk-1.2.0.js"></script>
     <script src="LocaleHandler.js"></script>
-
 </head>
-
 <body>
-    <div class="black-cover" id="black-cover"
-        style="background: #000000; background-color: #000000; width: 100%; height: 100%; top: 0; left: 0; position: fixed; padding: 0; margin: 0; z-index: 100;">
+    <div class="loading-cover" id="loading-cover"
+         style="background: #000; width: 100%; height: 100%; position: fixed; z-index: 100;">
     </div>
     <main>
         <div class="controls">
@@ -27,6 +22,5 @@
         <div id="colors"></div>
         <div id="game-over" class="game-over"></div>
     </main>
-
     <script src="index.js"></script>
 </body>
