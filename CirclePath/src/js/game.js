@@ -5,8 +5,7 @@ var rotationSpeed = 4;
 var angleRange = [25, 155];
 var visibleTargets = 7;
 var bgColors = [0x62bd18, 0xffbb00, 0xff5300, 0xd21034, 0xff475c, 0x8f16b2];
-
-
+let isResetting = false;
 
 window.addEventListener("WortalAdLoaded", function () {
      game = new Phaser.Game(640, 960, Phaser.CANVAS, "");
@@ -84,6 +83,7 @@ playGame.prototype = {
                this.addTarget();
           }
 
+          isResetting = false;
      },
      update: function () {
           var distanceFromTarget = this.balls[this.rotatingBall].position.distance(this.targetArray[1].position);
@@ -172,18 +172,22 @@ playGame.prototype = {
                     game.state.start("PlayGame");
                }, 100);
 
-               CallAd(
-                    AdTypes.next,
-                    "restart game",
-                    null,
-                    null,
-                    function () {
-                         restartGame();
+               showInterstitial(Placement.NEXT, 'RestartGame', {
+                    beforeAd: function () {
                     },
-                    function () {
-                         restartGame();
+                    afterAd: function () {
+                         if (!isResetting) {
+                              restartGame();
+                              isResetting = true;
+                         }
                     },
-               );
+                    noShow: function () {
+                         if (!isResetting) {
+                              restartGame();
+                              isResetting = true;
+                         }
+                    }
+               });
           }, this)
      }
 }
