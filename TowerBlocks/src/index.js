@@ -278,7 +278,14 @@ var Game = /** @class */ (function () {
             _this.startGame();
         }, cameraMoveSpeed * 1000);
 
-        CallAd(AdTypes.next, "Restart game");
+        showInterstitial(Placement.NEXT, 'RestartGame', {
+            beforeAd: function () {
+            },
+            afterAd: function () {
+            },
+            noShow: function () {
+            }
+        });
     };
     Game.prototype.placeBlock = function () {
         var _this = this;
