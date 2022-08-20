@@ -228,16 +228,20 @@ function draw(time) {
           setTimeout(function () {
             GAME.state = 'menu'
             bgSound.volume = 0;
-            CallAd(AdTypes.next, 'gameOver', null, null,
-              () => {
+            showInterstitial(Placement.NEXT, 'RestartGame', {
+              beforeAd: function () {
+              },
+              afterAd: function () {
                 if (!muted) {
                   bgSound.volume = 1;
                 }
-              }, () => {
+              },
+              noShow: function () {
                 if (!muted) {
                   bgSound.volume = 1;
                 }
-              });
+              }
+            });
           }, 4000)
         }
         fishes.splice(i, 1)
