@@ -98,17 +98,16 @@ MyGame.Game.prototype = {
 				game.focusGain();
 			}
 
-			CallAd(
-				AdTypes.next,
-				"Restart",
-				null,
-				null,
-				function () {
+			showInterstitial(Placement.NEXT, 'RestartGame', {
+				beforeAd: function () {
+				},
+				afterAd: function () {
 					restartGame();
 				},
-				function () {
+				noShow: function () {
 					restartGame();
-				});
+				}
+			});
 		}, this);
 	},
 	birdJump: function () {
