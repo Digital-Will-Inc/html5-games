@@ -1,6 +1,6 @@
 function LevelBar(width) {
   this.colors = []
-  this.height = 6
+  this.height = 30
   this.width = width
   this.thickness = 2
   this.canv = document.createElement('canvas')
