@@ -2,7 +2,7 @@
  * Helper script for integrating the Wortal SDK into games. Handles initialization for various platforms, and documents
  * the API with examples.
  *
- * Requires the index.html of the game to include the following in the top of the body, <b>before the game canvas</b>:
+ * Requires the index.html of the game to include the following div in the top of the body, <b>before the game canvas</b>:
  *
  * <pre>
  * <div class="loading-cover" id="loading-cover"
@@ -12,6 +12,8 @@
  *
  *  This is necessary to hide the game rendering while pre-roll ads are shown on certain platforms.
  *  You should not show the game canvas or play any audio until <code>hasPlayedPreroll == true</code>.
+ *
+ * @version 1.2.0
  */
 
 const wortal = document.createElement('script');
