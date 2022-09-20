@@ -23,7 +23,7 @@ document.head.appendChild(wortal);
 
 /**
  * Placement type needs to be one of the values as documented by Google.
- * See: https://developers.google.com/ad-placement/docs/placement-types
+ * @see https://developers.google.com/ad-placement/docs/placement-types
  */
 const Placement = {
     /**
@@ -130,10 +130,17 @@ function init() {
  * Callbacks object:
  *
  * <pre><code>
- * beforeAd: function () {}, // Called before the ad is shown. You should pause the game here.
- * afterAd: function () {}, // Called after the ad is shown. You should resume the game here.
- * adBreakDone: function () {}, // Callback when the adBreak has completed. Resume the game here. Only used on Platform.WORTAL
- * noShow: function () {} // Callback when the ad is timed out or not served. Resume the game here.
+ * // Called before the ad is shown. You should pause the game here.
+ * beforeAd: function () {},
+ *
+ * // Called after the ad is shown. You should resume the game here.
+ * afterAd: function () {},
+ *
+ * // Callback when the adBreak has completed. Resume the game here. Only used on Platform.WORTAL
+ * adBreakDone: function () {},
+ *
+ * // Callback when the ad is timed out or not served. Resume the game here.
+ * noShow: function () {}
  *
  * @param {Placement} type Type of ad placement.
  * @param {string} description Description of the ad placement. Ex: "NextLevel"
@@ -174,6 +181,9 @@ function showInterstitial(type, description, callbacks) {
  *     afterAd: function () {
  *        resumeGame();
  *     },
+ *     beforeReward: function(showAdFn) {
+ *         showAdFn();
+ *     },
  *     adDismissed: function () {
  *        gameOver();
  *     },
@@ -188,13 +198,26 @@ function showInterstitial(type, description, callbacks) {
  * Callbacks object:
  *
  * <pre><code>
- * beforeAd: function () {}, // Called before the ad is shown. You should pause the game here.
- * afterAd: function () {}, // Called after the ad is shown. You should resume the game here.
- * adBreakDone: function () {}, // Callback when the adBreak has completed. Resume the game here. Only used on Platform.WORTAL
- * beforeReward: function (showAdFn) {}, // Callback before showing the rewarded ad. This can trigger a popup giving the player the option to view the ad for a reward. Only used on Platform.WORTAL
- * adDismissed: function () {}, // Callback when the player cancelled the rewarded ad before it finished. Do not reward the player.
- * adViewed: function () {}, // Callback when the player viewed the rewarded ad successfully. Reward the player.
- * noShow: function () {} // Callback when the ad is timed out or not served. Resume the game here.
+ * // Called before the ad is shown. You should pause the game here.
+ * beforeAd: function () {},
+ *
+ * // Called after the ad is shown. You should resume the game here.
+ * afterAd: function () {},
+ *
+ * // Callback when the adBreak has completed. Resume the game here. Only used on Platform.WORTAL
+ * adBreakDone: function () {},
+ *
+ * // Callback before showing the rewarded ad. This can trigger a popup giving the player the option to view the ad for a reward. Only used on Platform.WORTAL
+ * beforeReward: function (showAdFn) {},
+ *
+ * // Callback when the player cancelled the rewarded ad before it finished. Do not reward the player.
+ * adDismissed: function () {},
+ *
+ * // Callback when the player viewed the rewarded ad successfully. Reward the player.
+ * adViewed: function () {},
+ *
+ * // Callback when the ad is timed out or not served. Resume the game here.
+ * noShow: function () {}
  *
  * @param {string} description Description of the ad placement. Ex: "NextLevel"
  * @param {object} callbacks Object for callbacks.
@@ -236,7 +259,7 @@ function removeLoadingCover() {
 
 function getLinkAdUnitIds() {
     wortalGame.getAdUnitsAsync().then((adUnits) => {
-        console.log('Link AdUnit IDs returned: \n' + adUnits);
+        console.log('[Wortal] Link AdUnit IDs returned: \n' + adUnits);
         linkInterstitialId = adUnits[0].id;
         linkRewardedId = adUnits[1].id;
     });
