@@ -69,7 +69,6 @@ function LoadDependencies() {
     document.writeln("<script type='text/javascript' src='js/Renderer.js'></script>");
     document.writeln("<script type='text/javascript' src='js/InputManager.js'></script>");
     document.writeln("<script type='text/javascript' src='js/LocaleHandler.js'></script>");
-    initWortalSdk();
 }
 
 function Initialize() {
