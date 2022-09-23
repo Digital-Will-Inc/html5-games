@@ -36,6 +36,7 @@ var Tutorial = new (function() {
 
 
   function start() {
+    logTutorialStart();
     $('html').addClass('tutorial');
     step = -1;
     active = true;
@@ -75,6 +76,7 @@ var Tutorial = new (function() {
       setTimeout(function() {
         Game.checkForLevelComplete();  
       }, 1000)
+      logTutorialEnd();
       return;
     }
 
