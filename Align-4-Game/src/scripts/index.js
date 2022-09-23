@@ -88,6 +88,8 @@ function startGame() {
     $('.dif').addClass('freeze');
     $('.dif input').prop('disabled', true);
     $('.lit-cells, .chips').empty();
+    let diff = $('input[name=dif-options]:checked').val();
+    logLevelStart(diff.toString());
 
     worker.postMessage({
         messageType: 'reset',
@@ -162,6 +164,8 @@ function endHumanTurn(coords, isWin, winningChips, isBoardFull) {
     } else {
         dropCursorChip(coords.row, function () {
             if (isWin) {
+                let diff = $('input[name=dif-options]:checked').val();
+                logLevelEnd(diff.toString(), true);
                 endGame('p1-win', winningChips);
             } else if (isBoardFull) {
                 endGame('tie');
@@ -194,6 +198,8 @@ function endComputerTurn(coords, isWin, winningChips, isBoardFull, isWinImminent
     moveCursorChip(coords.col, function () {
         dropCursorChip(coords.row, function () {
             if (isWin) {
+                let diff = $('input[name=dif-options]:checked').val();
+                logLevelEnd(diff.toString(), false);
                 endGame('p2-win', winningChips);
             } else if (isBoardFull) {
                 endGame('tie');
