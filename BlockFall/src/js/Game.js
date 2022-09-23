@@ -69,6 +69,7 @@ function LoadDependencies() {
     document.writeln("<script type='text/javascript' src='js/Renderer.js'></script>");
     document.writeln("<script type='text/javascript' src='js/InputManager.js'></script>");
     document.writeln("<script type='text/javascript' src='js/LocaleHandler.js'></script>");
+    initWortalSdk();
 }
 
 function Initialize() {
@@ -99,6 +100,7 @@ function StartGameLoop() {
     //Start Render Cycle
     Render();
     isResetting = false;
+    logLevelStart("Main");
 }
 
 function Update() {
@@ -241,6 +243,7 @@ function LoseGame() {
     scoreText.innerText += " : " + playerScore;
     scoreText.style.color = "Red";
 
+    logLevelEnd("Main", true, playerScore);
     showInterstitial(Placement.NEXT, 'RestartGame', {
         beforeAd: function () {
         },
