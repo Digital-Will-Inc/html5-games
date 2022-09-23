@@ -85,6 +85,7 @@ playGame.prototype = {
                this.addTarget();
           }
 
+          logLevelStart("Main");
           isResetting = false;
      },
      update: function () {
@@ -151,6 +152,7 @@ playGame.prototype = {
           this.targetArray.push(target);
      },
      gameOver: function () {
+          logLevelEnd("Main", false, (this.steps - visibleTargets).toString());
           localStorage.setItem("circlepath", JSON.stringify({
                score: Math.max(this.savedData.score, this.steps - visibleTargets)
           }));
