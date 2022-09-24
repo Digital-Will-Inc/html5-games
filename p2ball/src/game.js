@@ -39,6 +39,7 @@ var GameState = function (game) {
     };
 
     this.create = function () {
+        logLevelStart(_level);
         game.physics.startSystem(Phaser.Physics.P2JS);
         game.physics.p2.gravity.y = 1000;
 
@@ -162,6 +163,9 @@ var GameState = function (game) {
 
     this._createShapes = function (i) {
         if (_xrow == 0) {
+            if (_level > 0) {
+                logLevelEnd(_level, true, _score);
+            }
             this._levelUp();
         }
         var col = 5 - (_xrow % 2);
@@ -201,6 +205,7 @@ var GameState = function (game) {
 
     this._levelUp = function () {
         _level++;
+        logLevelStart(_level);
         _ballNum = _level + 2; // 球数量为关数+2（第一关为3球，每过一关+1球）
         tweenText.x = this.world.centerX;
         tweenText.y = this.world.centerY;
@@ -222,6 +227,7 @@ var GameState = function (game) {
         box.scale.set(game.width / 80, 5);
 
         var gameoverText = browserLanguage === "ja" ? "ゲームオーバー" : "Game Over";
+        logLevelEnd(_level, false, _score);
 
         game.add.text(game.world.centerX, game.world.centerY - 40, gameoverText, { fontSize: "36px", fill: "#fff" }).anchor.set(0.5);
 
