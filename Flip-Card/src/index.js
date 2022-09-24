@@ -49,14 +49,26 @@ $(function () {
         $('.c3').text(text.substring(2, 3));
         $('.c4').text(text.substring(3, 4));
 
+        let level = $(this).data('level');
+        let difficulty = '';
+        if (level === 8) {
+            difficulty = 'casual';
+        } else if (level === 18) {
+            difficulty = 'medium';
+        } else if (level === 32) {
+            difficulty = 'hard';
+        }
+
         // If won game
         if (text == 'nice') {
+            logLevelEnd(difficulty, true);
             increase('flip_won');
             decrease('flip_abandoned');
         }
 
         // If lost game
         else if (text == 'fail') {
+            logLevelEnd(difficulty, false);
             increase('flip_lost');
             decrease('flip_abandoned');
         }
@@ -104,6 +116,7 @@ $(function () {
         if (level == 8) { difficulty = 'casual'; timer *= level * 4; }
         else if (level == 18) { difficulty = 'medium'; timer *= level * 5; }
         else if (level == 32) { difficulty = 'hard'; timer *= level * 6; }
+        logLevelStart(difficulty);
 
         $('#g').addClass(difficulty);
 
