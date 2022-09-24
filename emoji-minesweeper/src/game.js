@@ -19,6 +19,7 @@ var Game = function (cols, rows, number_of_bombs, set, usetwemoji) {
 }
 
 Game.prototype.init = function () {
+  logLevelStart("Main");
   this.prepareEmoji()
 
   if (this.number_of_cells > 2500) { alert('too big, go away, have less than 2500 cells'); return false }
@@ -302,6 +303,7 @@ Game.prototype.showMessage = function () {
   var winner = this.result === 'won'
   var emoji = winner ? '😎' : '😵'
   this.updateFeedback(winner ? "Yay, you won!" : "Boom! you lost.")
+  logLevelEnd("Main", winner);
   document.querySelector('.wrapper').classList.add(this.result)
   document.getElementById('timer').textContent = seconds
   document.getElementById('result').innerHTML = this.usetwemoji ? twemoji.parse(emoji) : emoji
