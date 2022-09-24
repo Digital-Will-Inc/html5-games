@@ -234,12 +234,14 @@ var Game = /** @class */ (function () {
     };
     Game.prototype.startGame = function () {
         if (this.state != this.STATES.PLAYING) {
+            logLevelStart("Main");
             this.scoreContainer.innerHTML = '0';
             this.updateState(this.STATES.PLAYING);
             this.addBlock();
         }
     };
     Game.prototype.restartGame = function () {
+        logLevelEnd("Main", false, this.scoreContainer.innerHTML);
         var _this = this;
         this.updateState(this.STATES.RESETTING);
         var oldBlocks = this.placedBlocks.children;

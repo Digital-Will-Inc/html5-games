@@ -61,6 +61,7 @@ function create() {
     emitter.gravity = 300;
     emitter.setYSpeed(-400, 400);
 
+    logLevelStart("Main");
     throwObject();
 }
 
@@ -164,9 +165,11 @@ function LoseGame() {
     stopGame = true;
 
     const Restart = function () {
+        logLevelEnd("Main", false, score.toString());
         resetScore();
         setTimeout(() => {
             stopGame = false;
+            logLevelStart("Main");
         }, 1000)
     }
 

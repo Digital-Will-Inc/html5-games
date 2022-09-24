@@ -268,6 +268,7 @@ class Snake {
 
         this.step();
         this.animate();
+        logLevelStart("Main");
     }
 
 
@@ -279,6 +280,7 @@ class Snake {
     async die() {
         this.onDie(this);
         this.death = true;
+        logLevelEnd("Main", false, this.score);
         showInterstitial(Placement.NEXT, 'RestartGame', {
             beforeAd: function () {
             },

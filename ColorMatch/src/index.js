@@ -47,9 +47,11 @@
             }
 
             if (n === 100) {
+                logLevelEnd("Main", true, '100');
                 msg = '<span class="new-game i18nElem">youwin</span>'
                 running = false
             } else if (n < 100 && moves >= cap) {
+                logLevelEnd("Main", false, n.toString());
                 msg = '<span class="new-game i18nElem">tryagain</span>'
                 running = false
             }
@@ -93,6 +95,7 @@
     }
 
     let newGame = () => {
+        logLevelStart("Main");
         let options = setColors(colorArray.slice(), skill)
         tally = 0
         capElmt.innerHTML = cap

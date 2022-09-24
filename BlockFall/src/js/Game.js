@@ -99,6 +99,7 @@ function StartGameLoop() {
     //Start Render Cycle
     Render();
     isResetting = false;
+    logLevelStart("Main");
 }
 
 function Update() {
@@ -241,6 +242,7 @@ function LoseGame() {
     scoreText.innerText += " : " + playerScore;
     scoreText.style.color = "Red";
 
+    logLevelEnd("Main", true, playerScore);
     showInterstitial(Placement.NEXT, 'RestartGame', {
         beforeAd: function () {
         },

@@ -365,6 +365,7 @@ var Coil = (function(){
 	}
 	
 	function start() {
+		logLevelStart("Main");
 		reset();
 		
 		timeStart = Date.now();
@@ -384,6 +385,7 @@ var Coil = (function(){
 	}
 	
 	function stop() {
+		logLevelEnd("Main", true, score.toString());
 		showInterstitial(Placement.NEXT, 'RestartGame', {
 			beforeAd: function () {
 			},

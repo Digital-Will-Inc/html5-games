@@ -57,6 +57,7 @@ function init() {
   GAME.firstLoop = true
   //previousTime = Date.now() - previousTime
   requestAnimFrame(draw)
+  logLevelStart("Main");
 }
 
 function lowerQuality() {
@@ -228,6 +229,7 @@ function draw(time) {
           setTimeout(function () {
             GAME.state = 'menu'
             bgSound.volume = 0;
+            logLevelEnd("Main", false);
             showInterstitial(Placement.NEXT, 'RestartGame', {
               beforeAd: function () {
               },
