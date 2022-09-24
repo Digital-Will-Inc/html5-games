@@ -77,7 +77,8 @@ MyGame.Game.prototype = {
 		game.isRun = true;
 		this.bird.body.gravity.y = 1000;
 		this.bird.body.velocity.y = -350;
-		this.bird.body.velocity.x = 200
+		this.bird.body.velocity.x = 200;
+		logLevelStart("Main");
 	},
 	GameOver: function () {
 		game.isRun = false;
@@ -92,6 +93,7 @@ MyGame.Game.prototype = {
 			const restartGame = () => {
 				if (restartedGame) return;
 				restartedGame = true;
+				logLevelEnd("Main", false, this.score.toString());
 				game.direction = this.bird.scale.x = 1;
 				this.score = 0;
 				this.state.start('Preloader');
