@@ -102,8 +102,6 @@ function startGame() {
             },
             afterAd: function () {
             },
-            noShow: function () {
-            }
         });
     }
 }

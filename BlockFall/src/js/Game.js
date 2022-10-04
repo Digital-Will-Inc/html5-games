@@ -250,10 +250,6 @@ function LoseGame() {
             ResetScore();
             StartGameLoop();
         },
-        noShow: function () {
-            ResetScore();
-            StartGameLoop();
-        }
     });
 }
 

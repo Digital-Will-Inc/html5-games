@@ -445,8 +445,6 @@ var Game = new (function() {
       },
       afterAd: function () {
       },
-      noShow: function () {
-      }
     });
   }
 

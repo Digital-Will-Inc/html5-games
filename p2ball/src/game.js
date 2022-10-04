@@ -250,9 +250,6 @@ var GameState = function (game) {
                 afterAd: function () {
                     RestartGame();
                 },
-                noShow: function () {
-                    RestartGame();
-                }
             });
         }, this);
     };

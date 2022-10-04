@@ -20,6 +20,7 @@ var Game = function (cols, rows, number_of_bombs, set, usetwemoji) {
 
 Game.prototype.init = function () {
   logLevelStart("Main");
+  logLevelStart("Main");
   this.prepareEmoji()
 
   if (this.number_of_cells > 2500) { alert('too big, go away, have less than 2500 cells'); return false }
@@ -181,8 +182,6 @@ Game.prototype.resetMetadata = function () {
     },
     afterAd: function () {
     },
-    noShow: function () {
-    }
   });
   document.getElementById('timer').textContent = '0.00'
   document.querySelector('.wrapper').classList.remove('won', 'lost')

@@ -7,7 +7,7 @@ var visibleTargets = 7;
 var bgColors = [0x62bd18, 0xffbb00, 0xff5300, 0xd21034, 0xff475c, 0x8f16b2];
 let isResetting = false;
 
-window.addEventListener("WortalAdLoaded", function () {
+window.addEventListener("WortalLoaded", function () {
      setTimeout(() => {
           game = new Phaser.Game(640, 960, Phaser.CANVAS, "");
           game.state.add("PlayGame", playGame);
@@ -185,12 +185,6 @@ playGame.prototype = {
                               isResetting = true;
                          }
                     },
-                    noShow: function () {
-                         if (!isResetting) {
-                              restartGame();
-                              isResetting = true;
-                         }
-                    }
                });
           }, this)
      }

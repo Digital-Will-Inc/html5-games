@@ -286,8 +286,6 @@ class Snake {
             },
             afterAd: function () {
             },
-            noShow: function () {
-            }
         });
     }
 

@@ -165,8 +165,6 @@ $(function () {
                                         },
                                         afterAd: function () {
                                         },
-                                        noShow: function () {
-                                        }
                                     });
                                     startScreen('nice');
                                 }

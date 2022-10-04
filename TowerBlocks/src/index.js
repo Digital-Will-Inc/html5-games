@@ -285,8 +285,6 @@ var Game = /** @class */ (function () {
             },
             afterAd: function () {
             },
-            noShow: function () {
-            }
         });
     };
     Game.prototype.placeBlock = function () {

@@ -2,7 +2,7 @@ var w = window.innerWidth,
     h = window.innerHeight;
 
 var game;
-window.addEventListener("WortalAdLoaded", () => {
+window.addEventListener("WortalLoaded", () => {
     game = new Phaser.Game(w, h, Phaser.AUTO, 'game',
         { preload: preload, create: create, update: update, render: render });
 })
@@ -179,9 +179,6 @@ function LoseGame() {
         afterAd: function () {
             Restart();
         },
-        noShow: function () {
-            Restart();
-        }
     });
 }
 

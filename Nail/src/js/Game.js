@@ -106,9 +106,6 @@ MyGame.Game.prototype = {
 				afterAd: function () {
 					restartGame();
 				},
-				noShow: function () {
-					restartGame();
-				}
 			});
 		}, this);
 	},
