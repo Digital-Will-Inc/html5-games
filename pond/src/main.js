@@ -238,11 +238,6 @@ function draw(time) {
                   bgSound.volume = 1;
                 }
               },
-              noShow: function () {
-                if (!muted) {
-                  bgSound.volume = 1;
-                }
-              }
             });
           }, 4000)
         }

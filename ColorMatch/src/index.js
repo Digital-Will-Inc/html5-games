@@ -140,8 +140,6 @@
                 },
                 afterAd: function () {
                 },
-                noShow: function () {
-                }
             });
             newGame()
         }
