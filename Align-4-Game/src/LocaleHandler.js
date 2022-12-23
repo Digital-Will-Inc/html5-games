@@ -4,9 +4,7 @@ console.log("Current browser lang", browserLanguage);
 
 i18nIsLoaded = false;
 
-
 Importi18nScript();
-
 
 function TranslateText(id, htmlElem) {
     if (i18nIsLoaded === false) {
@@ -39,29 +37,22 @@ function TranslateText(id, htmlElem) {
 
 
 function TranslateAllPage() {
-    console.log("Translating all page...");
-
     const i18nElems = document.getElementsByClassName("i18nElem");
     Translate(i18nElems);
 }
 
 
 function TranslateDynamicElem(elementClassName = "") {
-    console.log("Translating specific element...", elementClassName);
-
     if (elementClassName.length == 0) {
         console.warn("element className is empty");
     }
 
     const specificElem = document.querySelectorAll(elementClassName);
-
     Translate(specificElem);
 }
 
 
 function Translate(elements) {
-    console.log("Translating text...");
-
     for (i = 0; i < elements.length; i++) {
         let string = elements[i].innerText.toLowerCase();
         TranslateText(string, elements[i]);

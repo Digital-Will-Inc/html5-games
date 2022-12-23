@@ -89,7 +89,7 @@ function startGame() {
     $('.dif input').prop('disabled', true);
     $('.lit-cells, .chips').empty();
     let diff = $('input[name=dif-options]:checked').val();
-    logLevelStart(diff.toString());
+    Wortal.analytics.logLevelStart(diff.toString());
 
     worker.postMessage({
         messageType: 'reset',
@@ -97,11 +97,9 @@ function startGame() {
 
     if (hasEndedGame) {
         hasEndedGame = false;
-        showInterstitial(Placement.NEXT, 'RestartGame', {
-            beforeAd: function () {
-            },
-            afterAd: function () {
-            },
+        Wortal.ads.showInterstitial('next', 'RestartGame', {
+            beforeAd: function () {},
+            afterAd: function () {},
         });
     }
 }
@@ -163,9 +161,10 @@ function endHumanTurn(coords, isWin, winningChips, isBoardFull) {
         dropCursorChip(coords.row, function () {
             if (isWin) {
                 let diff = $('input[name=dif-options]:checked').val();
-                logLevelEnd(diff.toString(), true);
+                Wortal.analytics.logLevelEnd(diff.toString(), 100, true);
                 endGame('p1-win', winningChips);
             } else if (isBoardFull) {
+                Wortal.analytics.logLevelEnd(diff.toString(), 0, false);
                 endGame('tie');
             } else {
                 // pass turn to computer
@@ -197,9 +196,10 @@ function endComputerTurn(coords, isWin, winningChips, isBoardFull, isWinImminent
         dropCursorChip(coords.row, function () {
             if (isWin) {
                 let diff = $('input[name=dif-options]:checked').val();
-                logLevelEnd(diff.toString(), false);
+                Wortal.analytics.logLevelEnd(diff.toString(), 0, false);
                 endGame('p2-win', winningChips);
             } else if (isBoardFull) {
+                Wortal.analytics.logLevelEnd(diff.toString(), 0, false);
                 endGame('tie');
             } else {
                 if (isWinImminent) {
