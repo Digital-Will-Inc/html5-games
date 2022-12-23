@@ -57,7 +57,7 @@ function init() {
   GAME.firstLoop = true
   //previousTime = Date.now() - previousTime
   requestAnimFrame(draw)
-  logLevelStart("Main");
+  Wortal.analytics.logLevelStart("Main");
 }
 
 function lowerQuality() {
@@ -229,15 +229,11 @@ function draw(time) {
           setTimeout(function () {
             GAME.state = 'menu'
             bgSound.volume = 0;
-            logLevelEnd("Main", false);
-            showInterstitial(Placement.NEXT, 'RestartGame', {
-              beforeAd: function () {
-              },
-              afterAd: function () {
-                if (!muted) {
-                  bgSound.volume = 1;
-                }
-              },
+            Wortal.analytics.logLevelEnd("Main", 0, false);
+            Wortal.ads.showInterstitial('next', 'RestartGame', null, () => {
+              if (!muted) {
+                bgSound.volume = 1;
+              }
             });
           }, 4000)
         }
