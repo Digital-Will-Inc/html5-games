@@ -99,7 +99,7 @@ function StartGameLoop() {
     //Start Render Cycle
     Render();
     isResetting = false;
-    logLevelStart("Main");
+    Wortal.analytics.logLevelStart("Main");
 }
 
 function Update() {
@@ -242,15 +242,12 @@ function LoseGame() {
     scoreText.innerText += " : " + playerScore;
     scoreText.style.color = "Red";
 
-    logLevelEnd("Main", true, playerScore);
-    showInterstitial(Placement.NEXT, 'RestartGame', {
-        beforeAd: function () {
-        },
-        afterAd: function () {
+    Wortal.analytics.logLevelEnd("Main", playerScore, true);
+    Wortal.ads.showInterstitial('next', 'RestartGame', null,
+        () => {
             ResetScore();
             StartGameLoop();
-        },
-    });
+        });
 }
 
 function Rotate() {
