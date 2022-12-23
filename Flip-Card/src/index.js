@@ -61,14 +61,14 @@ $(function () {
 
         // If won game
         if (text == 'nice') {
-            logLevelEnd(difficulty, true);
+            Wortal.analytics.logLevelEnd(difficulty, 100, true);
             increase('flip_won');
             decrease('flip_abandoned');
         }
 
         // If lost game
         else if (text == 'fail') {
-            logLevelEnd(difficulty, false);
+            Wortal.analytics.logLevelEnd(difficulty, 0, false);
             increase('flip_lost');
             decrease('flip_abandoned');
         }
@@ -116,7 +116,7 @@ $(function () {
         if (level == 8) { difficulty = 'casual'; timer *= level * 4; }
         else if (level == 18) { difficulty = 'medium'; timer *= level * 5; }
         else if (level == 32) { difficulty = 'hard'; timer *= level * 6; }
-        logLevelStart(difficulty);
+        Wortal.analytics.logLevelStart(difficulty);
 
         $('#g').addClass(difficulty);
 
@@ -160,12 +160,7 @@ $(function () {
                                     if (get('flip_' + difficulty) == '-:-' || get('flip_' + difficulty) > time) {
                                         set('flip_' + difficulty, time); // increase best score
                                     }
-                                    showInterstitial(Placement.NEXT, 'RestartGame', {
-                                        beforeAd: function () {
-                                        },
-                                        afterAd: function () {
-                                        },
-                                    });
+                                    Wortal.ads.showInterstitial('next', 'RestartGame', null, null);
                                     startScreen('nice');
                                 }
                             }
@@ -185,14 +180,7 @@ $(function () {
                     'animation': 'timer ' + timer + 'ms linear'
                 })
                 .one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function (e) {
-                    showInterstitial(Placement.NEXT, 'RestartGame', {
-                        beforeAd: function () {
-                        },
-                        afterAd: function () {
-                        },
-                        noShow: function () {
-                        }
-                    });
+                    Wortal.ads.showInterstitial('next', 'RestartGame', null, null);
                     startScreen('fail'); // fail game
                 });
 
@@ -219,14 +207,7 @@ $(function () {
                         $('#g').attr('data-paused', '0');
                         $('.pause').remove();
                     }
-                    showInterstitial(Placement.NEXT, 'RestartGame', {
-                        beforeAd: function () {
-                        },
-                        afterAd: function () {
-                        },
-                        noShow: function () {
-                        }
-                    });
+                    Wortal.ads.showInterstitial('next', 'RestartGame', null, null);
                     $(window).off();
                 }
 
