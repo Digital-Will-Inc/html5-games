@@ -1,11 +1,7 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <title>HexGL</title>
-  <script src="./WortalAd.js"></script>
-
-
   <meta charset="utf-8">
   <meta name="description"
     content="HexGL is a futuristic racing game built by Thibaut Despoulain (BKcore) using HTML5, Javascript and WebGL. Come challenge your friends on this fast-paced 3D game!">
@@ -39,12 +35,10 @@
       width: 100%;
     }
   </style>
+  <script src="https://cdn.html5gameportal.com/wortal-sdk/wortal-core-1.2.0.js"></script>
+  <script src="bkcore/hexgl/LocaleHandler.js"></script>
 </head>
-
 <body>
-  <div class="black-cover" id="black-cover"
-    style="background: #000000; background-color: #000000; width: 100%; height: 100%; top: 0; left: 0; position: fixed; padding: 0; margin: 0; z-index: 100;">
-  </div>
   <div id="step-1">
     <div id="global"></div>
     <div id="title">
@@ -96,36 +90,25 @@
   <script src="libs/Detector.js"></script>
   <script src="libs/Stats.js"></script>
   <script src="libs/DAT.GUI.min.js"></script>
-
   <script src="bkcore.coffee/controllers/TouchController.js"></script>
   <script src="bkcore.coffee/controllers/OrientationController.js"></script>
   <script src="bkcore.coffee/controllers/GamepadController.js"></script>
-
   <script src="bkcore.coffee/Timer.js"></script>
   <script src="bkcore.coffee/ImageData.js"></script>
   <script src="bkcore.coffee/Utils.js"></script>
-
   <script src="bkcore/threejs/RenderManager.js"></script>
   <script src="bkcore/threejs/Shaders.js"></script>
   <script src="bkcore/threejs/Particles.js"></script>
   <script src="bkcore/threejs/Loader.js"></script>
-
   <script src="bkcore/Audio.js"></script>
-
   <script src="bkcore/hexgl/HUD.js"></script>
   <script src="bkcore/hexgl/RaceData.js"></script>
   <script src="bkcore/hexgl/ShipControls.js"></script>
   <script src="bkcore/hexgl/ShipEffects.js"></script>
   <script src="bkcore/hexgl/CameraChase.js"></script>
   <script src="bkcore/hexgl/Gameplay.js"></script>
-
   <script src="bkcore/hexgl/tracks/Cityscape.js"></script>
-
   <script src="bkcore/hexgl/HexGL.js"></script>
-
-  <script src="bkcore/hexgl/LocaleHandler.js"></script>
   <script src="launch.js"></script>
-
 </body>
-
 </html>
