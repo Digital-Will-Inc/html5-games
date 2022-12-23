@@ -97,10 +97,7 @@ function startGame() {
 
     if (hasEndedGame) {
         hasEndedGame = false;
-        Wortal.ads.showInterstitial('next', 'RestartGame', {
-            beforeAd: function () {},
-            afterAd: function () {},
-        });
+        Wortal.ads.showInterstitial('next', 'RestartGame', null, null);
     }
 }
 

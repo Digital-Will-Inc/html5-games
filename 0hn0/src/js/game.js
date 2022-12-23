@@ -440,10 +440,7 @@ var Game = new (function() {
     }
     showSizes();
     Wortal.analytics.logLevelEnd(currentPuzzle.quality, "0", false);
-    Wortal.ads.showInterstitial('next', 'NextLevel', {
-      beforeAd: function () {},
-      afterAd: function () {},
-    });
+    Wortal.ads.showInterstitial('next', 'NextLevel', null, null);
   }
 
   function addEventListeners() {
