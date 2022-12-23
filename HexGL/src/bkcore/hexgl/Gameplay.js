@@ -152,6 +152,7 @@ bkcore.hexgl.Gameplay.prototype.start = function(opts)
 		this.hud.resetTime();
 		this.hud.display("Get ready", 1);
 		this.hud.updateLap(this.lap, this.maxLaps);
+		Wortal.analytics.logLevelStart("CityScape");
 	}
 }
 
@@ -168,11 +169,13 @@ bkcore.hexgl.Gameplay.prototype.end = function(result)
 	{
 		if(this.hud != null) this.hud.display("Finish");
 		this.step = 100;
+		Wortal.analytics.logLevelEnd("CityScape", this.finishTime, true);
 	}
 	else if(result == this.results.DESTROYED)
 	{
 		if(this.hud != null) this.hud.display("Destroyed");
 		this.step = 100;
+		Wortal.analytics.logLevelEnd("CityScape", 0, false);
 	}
 }
 
