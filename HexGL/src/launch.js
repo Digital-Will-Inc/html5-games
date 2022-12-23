@@ -27,10 +27,6 @@ function checkIfImageExists(url) {
 (function() {
   var $, a, defaultControls, getWebGL, hasWebGL, init, s, u, _fn, _i, _len;
 
-  document.body.onmouseup = function () {
-    setTimeout(TranslateText,1);
-  }
-
   $ = function(_) {
     return document.getElementById(_);
   };
@@ -103,7 +99,14 @@ function checkIfImageExists(url) {
   };
 
   $('step-5').onclick = function() {
-    return window.location.reload();
+    //TODO: restart the game
+    //return window.location.reload();
+    // We cannot just reload the window as that will trigger another pre-roll ad.
+    // The functions below will get us back to the main menu, but the previous race instance is not cleared.
+    // When we load into the next race, it will happen in the background with the previous race still rendered in
+    // the foreground. Input is passed to the new race and the audio will play.
+    $('step-5').style.display = 'none';
+    $('step-1').style.display = 'block';
   };
 
   $('s-credits').onclick = function() {
@@ -144,7 +147,6 @@ function checkIfImageExists(url) {
       imgLink = "css/help-" + s[0][3] + ".png";
       if (browserLanguage == 'ja')
         imgLink = imgLink = "css/help-" + s[0][3] + "_" + browserLanguage + ".png";
-        
 
       return $('step-2').style.backgroundImage = "url(" + imgLink + ")";
     };

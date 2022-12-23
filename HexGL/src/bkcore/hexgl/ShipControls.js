@@ -36,7 +36,8 @@ bkcore.hexgl.ShipControls = function(ctx)
 	this.repulsionLerp = 0.1;
 	this.collisionSpeedDecrease = 0.8;
 	this.collisionSpeedDecreaseCoef = 0.8;
-	this.maxShield = 1.0;
+	//TODO: reset this to 1 after testing
+	this.maxShield = 0.01;
 	this.shieldDelay = 60;
 	this.shieldTiming = 0;
 	this.shieldDamage = 0.25;
@@ -254,7 +255,7 @@ bkcore.hexgl.ShipControls.prototype.terminate = function()
 
 bkcore.hexgl.ShipControls.prototype.destroy = function()
 {
-	bkcore.Audio.play('destroyed');
+	//bkcore.Audio.play('destroyed');
 	bkcore.Audio.stop('bg');
 	bkcore.Audio.stop('wind');
 
