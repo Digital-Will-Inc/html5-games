@@ -39,14 +39,18 @@ var GameState = function (game) {
     };
 
     this.create = function () {
-        logLevelStart(_level);
+        Wortal.analytics.logLevelStart(_level);
         game.physics.startSystem(Phaser.Physics.P2JS);
         game.physics.p2.gravity.y = 1000;
 
         ballMaterial = game.physics.p2.createMaterial('ballMaterial');
         worldMaterial = game.physics.p2.createMaterial('worldMaterial');
-        game.physics.p2.createContactMaterial(ballMaterial, worldMaterial, { restitution: 0.98, friction: 0 });
-        game.physics.p2.createContactMaterial(ballMaterial, ballMaterial, { restitution: 0, friction: 0, stiffness: 0.00001 });
+        game.physics.p2.createContactMaterial(ballMaterial, worldMaterial, {restitution: 0.98, friction: 0});
+        game.physics.p2.createContactMaterial(ballMaterial, ballMaterial, {
+            restitution: 0,
+            friction: 0,
+            stiffness: 0.00001
+        });
         game.physics.p2.setWorldMaterial(worldMaterial);
 
         game.add.tileSprite(0, 0, game.width, 60, "ground").alpha = 0.5;
@@ -54,15 +58,21 @@ var GameState = function (game) {
         var home = game.add.sprite(game.world.centerX, 30, "ball", 3);
         home.anchor.setTo(0.5);
         home.scale.setTo(1.2);
-        home.update = function () { this.alpha = (!_over && !_going) ? 1 : 0.5; };
+        home.update = function () {
+            this.alpha = (!_over && !_going) ? 1 : 0.5;
+        };
 
-        var scoreText = game.add.text(10, 30, _score + "", { fontSize: "20px", fill: "#fff" });
+        var scoreText = game.add.text(10, 30, _score + "", {fontSize: "20px", fill: "#fff"});
         scoreText.anchor.setTo(0, 0.5);
-        scoreText.update = function () { this.text = _score; };
+        scoreText.update = function () {
+            this.text = _score;
+        };
 
-        var levelText = game.add.text(game.width - 10, 30, _ballNum + "", { fontSize: "20px", fill: "#fff" });
+        var levelText = game.add.text(game.width - 10, 30, _ballNum + "", {fontSize: "20px", fill: "#fff"});
         levelText.anchor.setTo(1, 0.5);
-        levelText.update = function () { this.text = _ballNum; };
+        levelText.update = function () {
+            this.text = _ballNum;
+        };
 
         shapes = game.add.physicsGroup(Phaser.Physics.P2JS);
         balls = game.add.physicsGroup(Phaser.Physics.P2JS);
@@ -81,7 +91,7 @@ var GameState = function (game) {
             }
         }, this);
 
-        tweenText = game.add.text(0, 0, "", { fontSize: "36px", fill: "#fff" });
+        tweenText = game.add.text(0, 0, "", {fontSize: "36px", fill: "#fff"});
         tweenText.anchor.setTo(0.5);
         tweenText.alpha = 0;
 
@@ -156,7 +166,7 @@ var GameState = function (game) {
                 _over = true;
                 this._overMenu();
             }
-            game.add.tween(shape.body).to({ y: topY }, 200, "Linear", true);
+            game.add.tween(shape.body).to({y: topY}, 200, "Linear", true);
         }, this);
         _going = false;
     };
@@ -164,7 +174,7 @@ var GameState = function (game) {
     this._createShapes = function (i) {
         if (_xrow == 0) {
             if (_level > 0) {
-                logLevelEnd(_level, true, _score);
+                Wortal.analytics.logLevelEnd(_level, _score, true);
             }
             this._levelUp();
         }
@@ -185,9 +195,11 @@ var GameState = function (game) {
             shape.body.setMaterial(worldMaterial);
             shape.health = game.rnd.between(_ballNum, _ballNum * 4); // 生命值为球数量的1~4倍
             if (!shape.txt) {
-                shape.txt = shape.addChild(game.make.text(0, 0, shape.health + "", { fontSize: "20px", fill: "#f00" }));
+                shape.txt = shape.addChild(game.make.text(0, 0, shape.health + "", {fontSize: "20px", fill: "#f00"}));
                 shape.txt.anchor.set(0.5);
-                shape.update = function () { this.txt.text = this.health; };
+                shape.update = function () {
+                    this.txt.text = this.health;
+                };
                 shape.body.onEndContact.add(function (b1, b2) {
                     this.damage(1);
                     _score++;
@@ -205,7 +217,7 @@ var GameState = function (game) {
 
     this._levelUp = function () {
         _level++;
-        logLevelStart(_level);
+        Wortal.analytics.logLevelStart(_level);
         _ballNum = _level + 2; // 球数量为关数+2（第一关为3球，每过一关+1球）
         tweenText.x = this.world.centerX;
         tweenText.y = this.world.centerY;
@@ -215,9 +227,9 @@ var GameState = function (game) {
 
         tweenText.setText(levelText + "- " + _level);
         game.add.tween(tweenText)
-            .to({ y: tweenText.y - 100, alpha: 0.8 }, 300, "Linear", false)
-            .to({ y: tweenText.y - 150 }, 500, "Linear", false)
-            .to({ y: tweenText.y - 250, alpha: 0 }, 300, "Linear", true);
+            .to({y: tweenText.y - 100, alpha: 0.8}, 300, "Linear", false)
+            .to({y: tweenText.y - 150}, 500, "Linear", false)
+            .to({y: tweenText.y - 250, alpha: 0}, 300, "Linear", true);
     };
 
     this._overMenu = function () {
@@ -227,9 +239,12 @@ var GameState = function (game) {
         box.scale.set(game.width / 80, 5);
 
         var gameoverText = browserLanguage === "ja" ? "ゲームオーバー" : "Game Over";
-        logLevelEnd(_level, false, _score);
+        Wortal.analytics.logLevelEnd(_level, _score, false);
 
-        game.add.text(game.world.centerX, game.world.centerY - 40, gameoverText, { fontSize: "36px", fill: "#fff" }).anchor.set(0.5);
+        game.add.text(game.world.centerX, game.world.centerY - 40, gameoverText, {
+            fontSize: "36px",
+            fill: "#fff"
+        }).anchor.set(0.5);
 
         var btn1 = game.add.sprite(game.world.centerX, game.world.centerY + 40, "button", 1);
         btn1.anchor.set(0.5);
@@ -244,19 +259,11 @@ var GameState = function (game) {
                 game.focusGain();
             }
 
-            showInterstitial(Placement.NEXT, 'RestartGame', {
-                beforeAd: function () {
-                },
-                afterAd: function () {
-                    RestartGame();
-                },
-            });
+            Wortal.ads.showInterstitial('next', 'RestartGame', null, RestartGame);
         }, this);
     };
 };
 
-// window.onload = function () {
 var game = new Phaser.Game(500, 860, Phaser.CANVAS, '');
 game.state.add("main", GameState, true);
-// };
 

@@ -2,7 +2,7 @@ var w = window.innerWidth,
     h = window.innerHeight;
 
 var game;
-window.addEventListener("WortalLoaded", () => {
+window.addEventListener("DOMContentLoaded", () => {
     game = new Phaser.Game(w, h, Phaser.AUTO, 'game',
         { preload: preload, create: create, update: update, render: render });
 })
@@ -61,7 +61,7 @@ function create() {
     emitter.gravity = 300;
     emitter.setYSpeed(-400, 400);
 
-    logLevelStart("Main");
+    Wortal.analytics.logLevelStart("Main");
     throwObject();
 }
 
@@ -165,21 +165,15 @@ function LoseGame() {
     stopGame = true;
 
     const Restart = function () {
-        logLevelEnd("Main", false, score.toString());
+        Wortal.analytics.logLevelEnd("Main", score.toString(), false);
         resetScore();
         setTimeout(() => {
             stopGame = false;
-            logLevelStart("Main");
+            Wortal.analytics.logLevelStart("Main");
         }, 1000)
     }
 
-    showInterstitial(Placement.NEXT, 'RestartGame', {
-        beforeAd: function () {
-        },
-        afterAd: function () {
-            Restart();
-        },
-    });
+    Wortal.ads.showInterstitial('next', 'RestartGame', null, Restart);
 }
 
 function resetScore() {

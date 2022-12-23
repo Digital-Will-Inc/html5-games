@@ -47,11 +47,11 @@
             }
 
             if (n === 100) {
-                logLevelEnd("Main", true, '100');
+                Wortal.analytics.logLevelEnd("Main", '100', true);
                 msg = '<span class="new-game i18nElem">youwin</span>'
                 running = false
             } else if (n < 100 && moves >= cap) {
-                logLevelEnd("Main", false, n.toString());
+                Wortal.analytics.logLevelEnd("Main", n.toString(), false);
                 msg = '<span class="new-game i18nElem">tryagain</span>'
                 running = false
             }
@@ -95,7 +95,7 @@
     }
 
     let newGame = () => {
-        logLevelStart("Main");
+        Wortal.analytics.logLevelStart("Main");
         let options = setColors(colorArray.slice(), skill)
         tally = 0
         capElmt.innerHTML = cap
@@ -126,7 +126,9 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-        newGame()
+        setTimeout(() => {
+            newGame()
+        }, 200);
     }, false)
 
     document.addEventListener('click', (event) => {
@@ -135,12 +137,7 @@
             play(event.target.className)
         }
         else if (css.includes('new-game')) {
-            showInterstitial(Placement.NEXT, 'RestartGame', {
-                beforeAd: function () {
-                },
-                afterAd: function () {
-                },
-            });
+            Wortal.ads.showInterstitial('next', 'RestartGame', null, null);
             newGame()
         }
     })

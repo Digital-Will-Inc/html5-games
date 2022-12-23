@@ -271,8 +271,8 @@ var Game = new (function() {
 
   // puzzle is object with format { size:6, full:[2,1,...], empty:[0,0,2,...], quality: 76, ms: 42 }
   function startGame(puzzle, isContinued) {
-    logLevelStart(puzzle.quality);
     if (!isNaN(puzzle)) {
+      Wortal.analytics.logLevelStart(puzzle.quality);
       loadGame(puzzle);
       return;
     }
@@ -369,7 +369,7 @@ var Game = new (function() {
     getScore(function(value){
       var oldScore = value * 1,
           newScore = setScore(grid.width * grid.height, value);
-      logLevelEnd(currentPuzzle.quality, true, newScore.toString());
+      Wortal.analytics.logLevelEnd(currentPuzzle.quality, newScore.toString(), true);
       $('#scorenr').html(newScore);
       continueLastGame = false;
       grid.unmark();
@@ -439,13 +439,8 @@ var Game = new (function() {
       grid.each(function() { this.system = true; });
     }
     showSizes();
-    logLevelEnd(currentPuzzle.quality, false);
-    showInterstitial(Placement.NEXT, 'NextLevel', {
-      beforeAd: function () {
-      },
-      afterAd: function () {
-      },
-    });
+    Wortal.analytics.logLevelEnd(currentPuzzle.quality, "0", false);
+    Wortal.ads.showInterstitial('next', 'NextLevel', null, null);
   }
 
   function addEventListeners() {

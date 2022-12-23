@@ -14,7 +14,7 @@ var Stage = /** @class */ (function () {
         };
         this.container = document.getElementById('game');
         // renderer
-        this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+        this.renderer = new THREE.WebGLRenderer({antialias: true, alpha: false});
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.renderer.setClearColor('#D0CBC7', 1);
         this.container.appendChild(this.renderer.domElement);
@@ -34,13 +34,18 @@ var Stage = /** @class */ (function () {
         this.scene.add(this.light);
         this.softLight = new THREE.AmbientLight(0xffffff, 0.4);
         this.scene.add(this.softLight);
-        window.addEventListener('resize', function () { return _this.onResize(); });
+        window.addEventListener('resize', function () {
+            return _this.onResize();
+        });
         this.onResize();
     }
+
     Stage.prototype.setCamera = function (y, speed) {
-        if (speed === void 0) { speed = 0.3; }
-        TweenLite.to(this.camera.position, speed, { y: y + 4, ease: Power1.easeInOut });
-        TweenLite.to(this.camera.lookAt, speed, { y: y, ease: Power1.easeInOut });
+        if (speed === void 0) {
+            speed = 0.3;
+        }
+        TweenLite.to(this.camera.position, speed, {y: y + 4, ease: Power1.easeInOut});
+        TweenLite.to(this.camera.lookAt, speed, {y: y, ease: Power1.easeInOut});
     };
     Stage.prototype.onResize = function () {
         var viewSize = 30;
@@ -56,10 +61,10 @@ var Stage = /** @class */ (function () {
 var Block = /** @class */ (function () {
     function Block(block) {
         // set size and position
-        this.STATES = { ACTIVE: 'active', STOPPED: 'stopped', MISSED: 'missed' };
+        this.STATES = {ACTIVE: 'active', STOPPED: 'stopped', MISSED: 'missed'};
         this.MOVE_AMOUNT = 12;
-        this.dimension = { width: 0, height: 0, depth: 0 };
-        this.position = { x: 0, y: 0, z: 0 };
+        this.dimension = {width: 0, height: 0, depth: 0};
+        this.position = {x: 0, y: 0, z: 0};
         this.targetBlock = block;
         this.index = (this.targetBlock ? this.targetBlock.index : 0) + 1;
         this.workingPlane = this.index % 2 ? 'x' : 'z';
@@ -79,8 +84,7 @@ var Block = /** @class */ (function () {
         // set color
         if (!this.targetBlock) {
             this.color = 0x333344;
-        }
-        else {
+        } else {
             var offset = this.index + this.colorOffset;
             var r = Math.sin(0.3 * offset) * 55 + 200;
             var g = Math.sin(0.3 * offset + 2) * 55 + 200;
@@ -97,7 +101,7 @@ var Block = /** @class */ (function () {
         // create block
         var geometry = new THREE.BoxGeometry(this.dimension.width, this.dimension.height, this.dimension.depth);
         geometry.applyMatrix(new THREE.Matrix4().makeTranslation(this.dimension.width / 2, this.dimension.height / 2, this.dimension.depth / 2));
-        this.material = new THREE.MeshToonMaterial({ color: this.color, shading: THREE.FlatShading });
+        this.material = new THREE.MeshToonMaterial({color: this.color, shading: THREE.FlatShading});
         this.mesh = new THREE.Mesh(geometry, this.material);
         this.mesh.position.set(this.position.x, this.position.y + (this.state == this.STATES.ACTIVE ? 0 : 0), this.position.z);
         if (this.state == this.STATES.ACTIVE) {
@@ -105,6 +109,7 @@ var Block = /** @class */ (function () {
                 Math.random() > 0.5 ? -this.MOVE_AMOUNT : this.MOVE_AMOUNT;
         }
     }
+
     Block.prototype.reverseDirection = function () {
         this.direction = this.direction > 0 ? this.speed : Math.abs(this.speed);
     };
@@ -113,7 +118,7 @@ var Block = /** @class */ (function () {
         var overlap = this.targetBlock.dimension[this.workingDimension] -
             Math.abs(this.position[this.workingPlane] -
                 this.targetBlock.position[this.workingPlane]);
-        var blocksToReturn = { plane: this.workingPlane, direction: this.direction };
+        var blocksToReturn = {plane: this.workingPlane, direction: this.direction};
         if (this.dimension[this.workingDimension] - overlap < 0.3) {
             overlap = this.dimension[this.workingDimension];
             blocksToReturn.bonus = true;
@@ -145,8 +150,7 @@ var Block = /** @class */ (function () {
                 this.targetBlock.position[this.workingPlane]) {
                 this.position[this.workingPlane] =
                     this.targetBlock.position[this.workingPlane];
-            }
-            else {
+            } else {
                 choppedPosition[this.workingPlane] += overlap;
             }
             placedMesh.position.set(this.position.x, this.position.y, this.position.z);
@@ -154,8 +158,7 @@ var Block = /** @class */ (function () {
             blocksToReturn.placed = placedMesh;
             if (!blocksToReturn.bonus)
                 blocksToReturn.chopped = choppedMesh;
-        }
-        else {
+        } else {
             this.state = this.STATES.MISSED;
         }
         this.dimension[this.workingDimension] = overlap;
@@ -213,6 +216,7 @@ var Game = /** @class */ (function () {
             // insta-lose, will figure it out later.
         });
     }
+
     Game.prototype.updateState = function (newState) {
         for (var key in this.STATES)
             this.mainContainer.classList.remove(this.STATES[key]);
@@ -234,14 +238,14 @@ var Game = /** @class */ (function () {
     };
     Game.prototype.startGame = function () {
         if (this.state != this.STATES.PLAYING) {
-            logLevelStart("Main");
+            Wortal.analytics.logLevelStart("Main");
             this.scoreContainer.innerHTML = '0';
             this.updateState(this.STATES.PLAYING);
             this.addBlock();
         }
     };
     Game.prototype.restartGame = function () {
-        logLevelEnd("Main", false, this.scoreContainer.innerHTML);
+        Wortal.analytics.logLevelEnd("Main", this.scoreContainer.innerHTML, false);
         var _this = this;
         this.updateState(this.STATES.RESETTING);
         var oldBlocks = this.placedBlocks.children;
@@ -254,7 +258,9 @@ var Game = /** @class */ (function () {
                 z: 0,
                 delay: (oldBlocks.length - i) * delayAmount,
                 ease: Power1.easeIn,
-                onComplete: function () { return _this.placedBlocks.remove(oldBlocks[i]); }
+                onComplete: function () {
+                    return _this.placedBlocks.remove(oldBlocks[i]);
+                }
             });
             TweenLite.to(oldBlocks[i].rotation, removeSpeed, {
                 y: 0.5,
@@ -267,7 +273,7 @@ var Game = /** @class */ (function () {
         }
         var cameraMoveSpeed = removeSpeed * 2 + (oldBlocks.length * delayAmount);
         this.stage.setCamera(2, cameraMoveSpeed);
-        var countdown = { value: this.blocks.length - 1 };
+        var countdown = {value: this.blocks.length - 1};
         TweenLite
             .to(countdown, cameraMoveSpeed, {
                 value: 0,
@@ -280,12 +286,7 @@ var Game = /** @class */ (function () {
             _this.startGame();
         }, cameraMoveSpeed * 1000);
 
-        showInterstitial(Placement.NEXT, 'RestartGame', {
-            beforeAd: function () {
-            },
-            afterAd: function () {
-            },
-        });
+        Wortal.ads.showInterstitial('next', 'RestartGame');
     };
     Game.prototype.placeBlock = function () {
         var _this = this;
@@ -299,7 +300,9 @@ var Game = /** @class */ (function () {
             var positionParams = {
                 y: '-=30',
                 ease: Power1.easeIn,
-                onComplete: function () { return _this.choppedBlocks.remove(newBlocks.chopped); }
+                onComplete: function () {
+                    return _this.choppedBlocks.remove(newBlocks.chopped);
+                }
             }, let = void 0, rotateRandomness = 10;
             var rotationParams = {
                 delay: 0.05,
@@ -315,8 +318,7 @@ var Game = /** @class */ (function () {
                 newBlocks.placed.position[newBlocks.plane]) {
                 positionParams[newBlocks.plane] =
                     '+=' + (40 * Math.abs(newBlocks.direction));
-            }
-            else {
+            } else {
                 positionParams[newBlocks.plane] =
                     '-=' + (40 * Math.abs(newBlocks.direction));
             }
@@ -345,7 +347,9 @@ var Game = /** @class */ (function () {
         var _this = this;
         this.blocks[this.blocks.length - 1].tick();
         this.stage.render();
-        requestAnimationFrame(function () { _this.tick(); });
+        requestAnimationFrame(function () {
+            _this.tick();
+        });
     };
     return Game;
 }());

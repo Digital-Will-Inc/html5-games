@@ -36,7 +36,7 @@ var Tutorial = new (function() {
 
 
   function start() {
-    logTutorialStart();
+    Wortal.analytics.logTutorialStart();
     $('html').addClass('tutorial');
     step = -1;
     active = true;
@@ -76,7 +76,7 @@ var Tutorial = new (function() {
       setTimeout(function() {
         Game.checkForLevelComplete();  
       }, 1000)
-      logTutorialEnd();
+      Wortal.analytics.logTutorialEnd();
       return;
     }
 

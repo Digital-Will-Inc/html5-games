@@ -36,7 +36,6 @@ function toggleMute() {
 }
 
 function PlayBGM() {
-  if (hasPlayedPreroll == false) return;
   bgSound.play()
 }
 

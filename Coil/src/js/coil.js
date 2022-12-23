@@ -365,7 +365,7 @@ var Coil = (function(){
 	}
 	
 	function start() {
-		logLevelStart("Main");
+		Wortal.analytics.logLevelStart("Main");
 		reset();
 		
 		timeStart = Date.now();
@@ -385,13 +385,8 @@ var Coil = (function(){
 	}
 	
 	function stop() {
-		logLevelEnd("Main", true, score.toString());
-		showInterstitial(Placement.NEXT, 'RestartGame', {
-			beforeAd: function () {
-			},
-			afterAd: function () {
-			},
-		});
+		Wortal.analytics.logLevelEnd("Main", score.toString(), true);
+		Wortal.ads.showInterstitial('next', 'RestartGame', null, null);
 		scorePanel.style.display = 'block';
 		scorePanel.querySelector( 'p' ).innerHTML = Math.floor( score );
 		

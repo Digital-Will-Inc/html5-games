@@ -15,12 +15,13 @@ var Game = function (cols, rows, number_of_bombs, set, usetwemoji) {
   this.numbermoji = [this.emojiset[0]].concat(numbers)
   this.usetwemoji = usetwemoji || false
 
-  this.init()
+  setTimeout(() => {
+    this.init();
+  }, 500);
 }
 
 Game.prototype.init = function () {
-  logLevelStart("Main");
-  logLevelStart("Main");
+  Wortal.analytics.logLevelStart("Main");
   this.prepareEmoji()
 
   if (this.number_of_cells > 2500) { alert('too big, go away, have less than 2500 cells'); return false }
@@ -177,12 +178,7 @@ Game.prototype.restart = function (usetwemoji) {
 }
 
 Game.prototype.resetMetadata = function () {
-  showInterstitial(Placement.NEXT, 'RestartGame', {
-    beforeAd: function () {
-    },
-    afterAd: function () {
-    },
-  });
+  Wortal.ads.showInterstitial('next', 'RestartGame');
   document.getElementById('timer').textContent = '0.00'
   document.querySelector('.wrapper').classList.remove('won', 'lost')
   document.querySelector('.result-emoji').textContent = ''
@@ -302,7 +298,7 @@ Game.prototype.showMessage = function () {
   var winner = this.result === 'won'
   var emoji = winner ? '😎' : '😵'
   this.updateFeedback(winner ? "Yay, you won!" : "Boom! you lost.")
-  logLevelEnd("Main", winner);
+  Wortal.analytics.logLevelEnd("Main", 100, winner);
   document.querySelector('.wrapper').classList.add(this.result)
   document.getElementById('timer').textContent = seconds
   document.getElementById('result').innerHTML = this.usetwemoji ? twemoji.parse(emoji) : emoji

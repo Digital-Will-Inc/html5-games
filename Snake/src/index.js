@@ -16,7 +16,6 @@ function clamp(value, min, max) {
     return Math.min(Math.max(value, min), max);
 }
 
-
 // SNAKE GAME
 // ----------
 
@@ -84,8 +83,6 @@ class Snake {
         // this.startLoop();
         this.setupKeys();
         this.setupTouch();
-
-        // console.log(this);
     }
 
     // setup
@@ -122,7 +119,6 @@ class Snake {
             }
         })
     }
-
 
     setupTouch() {
         let avgDirection = [];
@@ -162,14 +158,10 @@ class Snake {
             let ver = (Math.abs(d[0]) <= Math.abs(d[1]) && d[1] < 0);
             let hor = (Math.abs(d[1]) <= Math.abs(d[0]) && d[0] < 0)
 
-            // console.log((d[0] < 0 && Math.abs(d[0]) > d[1]) ? "left" : (d[0] > 0 && Math.abs(d[0]) > d[1]) ? "right" : (d[1] > 0 && Math.abs(d[1]) > d[0]) ? "top" : "bottom");
-
             if ((d[0] < 0 && Math.abs(d[0]) > Math.abs(d[1]))) this.directionQueue = [[-1, 0]];
             else if ((d[0] > 0 && Math.abs(d[0]) > Math.abs(d[1]))) this.directionQueue = [[1, 0]];
             else if ((d[1] < 0 && Math.abs(d[1]) > Math.abs(d[0]))) this.directionQueue = [[0, -1]];
             else if ((d[1] > 0 && Math.abs(d[1]) > Math.abs(d[0]))) this.directionQueue = [[0, 1]];
-
-            // console.log(this.directionQueue[0]);
 
             prev = current;
         }, { passive: false });
@@ -187,7 +179,6 @@ class Snake {
         let snake = Array.apply(null, Array(this.startLength)).map((e) => {
             return this.startPosition;
         });
-        // console.log(...snake);
         return snake;
     }
 
@@ -196,8 +187,6 @@ class Snake {
         let [x, y] = [null, null];
 
         if (this.powerUps.length < (this.width * this.height) - this.snake.length) {
-
-
             while (collides) {
                 [x, y] = [
                     this.getRandomBetween(0, this.width - 1),
@@ -228,7 +217,6 @@ class Snake {
 
         const width = box.width * ratio;
         const height = box.height * ratio;
-
 
         this.canvasWidth = width;
         this.canvasHeight = height;
@@ -268,9 +256,8 @@ class Snake {
 
         this.step();
         this.animate();
-        logLevelStart("Main");
+        Wortal.analytics.logLevelStart("Main");
     }
-
 
     stop() {
         clearTimeout(this.speedTimer);
@@ -280,13 +267,8 @@ class Snake {
     async die() {
         this.onDie(this);
         this.death = true;
-        logLevelEnd("Main", false, this.score);
-        showInterstitial(Placement.NEXT, 'RestartGame', {
-            beforeAd: function () {
-            },
-            afterAd: function () {
-            },
-        });
+        Wortal.analytics.logLevelEnd("Main", this.score, false);
+        Wortal.ads.showInterstitial('next', 'RestartGame');
     }
 
     // helpers
@@ -315,7 +297,6 @@ class Snake {
     step() {
         this.animateInt = 0;
         if (!this.death) {
-
             if (this.directionQueue.length > 0) {
                 let newDirection = this.directionQueue.shift();
                 if (this.directionNotOpposite(newDirection)) {
@@ -323,26 +304,16 @@ class Snake {
                 }
             }
 
-
             // update
             this.moveSnake();
             this.collectPowerUps();
             this.decreaseMultiplier();
             this.updateScore();
 
-            // draw
-            // this.drawBackground();
-            // this.drawPowerUps();
-            // this.drawSnake();
-
-
             clearTimeout(this.speedTimer);
-
             this.considerDeath();
         }
         this.speedTimer = setTimeout(() => this.step(), this.speedTimeout);
-
-        // console.log(this.snake.join(" "));
     }
 
     animate() {
@@ -375,17 +346,12 @@ class Snake {
     // update
     moveSnake() {
         this.prevSnake = [...this.snake];
-
         this.snake.pop();
 
         let head = this.addDirection(this.snake[0], this.direction);
         let [x, y] = head;
         if (this.loop) head = [mod(x, this.width), mod(y, this.height)];
         this.snake.unshift(head);
-
-        // console.log("-------------------------------------");
-        // console.log(...this.prevSnake);
-        // console.log(...this.snake);
     }
 
     addLength(amount) {
@@ -464,10 +430,8 @@ class Snake {
             let [x, y] = item;
             if (index == 0 || index == this.prevSnake.length - 1) {
                 let [prevX, prevY] = this.prevSnake[index];
-
                 if (index == this.prevSnake.length - 1) {
                     this.drawRect(this.colors.snake, x, y, 1, 1);
-
                 } else if (index === 0) {
                     this.drawCap(this.colors.snake, x, y, 1, 1,)
                 }
@@ -508,7 +472,6 @@ class Snake {
     }
 }
 
-
 // You can change the settings if you like
 // ---------------------------------------
 let settings = {
@@ -523,7 +486,6 @@ let settings = {
     // autoStart: false
 };
 
-
 // START BUTTON, SCOREBOARD ETC.
 // -----------------------------
 let canvas = document.querySelector("canvas");
@@ -536,7 +498,6 @@ let startButton = document.querySelector(".start");
 startButton.innerHTML = SelectTranslteText("Start", "スタート");
 startButton.addEventListener("click", e => {
     e.preventDefault();
-
     snake.startLoop();
     canvasContainer.classList.add("is-active");
 })
@@ -551,16 +512,12 @@ snake.onScoreUpdate = (data) => {
 }
 
 snake.onDie = (data) => {
-
     canvasContainer.classList.remove("is-active");
-
-
     let prevScore = localStorage.getItem("highscore") !== null ? parseInt(localStorage.getItem("highscore")) : 0;
     if (data.score > prevScore) {
         localStorage.setItem("highscore", Math.floor(data.score));
         highscore = Math.floor(data.score);
     }
-
     localStorage.setItem("previousScore", Math.floor(data.score));
     previousScore = Math.floor(data.score);
 }
