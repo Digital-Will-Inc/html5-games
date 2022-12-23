@@ -17,7 +17,7 @@ var Game = function (cols, rows, number_of_bombs, set, usetwemoji) {
 
   setTimeout(() => {
     this.init();
-  }, 200);
+  }, 500);
 }
 
 Game.prototype.init = function () {
