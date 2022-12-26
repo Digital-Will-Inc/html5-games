@@ -1,7 +1,4 @@
-var WORTAL_API_INIT_SCRIPT = document.createElement("script");
-WORTAL_API_INIT_SCRIPT.src = "WortalAd.js";
-WORTAL_API_INIT_SCRIPT.type = 'text/javascript';
-const headTag = document.getElementsByTagName("head");
+
 const run = () => {
 	const start = document.getElementById('start')
 	start.addEventListener('click', (e) => {
@@ -9,18 +6,12 @@ const run = () => {
 		var audio = new Audio('fr_soundtrack.mp3');
 		audio.play();
 		requestAnimationFrame(animate);
+		Wortal.analytics.logLevelStart("Main");
 	})
 }
 
-if (!window.location.href.includes('http://localhost')) {
-	headTag[headTag.length - 1].appendChild(WORTAL_API_INIT_SCRIPT);
-} else {
-	document.getElementById("black-cover").hidden = true;
-	run()
-}
-window.addEventListener('WortalAdLoaded', function (e) {
-	run()
-}, false);
+run();
+
 const counterDOM = document.getElementById('counter');
 const endDOM = document.getElementById('end');
 
@@ -146,6 +137,7 @@ const renderer = new THREE.WebGLRenderer({
 	alpha: true,
 	antialias: true
 });
+
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -221,7 +213,6 @@ function Car() {
 function Truck() {
 	const truck = new THREE.Group();
 	const color = vechicleColors[Math.floor(Math.random() * vechicleColors.length)];
-
 
 	const base = new THREE.Mesh(
 		new THREE.BoxBufferGeometry(100 * zoom, 25 * zoom, 5 * zoom),
@@ -442,11 +433,12 @@ function Lane(index) {
 }
 
 document.querySelector("#retry").addEventListener("click", () => {
-	console.log('hey',);
-
 	lanes.forEach(lane => scene.remove(lane.mesh));
-	initaliseValues();
-	endDOM.style.visibility = 'hidden';
+	Wortal.analytics.logLevelEnd("Main", 0, false);
+	Wortal.ads.showInterstitial('next', 'RetryLevel', null, () => {
+		initaliseValues();
+		endDOM.style.visibility = 'hidden';
+	});
 });
 
 document.getElementById('forward').addEventListener("click", () => move('forward'));
