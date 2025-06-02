@@ -1,5 +1,5 @@
 let WORTAL_API_SCRIPT = document.createElement("script");
-WORTAL_API_SCRIPT.src = 'https://html5gameportal.com/embeds/wortal-1.1.3.js';
+WORTAL_API_SCRIPT.src = 'https://storage.googleapis.com/html5gameportal.com/embeds/wortal-1.4.0.js';
 WORTAL_API_SCRIPT.type = 'text/javascript';
 // WORTAL_API_SCRIPT.async = true;
 const head = document.getElementsByTagName("head");
